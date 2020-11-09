@@ -1,8 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import pt.ulusofona.lp2.theWalkingDEISIGame.Humano;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,8 @@ public class TWDGameManager {
     public TWDGameManager() {}
 
     public boolean startGame(File ficheiroInicial) {
-
+        //ler o ficheiro passado por argumento
+        
 
         //this.width = rows - 1;    ????
         //this.height = columns - 1; ????
@@ -86,9 +86,15 @@ public class TWDGameManager {
         survivors.add("Nr. de turnos terminados:\n");
         survivors.add(String.valueOf(turnos)+"\n\n");
         survivors.add("OS VIVOS:\n");
-        //survivors.add()   -> adicionar ID'S
-
+        for(Humano humano: humanos) {
+            survivors.add(humano.getId() + " " + humano.getNome());
+        }
+        for(Zombie zombie: zombies) {
+            survivors.add(String.valueOf(zombie.getId()));
+        }
         return survivors;
+
+        // FALTA ORDENAR OS ID´S ANTES DE ADICIONAR
     }
 
     public boolean isDay() {
