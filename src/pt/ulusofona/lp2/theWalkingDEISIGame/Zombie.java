@@ -10,6 +10,19 @@ public class Zombie {
     int equipa = 1;
     int equipamentosDestruidos = 0;
 
+    public Zombie(int id, int idTipo, String nome, int x, int y) {
+        this.id = id;
+        this.idTipo = idTipo;
+        this.nome = nome;
+        this.x = x;
+        this.y = y;
+    }
+
+    public Zombie(int id, int idTipo) {
+        this.id = id;
+        this.idTipo = idTipo;
+    }
+
     //falta construtor
 
 

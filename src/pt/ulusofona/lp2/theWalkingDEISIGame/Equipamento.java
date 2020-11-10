@@ -6,6 +6,12 @@ public class Equipamento {
     int x;
     int y;
 
+    public Equipamento(int id, int idTipo, int x, int y) {
+        this.id = id;
+        this.idTipo = idTipo;
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX() {
         return x;

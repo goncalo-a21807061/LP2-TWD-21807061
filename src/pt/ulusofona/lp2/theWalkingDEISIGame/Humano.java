@@ -11,7 +11,13 @@ public class Humano {
     int equipamentosApanhados = 0;
 
 
-    //falta construtor
+    public Humano(int id, int idTipo, String nome, int x, int y) {
+        this.id = id;
+        this.idTipo = idTipo;
+        this.nome = nome;
+        this.x = x;
+        this.y = y;
+    }
 
     public int getId() {
         return id;
