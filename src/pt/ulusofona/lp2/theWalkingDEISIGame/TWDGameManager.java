@@ -62,7 +62,7 @@ public class TWDGameManager {
                 } else if(count > count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     nrEquipamentos = Integer.parseInt(dados[1]);
-                } else if(count > count+nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
+                } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0]);
                     int idTipo = Integer.parseInt(dados[1]);
@@ -77,7 +77,6 @@ public class TWDGameManager {
         } catch (FileNotFoundException exception) {
             System.out.println("Erro. Ficheiro não encontrado");
         }
-        //passar as variáveis de tabuleiro para "rows" e "columns"
 
         //this.width = rows - 1;    ????
         //this.height = columns - 1; ????
