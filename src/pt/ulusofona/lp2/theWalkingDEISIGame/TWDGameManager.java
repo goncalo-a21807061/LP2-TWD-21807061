@@ -44,10 +44,10 @@ public class TWDGameManager {
                     String dados[] = linha.split(" : ");
                     equipaInicial = Integer.parseInt(dados[0]);
                 } else if(count == 2) {
-                    String dados[] = linha.split(" ");
+                    String dados[] = linha.split(" : ");
                     nrCriaturas = Integer.parseInt(dados[0]);
                 } else if(count > 2 && count <= count + nrCriaturas) {
-                    String dados[] = linha.split(" ");
+                    String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0].replace(":",""));
                     int idTipo = Integer.parseInt(dados[1].replace(" ",""));
                     String nome = dados[2];
