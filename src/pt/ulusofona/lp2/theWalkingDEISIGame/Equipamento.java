@@ -39,6 +39,7 @@ public class Equipamento {
         }
     }
 
+    /*
     public String getDescricao() {
         if(id == 0) {
             return "Permite obter protecção contra 1 ataque de zombies.\n" + "Após esse ataque, é destruído.";
@@ -48,5 +49,5 @@ public class Equipamento {
         }
 
     }
-
+*/
 }

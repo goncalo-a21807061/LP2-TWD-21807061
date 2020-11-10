@@ -25,7 +25,7 @@ public class TWDGameManager {
 
     public boolean startGame(File ficheiroInicial) {
         //ler o ficheiro passado por argumento
-        
+        //passar as variáveis de tabuleiro para "rows" e "columns"
 
         //this.width = rows - 1;    ????
         //this.height = columns - 1; ????
