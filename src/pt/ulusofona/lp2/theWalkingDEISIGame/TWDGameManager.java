@@ -41,11 +41,9 @@ public class TWDGameManager {
                     rows = Integer.parseInt(dados[0]);
                     columns = Integer.parseInt(dados[1]);
                 } else if(count == 1) {
-                    String dados[] = linha.split(" : ");
-                    equipaInicial = Integer.parseInt(dados[0]);
+                    equipaInicial = Integer.parseInt(linha);
                 } else if(count == 2) {
-                    String dados[] = linha.split(" : ");
-                    nrCriaturas = Integer.parseInt(dados[0]);
+                    nrCriaturas = Integer.parseInt(linha);
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0]);
@@ -56,17 +54,16 @@ public class TWDGameManager {
                     if(idTipo == 1) {
                         Humano humano = new Humano(id,idTipo,nome,x,y);
                         humanos.add(humano);
-                    } else if(idTipo == 1) {
+                    } else if(idTipo == 0) {
                         Zombie zombie = new Zombie(id, idTipo, nome, x, y);
                         zombies.add(zombie);
                     }
                 } else if(count > count + nrCriaturas) {
-                    String dados[] = linha.split(" : ");
-                    nrEquipamentos = Integer.parseInt(dados[1]);
+                    nrEquipamentos = Integer.parseInt(linha);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0].replace(" :",""));
-                    int idTipo = Integer.parseInt(dados[1].replace(": ",""));
+                    int id = Integer.parseInt(dados[0]);
+                    int idTipo = Integer.parseInt(dados[1]);
                     int x = Integer.parseInt(dados[2]);
                     int y = Integer.parseInt(dados[3]);
                     Equipamento equipamento = new Equipamento(id,idTipo,x,y);
