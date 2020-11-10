@@ -48,7 +48,7 @@ public class TWDGameManager {
                     if(Integer.parseInt(dados[1]) == 1) {
                         int id = Integer.parseInt(dados[0]);
                         int idTipo = Integer.parseInt(dados[1]);
-                        String nome = dados[2];
+                        String nome = String.valueOf(dados[2]);
                         int x = Integer.parseInt(dados[3]);
                         int y = Integer.parseInt(dados[4]);
                         Humano humano = new Humano(id,idTipo,nome,x,y);
