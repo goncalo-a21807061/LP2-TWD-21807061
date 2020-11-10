@@ -32,7 +32,8 @@ public class TWDGameManager {
         int count = 0;
         //ler o ficheiro passado por argumento
         try {
-            Scanner leitorFicheiro = new Scanner(ficheiroInicial);
+            File ficheiro = new File(ficheiroInicial.getPath());
+            Scanner leitorFicheiro = new Scanner(ficheiro);
             while(leitorFicheiro.hasNextLine()) {
                 linha = leitorFicheiro.nextLine();
                 if(count == 0) {
@@ -64,7 +65,7 @@ public class TWDGameManager {
                     nrEquipamentos = Integer.parseInt(dados[1]);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0].replace(" ",""));
+                    int id = Integer.parseInt(dados[0].replace(" :",""));
                     int idTipo = Integer.parseInt(dados[1].replace(": ",""));
                     int x = Integer.parseInt(dados[2]);
                     int y = Integer.parseInt(dados[3]);
