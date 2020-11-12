@@ -46,7 +46,7 @@ public class TWDGameManager {
                     nrCriaturas = Integer.parseInt(linha);
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0].replace(" : ",""));
+                    int id = Integer.parseInt(dados[0]);
                     int idTipo = Integer.parseInt(dados[1]);
                     String nome = dados[2];
                     int x = Integer.parseInt(dados[3]);
