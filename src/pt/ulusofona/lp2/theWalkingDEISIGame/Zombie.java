@@ -18,13 +18,6 @@ public class Zombie {
         this.y = y;
     }
 
-    public Zombie(int id, int idTipo) {
-        this.id = id;
-        this.idTipo = idTipo;
-    }
-
-    //falta construtor
-
 
     public int getId() {
         return id;
@@ -44,7 +37,7 @@ public class Zombie {
 
 
     public String toString() {
-        return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosDestruidos + " @ (" + x + ", " + y + ") ";
+        return id + " | " + "Zombie" + " | " + nomeEquipa + " | " + nome + " | " + equipamentosDestruidos + " @ (" + x + ", " + y + ") ";
     }
 
     public int getEquipa() {

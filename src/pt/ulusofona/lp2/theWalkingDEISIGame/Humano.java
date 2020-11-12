@@ -46,7 +46,7 @@ public class Humano {
     }
 
     public String toString() {
-        return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ") ";
+        return id + " | " + "Humano" + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ") ";
     }
 
     public int getEquipa() {

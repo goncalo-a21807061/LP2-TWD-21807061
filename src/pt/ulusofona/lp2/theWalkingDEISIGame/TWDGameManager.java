@@ -31,6 +31,8 @@ public class TWDGameManager {
         humanos = new ArrayList<>();
         zombies = new ArrayList<>();
         equipamentos = new ArrayList<>();
+        this.width = rows - 1;
+        this.height = columns - 1;
         int count = 0;
         int id,idTipo,x,y ;
         //ler o ficheiro passado por argumento
@@ -85,8 +87,6 @@ public class TWDGameManager {
             e.printStackTrace();
             return false;
         }
-        //this.width = rows - 1;    ????
-        //this.height = columns - 1; ????
     }
 
 
