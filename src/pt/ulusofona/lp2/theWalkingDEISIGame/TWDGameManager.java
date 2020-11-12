@@ -33,41 +33,44 @@ public class TWDGameManager {
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
             while((linha = leitorFicheiro.readLine()) != null) {
-                count++;
-                if(count == 1) {
+                if(count == 0) {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0].replace(" ",""));
                     columns = Integer.parseInt(dados[1].replace(" ",""));
-                } else if(count == 2) {
+                } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha);
-                } else if(count == 3) {
+                } else if(count == 2) {
                     nrCriaturas = Integer.parseInt(linha);
-                } else if(count > 3 && count <= count + nrCriaturas) {
+                } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0]);
-                    int idTipo = Integer.parseInt(dados[1]);
-                    String nome = dados[2];
-                    int x = Integer.parseInt(dados[3]);
-                    int y = Integer.parseInt(dados[4]);
-                    if(idTipo == 1) {
-                        Humano humano = new Humano(id,idTipo,nome,x,y);
-                        humanos.add(humano);
-                    } else if(idTipo == 0) {
-                        Zombie zombie = new Zombie(id, idTipo, nome, x, y);
-                        zombies.add(zombie);
+                    if(dados.length > 1) {
+                        int idTipo = Integer.parseInt(dados[1]);
+                        String nome = dados[2];
+                        int x = Integer.parseInt(dados[3]);
+                        int y = Integer.parseInt(dados[4]);
+                        if (idTipo == 1) {
+                            Humano humano = new Humano(id, idTipo, nome, x, y);
+                            humanos.add(humano);
+                        } else if (idTipo == 0) {
+                            Zombie zombie = new Zombie(id, idTipo, nome, x, y);
+                            zombies.add(zombie);
+                        }
                     }
                 } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
                     nrEquipamentos = Integer.parseInt(linha);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0].replace(" ",""));
-                    int idTipo = Integer.parseInt(dados[1].replace(" ",""));
-                    int x = Integer.parseInt(dados[2].replace(" ",""));
-                    int y = Integer.parseInt(dados[3].replace(" ",""));
-                    Equipamento equipamento = new Equipamento(id,idTipo,x,y);
-                    equipamentos.add(equipamento);
+                    if(dados.length > 1) {
+                        int idTipo = Integer.parseInt(dados[1].replace(" ", ""));
+                        int x = Integer.parseInt(dados[2].replace(" ", ""));
+                        int y = Integer.parseInt(dados[3].replace(" ", ""));
+                        Equipamento equipamento = new Equipamento(id, idTipo, x, y);
+                        equipamentos.add(equipamento);
+                    }
                 }
-
+                count++;
             }
             leitorFicheiro.close();
             return true;
