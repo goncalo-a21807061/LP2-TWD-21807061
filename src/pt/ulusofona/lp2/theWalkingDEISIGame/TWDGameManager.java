@@ -29,6 +29,7 @@ public class TWDGameManager {
         BufferedReader leitorFicheiro = null;
         String linha;
         int count = 0;
+        int id,idTipo,x,y;
         //ler o ficheiro passado por argumento
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
@@ -43,29 +44,32 @@ public class TWDGameManager {
                     nrCriaturas = Integer.parseInt(linha);
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0]);
+                    id = Integer.parseInt(dados[0]);
                     if(dados.length > 1) {
-                        int idTipo = Integer.parseInt(dados[1]);
+                        idTipo = Integer.parseInt(dados[1]);
                         String nome = dados[2];
-                        int x = Integer.parseInt(dados[3]);
-                        int y = Integer.parseInt(dados[4]);
-                        if (idTipo == 1) {
-                            Humano humano = new Humano(id, idTipo, nome, x, y);
-                            humanos.add(humano);
-                        } else if (idTipo == 0) {
-                            Zombie zombie = new Zombie(id, idTipo, nome, x, y);
-                            zombies.add(zombie);
+                        x = Integer.parseInt(dados[3]);
+                        if(dados.length > 3) {
+                            y = Integer.parseInt(dados[4]);
+                            if (idTipo == 1) {
+                                Humano humano = new Humano(id, idTipo, nome, x, y);
+                                humanos.add(humano);
+                            } else if (idTipo == 0) {
+                                Zombie zombie = new Zombie(id, idTipo, nome, x, y);
+                                zombies.add(zombie);
+                            }
                         }
+
                     }
                 } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
                     nrEquipamentos = Integer.parseInt(linha);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0].replace(" ",""));
+                     id = Integer.parseInt(dados[0].replace(" ",""));
                     if(dados.length > 1) {
-                        int idTipo = Integer.parseInt(dados[1].replace(" ", ""));
-                        int x = Integer.parseInt(dados[2].replace(" ", ""));
-                        int y = Integer.parseInt(dados[3].replace(" ", ""));
+                         idTipo = Integer.parseInt(dados[1].replace(" ", ""));
+                         x = Integer.parseInt(dados[2].replace(" ", ""));
+                         y = Integer.parseInt(dados[3].replace(" ", ""));
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
                     }
