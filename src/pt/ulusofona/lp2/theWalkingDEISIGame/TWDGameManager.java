@@ -33,6 +33,7 @@ public class TWDGameManager {
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
             while((linha = leitorFicheiro.readLine()) != null) {
+                count++;
                 if(count == 0) {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0]);
@@ -41,13 +42,13 @@ public class TWDGameManager {
                     equipaInicial = Integer.parseInt(linha);
                 } else if(count == 2) {
                     nrCriaturas = Integer.parseInt(linha);
-                } else if(count > 2 && count < count + nrCriaturas) {
+                } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0]);
                     int idTipo = Integer.parseInt(dados[1]);
                     String nome = dados[2];
-                    int x = Integer.parseInt(dados[3].replace(" ",""));
-                    int y = Integer.parseInt(dados[4].replace(" ",""));
+                    int x = Integer.parseInt(dados[3]);
+                    int y = Integer.parseInt(dados[4]);
                     if(idTipo == 1) {
                         Humano humano = new Humano(id,idTipo,nome,x,y);
                         humanos.add(humano);
@@ -66,7 +67,7 @@ public class TWDGameManager {
                     Equipamento equipamento = new Equipamento(id,idTipo,x,y);
                     equipamentos.add(equipamento);
                 }
-                count++;
+
             }
             leitorFicheiro.close();
             return true;
