@@ -38,6 +38,7 @@ public class TWDGameManager {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0].trim());
                     columns = Integer.parseInt(dados[1].trim());
+                    tabuleiro = new int [rows][columns];
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha.trim());
                 } else if(count == 2) {
@@ -47,7 +48,7 @@ public class TWDGameManager {
                     if(dados.length > 4) {
                         id = Integer.parseInt(dados[0].trim());
                         idTipo = Integer.parseInt(dados[1].trim());
-                        String nome = dados[2];
+                        String nome = dados[2].trim();
                         x = Integer.parseInt(dados[3].trim());
                         y = Integer.parseInt(dados[4].trim());
                         if (idTipo == 1) {
