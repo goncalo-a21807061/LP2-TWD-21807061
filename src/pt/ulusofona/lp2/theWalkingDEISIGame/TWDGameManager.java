@@ -45,11 +45,10 @@ public class TWDGameManager {
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     id = Integer.parseInt(dados[0]);
-                    if(dados.length > 1) {
+                    if(dados.length > 4) {
                         idTipo = Integer.parseInt(dados[1]);
                         String nome = dados[2];
                         x = Integer.parseInt(dados[3]);
-                        if(dados.length > 3) {
                             y = Integer.parseInt(dados[4]);
                             if (idTipo == 1) {
                                 Humano humano = new Humano(id, idTipo, nome, x, y);
@@ -58,15 +57,13 @@ public class TWDGameManager {
                                 Zombie zombie = new Zombie(id, idTipo, nome, x, y);
                                 zombies.add(zombie);
                             }
-                        }
-
                     }
                 } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
                     nrEquipamentos = Integer.parseInt(linha);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
                      id = Integer.parseInt(dados[0].replace(" ",""));
-                    if(dados.length > 1) {
+                    if(dados.length > 4) {
                          idTipo = Integer.parseInt(dados[1].replace(" ", ""));
                          x = Integer.parseInt(dados[2].replace(" ", ""));
                          y = Integer.parseInt(dados[3].replace(" ", ""));
