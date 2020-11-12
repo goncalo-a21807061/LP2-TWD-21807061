@@ -1,10 +1,8 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TWDGameManager {
 
@@ -28,22 +26,21 @@ public class TWDGameManager {
     public TWDGameManager() {}
 
     public boolean startGame(File ficheiroInicial) {
+        BufferedReader leitorFicheiro = null;
         String linha;
         int count = 0;
         //ler o ficheiro passado por argumento
         try {
-            File ficheiro = new File(ficheiroInicial.getPath());
-            Scanner leitorFicheiro = new Scanner(ficheiro);
-            while(leitorFicheiro.hasNextLine()) {
-                linha = leitorFicheiro.toString();
+            leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
+            while((linha = leitorFicheiro.readLine()) != null) {
                 if(count == 0) {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0]);
                     columns = Integer.parseInt(dados[1]);
                 } else if(count == 1) {
-                    equipaInicial = Integer.parseInt(linha.trim());
+                    equipaInicial = Integer.parseInt(linha);
                 } else if(count == 2) {
-                    nrCriaturas = Integer.parseInt(linha.trim());
+                    nrCriaturas = Integer.parseInt(linha);
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0].replace(" ",""));
@@ -73,8 +70,8 @@ public class TWDGameManager {
             }
             leitorFicheiro.close();
             return true;
-        } catch (FileNotFoundException exception) {
-            System.out.println("Erro. Ficheiro não encontrado");
+        } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
         //this.width = rows - 1;    ????
