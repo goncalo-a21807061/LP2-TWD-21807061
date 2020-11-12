@@ -38,18 +38,17 @@ public class TWDGameManager {
                 linha = leitorFicheiro.toString();
                 if(count == 0) {
                     String dados[] = linha.split(" ");
-                    rows = Integer.parseInt(dados[0].replace(" ",""));
-                    columns = Integer.parseInt(dados[1].replace(" ",""));
+                    rows = Integer.parseInt(dados[0]);
+                    columns = Integer.parseInt(dados[1]);
                 } else if(count == 1) {
-                    equipaInicial = Integer.parseInt(linha.replace(" ",""));
+                    equipaInicial = Integer.parseInt(linha.trim());
                 } else if(count == 2) {
-                    nrCriaturas = Integer.parseInt(linha.replace(" ",""));
+                    nrCriaturas = Integer.parseInt(linha.trim());
                 } else if(count > 2 && count <= count + nrCriaturas) {
                     String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0].replace(" ",""));
-
                     int idTipo = Integer.parseInt(dados[1].replace(" ",""));
-                    String nome = dados[2].replace(" ","");
+                    String nome = dados[2];
                     int x = Integer.parseInt(dados[3].replace(" ",""));
                     int y = Integer.parseInt(dados[4].replace(" ",""));
                     if(idTipo == 1) {
