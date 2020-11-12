@@ -31,7 +31,7 @@ public class Zombie {
     }
 
     public String getImagePNG() {
-        return "ola";
+        return "zombie.png";
     }
 
     public void setX(int x) {

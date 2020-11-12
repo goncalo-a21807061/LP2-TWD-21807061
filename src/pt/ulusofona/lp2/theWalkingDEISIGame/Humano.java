@@ -26,7 +26,7 @@ public class Humano {
     public String getNome() { return nome; }
 
     public String getImagePNG() {
-        return "ola";
+        return "human.png";
     }
 
     public int getX() {

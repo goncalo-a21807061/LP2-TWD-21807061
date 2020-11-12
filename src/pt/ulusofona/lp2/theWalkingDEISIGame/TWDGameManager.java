@@ -18,7 +18,7 @@ public class TWDGameManager {
 
     int equipaInicial;
     int currentTeam;
-    int turnos = -1;
+    int turnos = 1;
     int nrCriaturas;
     int nrEquipamentos;
 
@@ -29,46 +29,48 @@ public class TWDGameManager {
         BufferedReader leitorFicheiro = null;
         String linha;
         int count = 0;
-        int id,idTipo,x,y;
+        int id = 0,idTipo = 0,x = 0,y = 0;
         //ler o ficheiro passado por argumento
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
             while((linha = leitorFicheiro.readLine()) != null) {
                 if(count == 0) {
                     String dados[] = linha.split(" ");
-                    rows = Integer.parseInt(dados[0].replace(" ",""));
-                    columns = Integer.parseInt(dados[1].replace(" ",""));
+                    rows = Integer.parseInt(dados[0].trim());
+                    columns = Integer.parseInt(dados[1].trim());
                 } else if(count == 1) {
-                    equipaInicial = Integer.parseInt(linha);
+                    equipaInicial = Integer.parseInt(linha.trim());
                 } else if(count == 2) {
-                    nrCriaturas = Integer.parseInt(linha);
+                    nrCriaturas = Integer.parseInt(linha.trim());
                 } else if(count > 2 && count <= count + nrCriaturas) {
-                    String dados[] = linha.split(" : ");
-                    id = Integer.parseInt(dados[0]);
+                    String dados[] = linha.split(":");
                     if(dados.length > 4) {
-                        idTipo = Integer.parseInt(dados[1]);
+                        id = Integer.parseInt(dados[0].trim());
+                        idTipo = Integer.parseInt(dados[1].trim());
                         String nome = dados[2];
-                        x = Integer.parseInt(dados[3]);
-                            y = Integer.parseInt(dados[4]);
-                            if (idTipo == 1) {
-                                Humano humano = new Humano(id, idTipo, nome, x, y);
-                                humanos.add(humano);
-                            } else if (idTipo == 0) {
-                                Zombie zombie = new Zombie(id, idTipo, nome, x, y);
-                                zombies.add(zombie);
-                            }
+                        x = Integer.parseInt(dados[3].trim());
+                        y = Integer.parseInt(dados[4].trim());
+                        if (idTipo == 1) {
+                            Humano humano = new Humano(id, idTipo, nome, x, y);
+                            humanos.add(humano);
+                        } else if (idTipo == 0) {
+                            Zombie zombie = new Zombie(id, idTipo, nome, x, y);
+                            zombies.add(zombie);
+                        }
+                        tabuleiro[x][y] = id;
                     }
                 } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
-                    nrEquipamentos = Integer.parseInt(linha);
+                    nrEquipamentos = Integer.parseInt(linha.trim());
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
-                    String dados[] = linha.split(" : ");
-                     id = Integer.parseInt(dados[0].replace(" ",""));
+                    String dados[] = linha.split(":");
                     if(dados.length > 4) {
-                         idTipo = Integer.parseInt(dados[1].replace(" ", ""));
-                         x = Integer.parseInt(dados[2].replace(" ", ""));
-                         y = Integer.parseInt(dados[3].replace(" ", ""));
+                        id = Integer.parseInt(dados[0].trim());
+                        idTipo = Integer.parseInt(dados[1].trim());
+                        x = Integer.parseInt(dados[2].trim());
+                        y = Integer.parseInt(dados[3].trim());
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
+                        tabuleiro[x][y] = id;
                     }
                 }
                 count++;
@@ -112,7 +114,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        if (turnos >= 6) {
+        if (turnos >= 12) {
             return true;
         }
         return false;

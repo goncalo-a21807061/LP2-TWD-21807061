@@ -37,6 +37,7 @@ public class Equipamento {
         this.y = y;
     }
 
+
     public String getTitulo(){
         if(id == 0) {
             return "Escudo de madeira";
