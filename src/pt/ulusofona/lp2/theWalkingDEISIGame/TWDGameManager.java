@@ -28,8 +28,11 @@ public class TWDGameManager {
     public boolean startGame(File ficheiroInicial) {
         BufferedReader leitorFicheiro = null;
         String linha;
+        humanos = new ArrayList<>();
+        zombies = new ArrayList<>();
+        equipamentos = new ArrayList<>();
         int count = 0;
-        int id = 0,idTipo = 0,x = 0,y = 0;
+        int id,idTipo,x,y ;
         //ler o ficheiro passado por argumento
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
