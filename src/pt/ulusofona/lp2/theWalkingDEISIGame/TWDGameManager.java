@@ -35,22 +35,23 @@ public class TWDGameManager {
             File ficheiro = new File(ficheiroInicial.getPath());
             Scanner leitorFicheiro = new Scanner(ficheiro);
             while(leitorFicheiro.hasNextLine()) {
-                linha = leitorFicheiro.nextLine();
+                linha = leitorFicheiro.toString();
                 if(count == 0) {
                     String dados[] = linha.split(" ");
-                    rows = Integer.parseInt(dados[0]);
-                    columns = Integer.parseInt(dados[1]);
+                    rows = Integer.parseInt(dados[0].replace(" ",""));
+                    columns = Integer.parseInt(dados[1].replace(" ",""));
                 } else if(count == 1) {
-                    equipaInicial = Integer.parseInt(linha);
+                    equipaInicial = Integer.parseInt(linha.replace(" ",""));
                 } else if(count == 2) {
-                    nrCriaturas = Integer.parseInt(linha);
+                    nrCriaturas = Integer.parseInt(linha.replace(" ",""));
                 } else if(count > 2 && count <= count + nrCriaturas) {
-                    String dados[] = linha.split(":");
+                    String dados[] = linha.split(" : ");
                     int id = Integer.parseInt(dados[0].replace(" ",""));
+
                     int idTipo = Integer.parseInt(dados[1].replace(" ",""));
                     String nome = dados[2].replace(" ","");
-                    int x = Integer.parseInt(dados[3]);
-                    int y = Integer.parseInt(dados[4]);
+                    int x = Integer.parseInt(dados[3].replace(" ",""));
+                    int y = Integer.parseInt(dados[4].replace(" ",""));
                     if(idTipo == 1) {
                         Humano humano = new Humano(id,idTipo,nome,x,y);
                         humanos.add(humano);
@@ -62,23 +63,23 @@ public class TWDGameManager {
                     nrEquipamentos = Integer.parseInt(linha);
                 } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
                     String dados[] = linha.split(" : ");
-                    int id = Integer.parseInt(dados[0].replace(": ",""));
+                    int id = Integer.parseInt(dados[0].replace(" ",""));
                     int idTipo = Integer.parseInt(dados[1].replace(" ",""));
-                    int x = Integer.parseInt(dados[2]);
-                    int y = Integer.parseInt(dados[3]);
+                    int x = Integer.parseInt(dados[2].replace(" ",""));
+                    int y = Integer.parseInt(dados[3].replace(" ",""));
                     Equipamento equipamento = new Equipamento(id,idTipo,x,y);
                     equipamentos.add(equipamento);
                 }
                 count++;
             }
             leitorFicheiro.close();
+            return true;
         } catch (FileNotFoundException exception) {
             System.out.println("Erro. Ficheiro não encontrado");
+            return false;
         }
-
         //this.width = rows - 1;    ????
         //this.height = columns - 1; ????
-        return true;
     }
 
 
