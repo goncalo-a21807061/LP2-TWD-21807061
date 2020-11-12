@@ -36,8 +36,8 @@ public class TWDGameManager {
                 count++;
                 if(count == 0) {
                     String dados[] = linha.split(" ");
-                    rows = Integer.parseInt(dados[0]);
-                    columns = Integer.parseInt(dados[1]);
+                    rows = Integer.parseInt(dados[0].replace(" ",""));
+                    columns = Integer.parseInt(dados[1].replace(" ",""));
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha);
                 } else if(count == 2) {
