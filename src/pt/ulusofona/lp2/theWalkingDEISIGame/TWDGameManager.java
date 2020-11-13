@@ -155,10 +155,10 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        if(turnos % 2 == 0) {
-            return true;
+        if(turnos == 3 || turnos == 4 || turnos == 7 || turnos == 8 || turnos == 11 || turnos == 12) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
