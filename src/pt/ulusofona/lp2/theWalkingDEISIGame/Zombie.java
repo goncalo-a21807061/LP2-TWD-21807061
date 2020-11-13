@@ -37,7 +37,7 @@ public class Zombie {
 
 
     public String toString() {
-        return id + " | " + "Zombie" + " | " + nomeEquipa + " | " + nome + " | " + equipamentosDestruidos + " @ (" + x + ", " + y + ") ";
+        return id + " | " + "Zombie" + " | " + nomeEquipa + " | " + nome + " " + equipamentosDestruidos + " @ (" + x + ", " + y + ")";
     }
 
     public int getEquipa() {
