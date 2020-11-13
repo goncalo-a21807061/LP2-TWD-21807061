@@ -9,6 +9,7 @@ public class Humano {
     int y;
     int equipa = 0;
     int equipamentosApanhados = 0;
+    Equipamento equipamento;
 
 
     public Humano(int id, int idTipo, String nome, int x, int y) {

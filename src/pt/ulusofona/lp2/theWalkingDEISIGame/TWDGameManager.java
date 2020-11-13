@@ -18,7 +18,7 @@ public class TWDGameManager {
 
     int equipaInicial;
     int currentTeam;
-    int turnos = 1;
+    int turnos = 0;
     int nrCriaturas;
     int nrEquipamentos;
 
@@ -31,9 +31,10 @@ public class TWDGameManager {
         humanos = new ArrayList<>();
         zombies = new ArrayList<>();
         equipamentos = new ArrayList<>();
+        this.width = rows - 1;
+        this.height = columns - 1;
         int count = 0;
-        int id,idTipo,x,y ;
-        //ler o ficheiro passado por argumento
+        int id,idTipo,x,y;
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
             while((linha = leitorFicheiro.readLine()) != null) {
@@ -41,10 +42,7 @@ public class TWDGameManager {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0].trim());
                     columns = Integer.parseInt(dados[1].trim());
-                    this.width = rows - 1;
-                    this.height = columns - 1;
-                    tabuleiro = new int [width][height];
-                    //estava como rows e columns
+                    tabuleiro = new int [rows][columns];
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha.trim());
                 } else if(count == 2) {
@@ -99,7 +97,6 @@ public class TWDGameManager {
         worldSize[1] = columns;
         return worldSize;
     }
-
 
     public int getInitialTeam() {
         return equipaInicial;
@@ -171,7 +168,4 @@ public class TWDGameManager {
         }
         return true;
     }
-
-
 }
-
