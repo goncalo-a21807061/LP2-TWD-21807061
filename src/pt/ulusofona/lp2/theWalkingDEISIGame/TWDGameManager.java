@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class TWDGameManager {
@@ -62,7 +63,7 @@ public class TWDGameManager {
                             Zombie zombie = new Zombie(id, idTipo, nome, x, y);
                             zombies.add(zombie);
                         }
-                        tabuleiro[x][y] = id;
+                        tabuleiro[y][x] = id;
                     }
                 } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
                     nrEquipamentos = Integer.parseInt(linha.trim());
@@ -75,7 +76,7 @@ public class TWDGameManager {
                         y = Integer.parseInt(dados[3].trim());
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
-                        tabuleiro[x][y] = id;
+                        tabuleiro[y][x] = id;
                     }
                 }
                 count++;
@@ -86,8 +87,6 @@ public class TWDGameManager {
             e.printStackTrace();
             return false;
         }
-
-        // FALTA ORDENAR OS ID´S ANTES DE ADICIONAR
     }
 
 
@@ -113,7 +112,7 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         if(!gameIsOver()){
             turnos++;
-
+            //se for turno dos humanos nao pode deixar mover zombies e vice-versa
         }
         return true;
     }
@@ -136,10 +135,12 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
-        return tabuleiro[x][y];
+        return tabuleiro[y][x];
     }
 
     public List<String> getSurvivors() {
+        humanos.sort(Comparator.comparing(Humano::getId)); //ordenar ID's
+        zombies.sort(Comparator.comparing(Zombie::getId));
         List<String> survivors = new ArrayList<>();
         survivors.add("Nr. de turnos terminados:\n");
         survivors.add(String.valueOf(turnos)+"\n\n");

@@ -57,4 +57,9 @@ public class Humano {
     public void adicionaEquipamentosEncontrados (int adiciona) {
         equipamentosApanhados += adiciona;
     }
+
+    public int getEquipamentosApanhados() {
+        return equipamentosApanhados;
+    }
+
 }

@@ -47,4 +47,8 @@ public class Zombie {
     public void adicionaEquipamentosDestruidos (int adiciona) {
         equipamentosDestruidos += adiciona;
     }
+
+    public int getEquipamentosDestruidos() {
+        return equipamentosDestruidos;
+    }
 }
