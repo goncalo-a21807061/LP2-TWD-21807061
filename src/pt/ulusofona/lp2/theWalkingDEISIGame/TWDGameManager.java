@@ -197,7 +197,7 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        if(turnos == 3 || turnos == 4 || turnos == 7 || turnos == 8 || turnos == 11 || turnos == 12) {
+        if(turnos == 2 || turnos == 3 || turnos == 6 || turnos == 7 || turnos == 10 || turnos == 11) {
             return false;
         }
         return true;
