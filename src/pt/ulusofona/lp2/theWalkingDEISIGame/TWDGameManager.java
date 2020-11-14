@@ -203,6 +203,7 @@ public class TWDGameManager {
         return true;
     }
 
+    //falta implementar
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for(Humano humano: humanos) {
             if(humano.getId() == creatureId) { //&& //humano.    -> tem em sua posse um equipamento com aquele id) {
