@@ -37,6 +37,9 @@ public class Equipamento {
         this.y = y;
     }
 
+    public String getImagePNG() {
+        return "equipment.png";
+    }
 
     public String getTitulo(){
         if(id == 0) {

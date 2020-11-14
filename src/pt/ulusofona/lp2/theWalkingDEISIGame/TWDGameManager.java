@@ -32,9 +32,7 @@ public class TWDGameManager {
         humanos = new ArrayList<>();
         zombies = new ArrayList<>();
         equipamentos = new ArrayList<>();
-        this.width = rows - 1;
-        this.height = columns - 1;
-        int count = 0;
+        int count = 0,count1 = 0;
         int id,idTipo,x,y;
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
@@ -43,12 +41,15 @@ public class TWDGameManager {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0].trim());
                     columns = Integer.parseInt(dados[1].trim());
+                    this.width = rows - 1;
+                    this.height = columns - 1;
                     tabuleiro = new int [rows][columns];
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha.trim());
                 } else if(count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
-                } else if(count > 2 && count <= count + nrCriaturas) {
+                    count1 = count + nrCriaturas;
+                } else if(count > 2 && count <= count1) {
                     String dados[] = linha.split(":");
                     if(dados.length > 4) {
                         id = Integer.parseInt(dados[0].trim());
@@ -65,11 +66,11 @@ public class TWDGameManager {
                         }
                         tabuleiro[y][x] = id;
                     }
-                } else if(count > count + nrCriaturas && count <= count + nrCriaturas + 1) {
+                } else if(count > count1 && count <= count1 + 1) {
                     nrEquipamentos = Integer.parseInt(linha.trim());
-                } else if(count > count + nrCriaturas + 1 && count <= count + nrCriaturas +nrEquipamentos) {
+                } else if(count > count1+1 && count <= count1 + 1 + nrEquipamentos) {
                     String dados[] = linha.split(":");
-                    if(dados.length > 4) {
+                    if(dados.length > 3) {
                         id = Integer.parseInt(dados[0].trim());
                         idTipo = Integer.parseInt(dados[1].trim());
                         x = Integer.parseInt(dados[2].trim());
@@ -84,11 +85,9 @@ public class TWDGameManager {
             leitorFicheiro.close();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
     }
-
 
     public int[] getWorldSize() {
         int[] worldSize = new int[2];
