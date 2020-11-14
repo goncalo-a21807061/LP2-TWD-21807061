@@ -7,9 +7,9 @@ import java.util.List;
 
 public class TWDGameManager {
 
-    static List<Humano> humanos = new ArrayList<>();
-    static List<Zombie> zombies = new ArrayList<>();
-    static List<Equipamento> equipamentos = new ArrayList<>();
+    static List<Humano> humanos;
+    static List<Zombie> zombies;
+    static List<Equipamento> equipamentos;
 
     int[][] tabuleiro;
     int width;
@@ -46,6 +46,7 @@ public class TWDGameManager {
                     tabuleiro = new int [rows][columns];
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha.trim());
+                    currentTeam = equipaInicial;
                 } else if(count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
@@ -80,7 +81,11 @@ public class TWDGameManager {
                         tabuleiro[y][x] = id;
                     }
                 }
+                for(Humano humano:humanos) {
+                    System.out.println(humano.getNome());
+                }
                 count++;
+                count1++;
             }
             leitorFicheiro.close();
             return true;
@@ -109,9 +114,36 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+        int id;
         if(!gameIsOver()){
             turnos++;
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
+            if(currentTeam == 1) {
+                for(Humano humano:humanos) {
+                    id = humano.getId();
+                    if(tabuleiro[yO][xO] == id) {
+                        if(tabuleiro[yD][xD] == 0 ) {
+                            humano.setX(xD);
+                            humano.setY(yD);
+                            tabuleiro[yD][xD] = id;
+                            tabuleiro[yO][xO] = 0;
+                        }
+                    }
+                }
+            } else {
+                for(Zombie zombie:zombies) {
+                    id = zombie.getId();
+                    if(tabuleiro[yO][xO] == id) {
+                        if (tabuleiro[yD][xD] == 0) {
+                            zombie.setX(xD);
+                            zombie.setY(yD);
+                            tabuleiro[yD][xD] = id;
+                            tabuleiro[yO][xO] = 0;
+                        }
+                    }
+                }
+            }
+
         }
         return true;
     }
