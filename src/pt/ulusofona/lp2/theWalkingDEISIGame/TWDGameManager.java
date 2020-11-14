@@ -46,7 +46,6 @@ public class TWDGameManager {
                     tabuleiro = new int [rows][columns];
                 } else if(count == 1) {
                     equipaInicial = Integer.parseInt(linha.trim());
-                    currentTeam = equipaInicial;
                 } else if(count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
@@ -81,11 +80,7 @@ public class TWDGameManager {
                         tabuleiro[y][x] = id;
                     }
                 }
-                for(Humano humano:humanos) {
-                    System.out.println(humano.getNome());
-                }
                 count++;
-                count1++;
             }
             leitorFicheiro.close();
             return true;
