@@ -122,12 +122,6 @@ public class TWDGameManager {
                             humano.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
-                            if(currentTeam == 1) {
-                                currentTeam = 0;
-
-                            } else {
-                                currentTeam = 1;
-                            }
                             return true;
                         }
                     }
@@ -142,17 +136,16 @@ public class TWDGameManager {
                             zombie.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
-                            if(currentTeam == 1) {
-                                currentTeam = 0;
-
-                            } else {
-                                currentTeam = 1;
-                            }
                             return true;
                         }
                     }
                 }
-                return false;
+            }
+            if(currentTeam == 1) {
+                currentTeam = 0;
+
+            } else {
+                currentTeam = 1;
             }
         }
         return true;
