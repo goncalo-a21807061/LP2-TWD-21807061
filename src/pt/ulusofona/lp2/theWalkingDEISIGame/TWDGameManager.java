@@ -117,26 +117,23 @@ public class TWDGameManager {
                 for(Humano humano:humanos) {
                     id = humano.getId();
                     if(tabuleiro[yO][xO] == id) {
-                        if (tabuleiro[yD][xD] == 0) {
+                        if(tabuleiro[yD][xD] == 0 ) {
                             humano.setX(xD);
                             humano.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
-                            return true;
                         }
                     }
                 }
-                return false;
             } else {
                 for(Zombie zombie:zombies) {
                     id = zombie.getId();
-                    if (tabuleiro[yO][xO] == id) {
+                    if(tabuleiro[yO][xO] == id) {
                         if (tabuleiro[yD][xD] == 0) {
                             zombie.setX(xD);
                             zombie.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
-                            return true;
                         }
                     }
                 }
