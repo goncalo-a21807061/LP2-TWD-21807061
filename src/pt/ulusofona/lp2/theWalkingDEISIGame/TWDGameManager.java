@@ -138,7 +138,12 @@ public class TWDGameManager {
                     }
                 }
             }
+            if(currentTeam == 1) {
+                currentTeam = 0;
 
+            } else {
+                currentTeam = 1;
+            }
         }
         return true;
     }
