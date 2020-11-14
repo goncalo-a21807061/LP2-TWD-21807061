@@ -19,7 +19,7 @@ public class TWDGameManager {
 
     int equipaInicial;
     int currentTeam;
-    int turnos = 1;
+    int turnos = 0;
     int nrCriaturas;
     int nrEquipamentos;
 
@@ -110,8 +110,8 @@ public class TWDGameManager {
 
     public boolean move(int xO, int yO, int xD, int yD) {
         int id;
+        turnos++;
         if(!gameIsOver()){
-            turnos++;
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
                 for(Humano humano:humanos) {
@@ -155,6 +155,7 @@ public class TWDGameManager {
                 return false;
             }
         }
+
         return true;
     }
 
