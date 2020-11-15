@@ -113,43 +113,47 @@ public class TWDGameManager {
         if(!gameIsOver()){
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
-                for(Humano humano:humanos) {
-                    id = humano.getId();
-                    if(tabuleiro[yO][xO] == id) {
-                        if (tabuleiro[yD][xD] == 0) {
-                            humano.setX(xD);
-                            humano.setY(yD);
-                            tabuleiro[yD][xD] = id;
-                            tabuleiro[yO][xO] = 0;
-                            turnos++;
-                            if(currentTeam == 1) {
-                                currentTeam = 0;
+                if(!(xO-xD > 1 || yO-yD > 1)) {
+                    for (Humano humano : humanos) {
+                        id = humano.getId();
+                        if (tabuleiro[yO][xO] == id) {
+                            if (tabuleiro[yD][xD] == 0) {
+                                humano.setX(xD);
+                                humano.setY(yD);
+                                tabuleiro[yD][xD] = id;
+                                tabuleiro[yO][xO] = 0;
+                                turnos++;
+                                if (currentTeam == 1) {
+                                    currentTeam = 0;
 
-                            } else {
-                                currentTeam = 1;
+                                } else {
+                                    currentTeam = 1;
+                                }
+                                return true;
                             }
-                            return true;
                         }
                     }
                 }
                 return false;
             } else {
-                for(Zombie zombie:zombies) {
-                    id = zombie.getId();
-                    if (tabuleiro[yO][xO] == id) {
-                        if (tabuleiro[yD][xD] == 0) {
-                            zombie.setX(xD);
-                            zombie.setY(yD);
-                            tabuleiro[yD][xD] = id;
-                            tabuleiro[yO][xO] = 0;
-                            turnos++;
-                            if(currentTeam == 1) {
-                                currentTeam = 0;
+                if(!(xO-xD > 1 || yO-yD > 1)) {
+                    for (Zombie zombie : zombies) {
+                        id = zombie.getId();
+                        if (tabuleiro[yO][xO] == id) {
+                            if (tabuleiro[yD][xD] == 0) {
+                                zombie.setX(xD);
+                                zombie.setY(yD);
+                                tabuleiro[yD][xD] = id;
+                                tabuleiro[yO][xO] = 0;
+                                turnos++;
+                                if (currentTeam == 1) {
+                                    currentTeam = 0;
 
-                            } else {
-                                currentTeam = 1;
+                                } else {
+                                    currentTeam = 1;
+                                }
+                                return true;
                             }
-                            return true;
                         }
                     }
                 }
