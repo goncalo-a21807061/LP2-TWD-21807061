@@ -110,7 +110,6 @@ public class TWDGameManager {
 
     public boolean move(int xO, int yO, int xD, int yD) {
         int id;
-        turnos++;
         if(!gameIsOver()){
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
@@ -122,6 +121,7 @@ public class TWDGameManager {
                             humano.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
+                            turnos++;
                             if(currentTeam == 1) {
                                 currentTeam = 0;
 
@@ -142,6 +142,7 @@ public class TWDGameManager {
                             zombie.setY(yD);
                             tabuleiro[yD][xD] = id;
                             tabuleiro[yO][xO] = 0;
+                            turnos++;
                             if(currentTeam == 1) {
                                 currentTeam = 0;
 
