@@ -117,7 +117,7 @@ public class TWDGameManager {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Humano humano : humanos) {
                         for(Equipamento equipamento: equipamentos) {
-                            idEquipamento = equipamento.getId();
+                            idEquipamento = equipamento.getIdTipo();
                             id = humano.getId();
                             if (tabuleiro[yO][xO] == id) {
                                 if (tabuleiro[yD][xD] == 0) {
@@ -178,7 +178,6 @@ public class TWDGameManager {
                 return false;
             }
         }
-
         return true;
     }
 
