@@ -10,6 +10,7 @@ public class Humano {
     int equipa = 0;
     int equipamentosApanhados = 0;
     Equipamento equipamento;
+    int idEquipamento;
 
 
     public Humano(int id, int idTipo, String nome, int x, int y) {
@@ -60,6 +61,14 @@ public class Humano {
 
     public int getEquipamentosApanhados() {
         return equipamentosApanhados;
+    }
+
+    public void setEquipmentId(int id) {
+        this.idEquipamento = id;
+    }
+
+    public int getIdEquipamento() {
+        return idEquipamento;
     }
 
 }

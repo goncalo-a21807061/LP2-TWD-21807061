@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import javax.management.openmbean.TabularData;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -109,27 +110,36 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        int id;
+        int id,idEquipamento;
         if(!gameIsOver()){
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Humano humano : humanos) {
-                        id = humano.getId();
-                        if (tabuleiro[yO][xO] == id) {
-                            if (tabuleiro[yD][xD] == 0) {
-                                humano.setX(xD);
-                                humano.setY(yD);
-                                tabuleiro[yD][xD] = id;
-                                tabuleiro[yO][xO] = 0;
-                                turnos++;
-                                if (currentTeam == 1) {
-                                    currentTeam = 0;
+                        for(Equipamento equipamento: equipamentos) {
+                            idEquipamento = equipamento.getId();
+                            id = humano.getId();
+                            if (tabuleiro[yO][xO] == id) {
+                                if (tabuleiro[yD][xD] == 0) {
+                                    humano.setX(xD);
+                                    humano.setY(yD);
+                                    tabuleiro[yD][xD] = id;
+                                    tabuleiro[yO][xO] = 0;
+                                    turnos++;
+                                    if (currentTeam == 1) {
+                                        currentTeam = 0;
 
-                                } else {
-                                    currentTeam = 1;
+                                    } else {
+                                        currentTeam = 1;
+                                    }
+                                    return true;
                                 }
-                                return true;
+                                if(tabuleiro[yD][xD] == idEquipamento) {
+                                    humano.setX(xD);
+                                    humano.setY(yD);
+                                    humano.adicionaEquipamentosEncontrados(1);
+                                    humano.setEquipmentId(idEquipamento);
+                                }
                             }
                         }
                     }
@@ -138,21 +148,29 @@ public class TWDGameManager {
             } else {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Zombie zombie : zombies) {
-                        id = zombie.getId();
-                        if (tabuleiro[yO][xO] == id) {
-                            if (tabuleiro[yD][xD] == 0) {
-                                zombie.setX(xD);
-                                zombie.setY(yD);
-                                tabuleiro[yD][xD] = id;
-                                tabuleiro[yO][xO] = 0;
-                                turnos++;
-                                if (currentTeam == 1) {
-                                    currentTeam = 0;
-
-                                } else {
-                                    currentTeam = 1;
+                        for (Equipamento equipamento : equipamentos) {
+                            idEquipamento = equipamento.getId();
+                            id = zombie.getId();
+                            if (tabuleiro[yO][xO] == id) {
+                                if (tabuleiro[yD][xD] == 0) {
+                                    zombie.setX(xD);
+                                    zombie.setY(yD);
+                                    tabuleiro[yD][xD] = id;
+                                    tabuleiro[yO][xO] = 0;
+                                    turnos++;
+                                    if (currentTeam == 1) {
+                                        currentTeam = 0;
+                                    } else {
+                                        currentTeam = 1;
+                                    }
+                                    return true;
                                 }
-                                return true;
+                                if(tabuleiro[yD][xD] == idEquipamento) {
+                                    zombie.setX(xD);
+                                    zombie.setY(yD);
+                                    zombie.adicionaEquipamentosDestruidos(1);
+                                    equipamentos.remove(equipamento);
+                                }
                             }
                         }
                     }
@@ -208,13 +226,13 @@ public class TWDGameManager {
         return true;
     }
 
-    //falta implementar
+
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for(Humano humano: humanos) {
-            if(humano.getId() == creatureId) { //&& //humano.    -> tem em sua posse um equipamento com aquele id) {
-
+            if(humano.getId() == creatureId && humano.getIdEquipamento() == equipmentTypeId) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

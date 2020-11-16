@@ -23,9 +23,14 @@ public class Zombie {
         return id;
     }
 
+    public int getX() { return x; }
+
+    public int getY() {return y;}
+
     public String getImagePNG() {
         return "zombie.png";
     }
+
 
     public void setX(int x) {
         this.x = x;
