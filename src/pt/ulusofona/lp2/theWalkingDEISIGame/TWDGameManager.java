@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import javax.management.openmbean.TabularData;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -139,6 +138,7 @@ public class TWDGameManager {
                                     humano.setY(yD);
                                     humano.adicionaEquipamentosEncontrados(1);
                                     humano.setEquipmentId(idEquipamento);
+                                    return true;
                                 }
                             }
                         }
@@ -149,7 +149,7 @@ public class TWDGameManager {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Zombie zombie : zombies) {
                         for (Equipamento equipamento : equipamentos) {
-                            idEquipamento = equipamento.getId();
+                            idEquipamento = equipamento.getIdTipo();
                             id = zombie.getId();
                             if (tabuleiro[yO][xO] == id) {
                                 if (tabuleiro[yD][xD] == 0) {
@@ -170,6 +170,7 @@ public class TWDGameManager {
                                     zombie.setY(yD);
                                     zombie.adicionaEquipamentosDestruidos(1);
                                     equipamentos.remove(equipamento);
+                                    return true;
                                 }
                             }
                         }
