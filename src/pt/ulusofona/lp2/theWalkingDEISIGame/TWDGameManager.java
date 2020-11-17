@@ -77,7 +77,7 @@ public class TWDGameManager {
                         y = Integer.parseInt(dados[3].trim());
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
-                        tabuleiro[y][x] = id;
+                        tabuleiro[y][x] = idTipo;
                     }
                 }
                 count++;
@@ -111,6 +111,7 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         int id,idEquipamento;
         if(!gameIsOver()){
+
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
@@ -136,8 +137,17 @@ public class TWDGameManager {
                                 if(tabuleiro[yD][xD] == idEquipamento) {
                                     humano.setX(xD);
                                     humano.setY(yD);
+                                    tabuleiro[yD][xD] = id;
+                                    tabuleiro[yO][xO] = 0;
+                                    turnos++;
                                     humano.adicionaEquipamentosEncontrados(1);
                                     humano.setEquipmentId(idEquipamento);
+                                    if (currentTeam == 1) {
+                                        currentTeam = 0;
+
+                                    } else {
+                                        currentTeam = 1;
+                                    }
                                     return true;
                                 }
                             }
@@ -172,12 +182,17 @@ public class TWDGameManager {
                                     equipamentos.remove(equipamento);
                                     return true;
                                 }
+
                             }
                         }
                     }
                 }
                 return false;
             }
+        }
+        for(Equipamento equipamento:equipamentos) {
+            System.out.println(equipamento.getX());
+            System.out.println(equipamento.getY());
         }
         return true;
     }
