@@ -77,7 +77,7 @@ public class TWDGameManager {
                         y = Integer.parseInt(dados[3].trim());
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
-                        tabuleiro[y][x] = idTipo;
+                        tabuleiro[y][x] = id;
                     }
                 }
                 count++;
@@ -111,13 +111,12 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         int id,idEquipamento;
         if(!gameIsOver()){
-
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if(currentTeam == 0) {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Humano humano : humanos) {
                         for(Equipamento equipamento: equipamentos) {
-                            idEquipamento = equipamento.getIdTipo();
+                            idEquipamento = equipamento.getId();
                             id = humano.getId();
                             if (tabuleiro[yO][xO] == id) {
                                 if (tabuleiro[yD][xD] == 0) {
@@ -139,9 +138,9 @@ public class TWDGameManager {
                                     humano.setY(yD);
                                     tabuleiro[yD][xD] = id;
                                     tabuleiro[yO][xO] = 0;
-                                    turnos++;
                                     humano.adicionaEquipamentosEncontrados(1);
                                     humano.setEquipmentId(idEquipamento);
+                                    turnos++;
                                     if (currentTeam == 1) {
                                         currentTeam = 0;
 
@@ -159,7 +158,7 @@ public class TWDGameManager {
                 if(!(xO-xD > 1 || yO-yD > 1)) {
                     for (Zombie zombie : zombies) {
                         for (Equipamento equipamento : equipamentos) {
-                            idEquipamento = equipamento.getIdTipo();
+                            idEquipamento = equipamento.getId();
                             id = zombie.getId();
                             if (tabuleiro[yO][xO] == id) {
                                 if (tabuleiro[yD][xD] == 0) {
@@ -177,22 +176,24 @@ public class TWDGameManager {
                                 }
                                 if(tabuleiro[yD][xD] == idEquipamento) {
                                     zombie.setX(xD);
-                                    zombie.setY(yD);
+                                    zombie.setY(yD);tabuleiro[yD][xD] = id;
+                                    tabuleiro[yO][xO] = 0;
                                     zombie.adicionaEquipamentosDestruidos(1);
                                     equipamentos.remove(equipamento);
+                                    turnos++;
+                                    if (currentTeam == 1) {
+                                        currentTeam = 0;
+                                    } else {
+                                        currentTeam = 1;
+                                    }
                                     return true;
                                 }
-
                             }
                         }
                     }
                 }
                 return false;
             }
-        }
-        for(Equipamento equipamento:equipamentos) {
-            System.out.println(equipamento.getX());
-            System.out.println(equipamento.getY());
         }
         return true;
     }
@@ -244,8 +245,13 @@ public class TWDGameManager {
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for(Humano humano: humanos) {
-            if(humano.getId() == creatureId && humano.getIdEquipamento() == equipmentTypeId) {
-                return true;
+            for(Equipamento equipamento: equipamentos) {
+                if (humano.getId() == creatureId) {
+                    if(humano.getIdEquipamento() == equipamento.getId() && equipmentTypeId == equipamento.getIdTipo()) {
+                        return true;
+                    }
+
+                }
             }
         }
         return false;
