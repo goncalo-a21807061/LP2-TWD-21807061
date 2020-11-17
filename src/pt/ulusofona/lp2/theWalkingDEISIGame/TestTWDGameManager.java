@@ -7,7 +7,7 @@ import java.io.File;
 import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
-/*
+
     @Test
     public void test01Move() {
 
@@ -89,6 +89,6 @@ public class TestTWDGameManager {
     }
 
 
-*/
+
 }
 
