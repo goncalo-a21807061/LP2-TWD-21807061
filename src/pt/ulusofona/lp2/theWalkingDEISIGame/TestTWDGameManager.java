@@ -11,7 +11,6 @@ public class TestTWDGameManager {
 
     @Test
     public void test01Move() {
-
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
         //teste movimento normal humano
@@ -23,8 +22,6 @@ public class TestTWDGameManager {
 
     @Test
     public void test02Move() {
-
-
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
 
@@ -35,7 +32,6 @@ public class TestTWDGameManager {
 
     @Test
     public void test03Move() {
-
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
 
@@ -45,7 +41,6 @@ public class TestTWDGameManager {
 
     @Test
     public void test04Move() {
-
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
 
