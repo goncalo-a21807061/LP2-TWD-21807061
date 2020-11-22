@@ -13,9 +13,9 @@ public class TestTWDGameManager {
     public void test01Move() {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
-        //teste movimento normal humano
 
-        assertEquals(true, twdGameManager.move(3,3,3,2));
+        //teste movimento humano - andar 2 posicoes
+        assertEquals(false , twdGameManager.move(3,3,3,1));
 
     }
 
@@ -35,8 +35,8 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
 
-        //teste movimento normal zombie
-        assertEquals(true, twdGameManager.move(4,4,4,3));
+        //teste sobreposicao
+        assertEquals(false, twdGameManager.move(3,4,3,3));
     }
 
     @Test
