@@ -18,5 +18,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="LP2GuiViewer2021-p1-v100" level="project" />
+    <orderEntry type="library" name="LP2GuiViewer2021-p2-v100" level="project" />
+    <orderEntry type="library" name="LP2GuiViewer2021-p2-v101" level="project" />
   </component>
 </module>
