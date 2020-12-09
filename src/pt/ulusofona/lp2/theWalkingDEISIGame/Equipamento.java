@@ -124,7 +124,7 @@ public class Equipamento {
     }
 
     public void setDuracao(int duracao) {
-        this.duracao = duracao;
+        this.duracao -= duracao;
     }
 
     public int getDuracao() {

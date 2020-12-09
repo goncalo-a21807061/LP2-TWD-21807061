@@ -6,13 +6,16 @@ public class Creature {
     String nome;
     String nomeEquipa;
     String foto;
+    String local;
     int x;
     int y;
     int equipa;
     Equipamento equipamento;
     int idEquipamento;
+    int idTipoEquipamento;
     int alcance;
     int equipamentosApanhados = 0;
+    Boolean moverDiagonal = true;
 
 
     public Creature(int id, int idTipo, String nome, int x, int y) {
@@ -46,6 +49,7 @@ public class Creature {
             alcance = 1;
             nomeEquipa = "Os Outros";
             foto = "zombie.png";
+            moverDiagonal = false;
         } else if (idTipo == 4) {
             nome = "Zombie Vampiro";
             equipa = 20;
@@ -76,6 +80,7 @@ public class Creature {
             alcance = 1;
             nomeEquipa = "Os Vivos";
             foto = "human.png";
+            moverDiagonal = false;
         } else if(idTipo == 9) {
             nome = "Cão";
             equipa = 10;
@@ -83,6 +88,10 @@ public class Creature {
             nomeEquipa = "Os Vivos";
             foto = "human.png";
         }
+    }
+
+    public Boolean getMoverDiagonal() {
+        return moverDiagonal;
     }
 
     public int getX() { return x; }
@@ -98,6 +107,8 @@ public class Creature {
     }
 
     public int getId() { return id; }
+
+    public int getIdTipo() { return idTipo; }
 
     public int getEquipa() { return equipa; }
 
@@ -121,10 +132,32 @@ public class Creature {
         return idEquipamento;
     }
 
+    public void setIdTipoEquipamento(int idTipoEquipamento) {
+        this.idTipoEquipamento = idTipoEquipamento;
+    }
+
+    public int getIdTipoEquipamento() {
+        return idTipoEquipamento;
+    }
+
     public int getAlcance() { return alcance; }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getLocal() {
+        return local;
+    }
 
     @Override
     public String toString() {
-        return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+        if (local == "safe haven") {
+            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
+        } else if (local == "morta") {
+            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
+        } else {
+            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+        }
     }
 }
