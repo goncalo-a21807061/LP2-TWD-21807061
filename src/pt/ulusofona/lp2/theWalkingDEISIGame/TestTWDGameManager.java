@@ -195,18 +195,59 @@ public class TestTWDGameManager {
 
         //IdTipo = 2
         Equipamento equipamento1 = new Equipamento(-6,2,3,1);
-        assertEquals("Pistola Walther PPK",equipamento1.getTitulo());
-        assertEquals("A pistola tem 3 balas, por isso permite matar 3 Zombies.\n\nA pistola não tem efeito contra Zombies Vampiros.\n\n" +
-                "Quando as balas se esgotarem, a pistola deixa de ter efeito.", equipamento1.getDescricao());
-        assertEquals("gun.png", equipamento1.getImagePNG());
-        assertEquals(3,equipamento1.getDuracao());
 
         // IdTipo = 3
         Equipamento equipamento2 = new Equipamento(-7,3,3,1);
-        assertEquals("Escudo táctico", equipamento2.getTitulo());
-        assertEquals("Permite obter protecção contra vários ataques.", equipamento2.getDescricao());
-        assertEquals("tactical_shield.png",equipamento2.getImagePNG());
-        assertEquals(100, equipamento2.getDuracao());
+
+        // IdTipo = 4
+        Equipamento equipamento3 = new Equipamento(-7,4,3,1);
+
+        // IdTipo = 5
+        Equipamento equipamento4 = new Equipamento(-7,5,3,1);
+
+        // IdTipo = 6
+        Equipamento equipamento5 = new Equipamento(-7,6,3,1);
+
+        // IdTipo = 7
+        Equipamento equipamento6 = new Equipamento(-7,7,3,1);
+
+        // IdTipo = 8
+        Equipamento equipamento7 = new Equipamento(-7,8,3,1);
+
+        // IdTipo = 10
+        Equipamento equipamento8 = new Equipamento(-7,10,3,1);
+    }
+
+    @Test
+    public void test18CreateNewCreature() {
+        // testar a criação de uma nova criatura e mudança de posição
+
+        Creature criatura = new Creature(10,2,"Dragon",4,6);
+        assertEquals(4,criatura.getX());
+        assertEquals(6,criatura.getY());
+        assertEquals("Dragon", criatura.getNome());
+        assertEquals("zombie.png",criatura.getImagePNG());
+        assertEquals(0, criatura.getEquipamentosApanhados());
+        assertEquals(0, criatura.getIdTipoEquipamento());
+        assertEquals("jogo", criatura.getLocal());
+        // falta tostring
+
+        Creature criatura1 = new Creature(10,3,"Dragon",4,6);
+        Creature criatura2 = new Creature(10,7,"Dragon",4,6);
+    }
+
+    @Test
+    public void test18move() {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("dados.txt"));
+        assertEquals(true,twdGameManager.move(2,2,1,2));
+        assertEquals(20, twdGameManager.getCurrentTeamId());
+        assertEquals(4,twdGameManager.getElementId(1,2));
+        assertEquals(false, twdGameManager.gameIsOver());
+
+
+
+
     }
 
 

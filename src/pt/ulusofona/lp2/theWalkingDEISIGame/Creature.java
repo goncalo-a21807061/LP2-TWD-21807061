@@ -6,7 +6,7 @@ public class Creature {
     String nome;
     String nomeEquipa;
     String foto;
-    String local;
+    String local = "jogo";
     int x;
     int y;
     int equipa;
