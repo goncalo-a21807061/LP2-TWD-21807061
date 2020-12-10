@@ -2,6 +2,8 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import org.junit.Test;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import static org.junit.Assert.assertEquals;
@@ -111,6 +113,104 @@ public class TestTWDGameManager {
         // teste verificar se é safe haven -> retornar false
         assertEquals(false, twdGameManager.isDoorToSafeHaven(6,5));
     }
+
+    @Test
+    public void test12getIdsInSafeHaven() {
+        TWDGameManager twdGameManager12 = new TWDGameManager();
+        twdGameManager12.startGame(new File("dados.txt"));
+        List<Integer> idsinSafeHaven = new ArrayList<>();
+
+        // teste verificar se é safe haven -> retornar false
+        assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
+
+        twdGameManager12.move(5,5,6,6);
+        idsinSafeHaven.add(3);
+
+        //teste verificar ids in safe haven -> no inicio ainda não há nenhum
+        assertEquals(idsinSafeHaven,twdGameManager12.getIdsInSafeHaven());
+    }
+
+    @Test
+    public void test13getCurrentTeamId() {
+        TWDGameManager twdGameManager13 = new TWDGameManager();
+        twdGameManager13.startGame(new File("dados.txt"));
+        int currentTeam = 10;
+
+        assertEquals(currentTeam,twdGameManager13.getCurrentTeamId());
+    }
+
+    @Test
+    public void test14LoadGame() {
+        TWDGameManager twdGameManager14 = new TWDGameManager();
+
+        //teste load game - deve retornar true
+        assertEquals(true,twdGameManager14.loadGame(new File("dados.txt")));
+    }
+
+    @Test
+    public void test15LoadGame() {
+        TWDGameManager twdGameManager15 = new TWDGameManager();
+
+        //teste load game - deve retornar false
+        assertEquals(false,twdGameManager15.loadGame(new File("ola")));
+    }
+
+    @Test
+    public void test16CreateNewDoor() {
+        // testar a criação de uma porta e a mudança de posiçao
+
+        Porta porta = new Porta(1,2);
+
+        assertEquals(1,porta.getX());
+        assertEquals(2,porta.getY());
+
+        porta.setX(2);
+        porta.setY(3);
+
+        assertEquals(2,porta.getX());
+        assertEquals(3, porta.getY());
+        assertEquals("door.png",porta.getImagePNG());
+    }
+
+    @Test
+    public void test17CreateNewEquipment() {
+        //testar a criação de equipamentos com os vários IDTipos e a mudança de posiçao
+        Equipamento equipamento = new Equipamento(-5,0,2,1);
+        assertEquals(2, equipamento.getX());
+        assertEquals(1,equipamento.getY());
+
+        equipamento.setX(3);
+        equipamento.setY(2);
+
+        assertEquals(3,equipamento.getX());
+        assertEquals(2,equipamento.getY());
+        assertEquals("equipment_0.png",equipamento.getImagePNG());
+        assertEquals("Escudo de madeira", equipamento.getTitulo());
+        assertEquals("Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.",equipamento.getDescricao());
+
+        equipamento.setDuracao(1);
+
+        assertEquals(0,equipamento.getDuracao());
+
+
+        //IdTipo = 2
+        Equipamento equipamento1 = new Equipamento(-6,2,3,1);
+        assertEquals("Pistola Walther PPK",equipamento1.getTitulo());
+        assertEquals("A pistola tem 3 balas, por isso permite matar 3 Zombies.\n\nA pistola não tem efeito contra Zombies Vampiros.\n\n" +
+                "Quando as balas se esgotarem, a pistola deixa de ter efeito.", equipamento1.getDescricao());
+        assertEquals("gun.png", equipamento1.getImagePNG());
+        assertEquals(3,equipamento1.getDuracao());
+
+        // IdTipo = 3
+        Equipamento equipamento2 = new Equipamento(-7,3,3,1);
+        assertEquals("Escudo táctico", equipamento2.getTitulo());
+        assertEquals("Permite obter protecção contra vários ataques.", equipamento2.getDescricao());
+        assertEquals("tactical_shield.png",equipamento2.getImagePNG());
+        assertEquals(100, equipamento2.getDuracao());
+    }
+
+
+
 }
 
 
