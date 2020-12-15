@@ -1202,9 +1202,9 @@ public class TWDGameManager {
                 descricao = equipamento.getDescricao();
                 idTipo = equipamento.getIdTipo();
                 if (idTipo == 0) {
-                    descricao.concat(" | 1");
+                    descricao = descricao + " | 1";
                 } else if (idTipo == 1 || idTipo == 2) {
-                    descricao.concat(" | 3");
+                    descricao = descricao + " | 3";
                 }
             }
         }
@@ -1256,11 +1256,17 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] strings = new String[14];
         strings[0] = "Resident Evil";
+        strings[1] = "";
+        strings[2] = "";
+        strings[3] = "";
+        strings[4] = "";
+        strings[5] = "";
         strings[6] = "Mandalorians";
         strings[7] = "Game of Death";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
         strings[10] = "Sean Connery";
+        strings[11] = "";
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
         return strings;
