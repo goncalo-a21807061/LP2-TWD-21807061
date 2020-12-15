@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
 import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
@@ -240,33 +240,52 @@ public class TestTWDGameManager {
     public void test18move() {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
+        List<Creature> criaturas = new ArrayList<>();
+        List<Equipamento> equipamentos = new ArrayList<>();
+        criaturas.add(new Creature(1,0,"Freddy M.",3,3));
+        criaturas.add(new Creature(2,8,"Jackie Chan",3,4));
+        criaturas.add(new Creature(3,6,"Alice",5,5));
+        criaturas.add(new Creature(4,6,"Ash",2,2));
+        criaturas.add(new Creature(5,9,"Sam",1,1));
+        criaturas.add(new Creature(6,5,"Paciente Zero",4,4));
+        criaturas.add(new Creature(7,1,"Paciente Zeros",5,4));
+        criaturas.add(new Creature(8,4,"Paciente Zerosa",4,2));
+        equipamentos.add(new Equipamento(-1,9,1,2));
         assertEquals(true,twdGameManager.move(2,2,1,2));
         assertEquals(20, twdGameManager.getCurrentTeamId());
         assertEquals(4,twdGameManager.getElementId(1,2));
+        assertEquals(0,twdGameManager.getElementId(0,0));
+        assertEquals(-2,twdGameManager.getElementId(2,3));
         assertEquals(false, twdGameManager.gameIsOver());
+        assertEquals(true,twdGameManager.move(3,3,2,3));
+        assertEquals(10, twdGameManager.getCurrentTeamId());
 
+        assertEquals(false,twdGameManager.move(1,2,1,1));
+        assertEquals(true,twdGameManager.move(1,1,3,1));
+        assertEquals(20, twdGameManager.getCurrentTeamId());
+        assertEquals(true,twdGameManager.move(5,4,4,4));
+        assertEquals(true, twdGameManager.move(3,1,4,2));
 
+        assertEquals(false,twdGameManager.move(2,3,2,0));
+        assertEquals(true, twdGameManager.move(2,3,3,4));
 
+        assertEquals(true, twdGameManager.move(5,5,6,6));
 
+        assertEquals(true, twdGameManager.move(5,4,5,3));
+        assertEquals(true, twdGameManager.move(1,2,2,3));
+        assertEquals(false, twdGameManager.move(4,2,4,1));
+        assertEquals(true, twdGameManager.move(2,3,2,2));
+        assertEquals(true, twdGameManager.move(1,2,1,0));
+        assertEquals(true, twdGameManager.move(4,2,4,0));
+        assertEquals(true, twdGameManager.gameIsOver());
     }
+
 
 
 
 }
 
-
-// sugestoes de teste
-
-/*
-
-- teste se o zombie for para a posicao de um humano q n tenha equipamento -> deve matar o humano
-- testar cada movimento de humano e zombie se for maior que o alcance, deve dar false
-- testar se um zombie se tentar mover para uma posicao onde esteja um cão, deve dar false
-- Testar se um zombie vai para cima de um equipamento - deve dar true
-
-
-
-- testar outras funções
-- testar classes - nao testar getters
-
  */
+
+
+

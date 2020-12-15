@@ -6,29 +6,32 @@ import java.util.*;
 
 public class TWDGameManager {
 
-    static List<Creature> criaturas = new ArrayList<>();
-    static List<Equipamento> equipamentos = new ArrayList<>();
-    static List<Porta> portas = new ArrayList<>();
-    static List<Creature> safeHeaven = new ArrayList<>();
-    static List<Creature> envenenados = new ArrayList<>();
+    private static List<Creature> criaturas = new ArrayList<>();
+    private static List<Humano> humanos = new ArrayList<>();
+    private static List<Zombie> zombies = new ArrayList<>();
+    private static List<Equipamento> equipamentos = new ArrayList<>();
+    private static List<Porta> portas = new ArrayList<>();
+    private static List<Creature> safeHeaven = new ArrayList<>();
+    private static List<Creature> envenenados = new ArrayList<>();
 
-    int[][] tabuleiro;
-    int width;
-    int height;
-    int rows;
-    int columns;
+    private int[][] tabuleiro;
+    private int width;
+    private int height;
+    private int rows;
+    private int columns;
 
-    int equipaInicial;
-    int currentTeam;
-    int turnos = 0;
-    int nrCriaturas;
-    int nrEquipamentos;
-    int nrPortas;
-    int idTipoEquipamento;
-    int bala;
-    int turnosVeneno = 0;
-    int idTipo;
-    Boolean moveDiagonal;
+    private int equipaInicial;
+    private int currentTeam;
+    private int turnos = 0;
+    private int nrCriaturas;
+    private int nrEquipamentos;
+    private int nrPortas;
+    private int idTipoEquipamento;
+    private int bala;
+    private int turnosVeneno = 0;
+    private int idTipo;
+    private boolean moveDiagonal;
+    private boolean antidoto = false;
 
 
     public TWDGameManager() {
@@ -63,8 +66,17 @@ public class TWDGameManager {
                         String nome = dados[2].trim();
                         x = Integer.parseInt(dados[3].trim());
                         y = Integer.parseInt(dados[4].trim());
-                        Creature criatura = new Creature(id, idTipo, nome, x, y);
-                        criaturas.add(criatura);
+                        if(idTipo == 0 || idTipo == 1 || idTipo == 2 || idTipo == 3 || idTipo == 4) {
+                            Creature criatura = new Zombie(id, idTipo, nome, x, y);
+                            criaturas.add(criatura);
+                            zombies.add((Zombie) criatura);
+                        } else {
+                            Creature criatura = new Humano(id,idTipo,nome,x,y);
+                            criaturas.add(criatura);
+                            humanos.add((Humano) criatura);
+                        }
+
+
                         tabuleiro[y][x] = id;
                     }
                 } else if (count > count1 && count <= count1 + 1) {
@@ -115,7 +127,7 @@ public class TWDGameManager {
 
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        int id, idEquipamento,idHumano,idZombie;
+        int id, idEquipamento,idHumano, idZombie = 30;
         if (!gameIsOver()) {
             //se for turno dos humanos nao pode deixar mover zombies e vice-versa
             if (currentTeam == 10) {
@@ -124,7 +136,9 @@ public class TWDGameManager {
                         for (Equipamento equipamento : equipamentos) {
                             for (Creature zombie : criaturas) {
                                 moveDiagonal = humano.getMoverDiagonal();
-                                idZombie = zombie.getId();
+                                if(zombie.getEquipa() == 20) {
+                                    idZombie = zombie.getId();
+                                }
                                 idEquipamento = equipamento.getId();
                                 idTipo = humano.getIdTipo();
                                 idTipoEquipamento = equipamento.getIdTipo();
@@ -166,7 +180,6 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = 0;
                                                 safeHeaven.add(humano);
                                                 humano.setLocal("safe haven");  // toString
-                                                //criaturas.remove(humano);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -180,7 +193,6 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
-                                                        //criaturas.remove(humano);
                                                         humano.setLocal("morta");   // toString
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -205,7 +217,6 @@ public class TWDGameManager {
                                                     tabuleiro[yD][xD] = 0;
                                                     envenenados.add(zombie);
                                                     zombie.setLocal("morta");
-                                                    //criaturas.remove(zombie);
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
@@ -224,7 +235,6 @@ public class TWDGameManager {
                                                                 tabuleiro[yD][xD] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
-                                                                //criaturas.remove(zombie);
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                         }
@@ -249,7 +259,6 @@ public class TWDGameManager {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                        // criaturas.remove(humano);
                                                         equipamentos.remove(equipamento);
                                                     }
                                                     turnos++;
@@ -264,7 +273,6 @@ public class TWDGameManager {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                        //criaturas.remove(humano);
                                                         equipamentos.remove(equipamento);
                                                     }
                                                     turnos++;
@@ -278,7 +286,6 @@ public class TWDGameManager {
                                                     tabuleiro[yD][xD] = 0;
                                                     envenenados.add(zombie);
                                                     zombie.setLocal("morta");
-                                                    //criaturas.remove(zombie);
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
@@ -297,7 +304,6 @@ public class TWDGameManager {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
-                                                                //  criaturas.remove(zombie);
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                         }
@@ -365,7 +371,10 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == idEquipamento) {
-                                                //FALTA -> verificar se não é um idoso vivo, se não for, pode transportar equipamento
+                                                if (idTipoEquipamento == 8) {
+                                                    antidoto = true;
+                                                    turnosVeneno++;
+                                                }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
@@ -385,7 +394,6 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = 0;
                                                 safeHeaven.add(humano);
                                                 humano.setLocal("safe haven");  // toString
-                                                //criaturas.remove(humano);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -399,7 +407,6 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
-                                                        //criaturas.remove(humano);
                                                         humano.setLocal("morta");   // toString
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -432,7 +439,6 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = 0;
                                                             envenenados.add(zombie);
                                                             zombie.setLocal("morta");
-                                                            //criaturas.remove(zombie);
                                                             turnos++;
                                                             if (currentTeam == 10) {
                                                                 currentTeam = 20;
@@ -445,7 +451,6 @@ public class TWDGameManager {
                                                         tabuleiro[yD][xD] = 0;
                                                         envenenados.add(zombie);
                                                         zombie.setLocal("morta");
-                                                        //criaturas.remove(zombie);
                                                         turnos++;
                                                         if (currentTeam == 10) {
                                                             currentTeam = 20;
@@ -465,7 +470,6 @@ public class TWDGameManager {
                                                                 tabuleiro[yD][xD] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
-                                                                //criaturas.remove(zombie);
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                         }
@@ -490,7 +494,6 @@ public class TWDGameManager {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                        // criaturas.remove(humano);
                                                         equipamentos.remove(equipamento);
                                                     }
                                                     turnos++;
@@ -505,7 +508,6 @@ public class TWDGameManager {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                        //criaturas.remove(humano);
                                                         equipamentos.remove(equipamento);
                                                     }
                                                     turnos++;
@@ -519,7 +521,6 @@ public class TWDGameManager {
                                                     tabuleiro[yD][xD] = 0;
                                                     envenenados.add(zombie);
                                                     zombie.setLocal("morta");
-                                                    //criaturas.remove(zombie);
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
@@ -538,7 +539,6 @@ public class TWDGameManager {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
-                                                                //  criaturas.remove(zombie);
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                         }
@@ -551,7 +551,7 @@ public class TWDGameManager {
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
-                                                    idEquipamento = 8;
+                                                    antidoto = true;
                                                     // mal implementado -> humano nao morre
                                                     if (turnosVeneno > 2) {
                                                         //  criaturas.remove(humano);
@@ -565,7 +565,8 @@ public class TWDGameManager {
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
-                                                    if (idEquipamento == 8) {
+                                                    if (antidoto) {
+                                                        tabuleiro[yD][xD] = 0;
                                                         humano.setEquipmentId(0);
                                                         tabuleiro[yD][xD] = id;
                                                         equipamentos.remove(equipamento);
@@ -604,7 +605,7 @@ public class TWDGameManager {
                             for (Creature humano : criaturas) {
                                 idHumano = humano.getId();
                                 idTipo = zombie.getIdTipo();
-                                idEquipamento = equipamento.getIdTipo();
+                                idEquipamento = equipamento.getId();
                                 id = zombie.getId();
                                 if (tabuleiro[yO][xO] == id) {
                                     // validar se é zombie vampiro, se for só pode jogar nos turnos noturnos
@@ -644,7 +645,6 @@ public class TWDGameManager {
                                                         tabuleiro[yD][xD] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                      //  criaturas.remove(humano);
                                                         turnos++;
                                                         if (currentTeam == 10) {
                                                             currentTeam = 20;
@@ -675,7 +675,6 @@ public class TWDGameManager {
                                                                 tabuleiro[yD][xD] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
-                                                                //criaturas.remove(zombie);
                                                                 turnos++;
                                                                 if (currentTeam == 10) {
                                                                     currentTeam = 20;
@@ -688,7 +687,6 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = 0;
                                                             envenenados.add(zombie);
                                                             zombie.setLocal("morta");
-                                                            //criaturas.remove(zombie);
                                                             turnos++;
                                                             if (currentTeam == 10) {
                                                                 currentTeam = 20;
@@ -708,7 +706,6 @@ public class TWDGameManager {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
-                                                               //     criaturas.remove(zombie);
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
@@ -734,7 +731,7 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = id;
                                                             envenenados.add(humano);
                                                             humano.setLocal("morta");
-                                                          //  criaturas.remove(humano);
+                                                            criaturas.remove(humano);
                                                             equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -750,7 +747,6 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = id;
                                                             envenenados.add(humano);
                                                             humano.setLocal("morta");
-                                                          //  criaturas.remove(humano);
                                                             equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -771,7 +767,6 @@ public class TWDGameManager {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
-                                                               //     criaturas.remove(zombie);
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
@@ -847,7 +842,6 @@ public class TWDGameManager {
                                                         tabuleiro[yD][xD] = 0;
                                                         envenenados.add(humano);
                                                         humano.setLocal("morta");
-                                                        //  criaturas.remove(humano);
                                                         turnos++;
                                                         if (currentTeam == 10) {
                                                             currentTeam = 20;
@@ -870,7 +864,6 @@ public class TWDGameManager {
                                                         tabuleiro[yO][xO] = 0;
                                                         envenenados.add(zombie);
                                                         zombie.setLocal("morta");
-                                                        //  criaturas.remove(zombie);
                                                         turnos++;
                                                         if (currentTeam == 10) {
                                                             currentTeam = 20;
@@ -889,7 +882,6 @@ public class TWDGameManager {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
-                                                                    //     criaturas.remove(zombie);
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
@@ -915,7 +907,6 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = id;
                                                             envenenados.add(humano);
                                                             humano.setLocal("morta");
-                                                            //  criaturas.remove(humano);
                                                             equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -931,7 +922,6 @@ public class TWDGameManager {
                                                             tabuleiro[yD][xD] = id;
                                                             envenenados.add(humano);
                                                             humano.setLocal("morta");
-                                                            //  criaturas.remove(humano);
                                                             equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -952,7 +942,6 @@ public class TWDGameManager {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
-                                                                    //     criaturas.remove(zombie);
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
@@ -1026,6 +1015,14 @@ public class TWDGameManager {
 
     public List<Creature> getCreatures() {
         return criaturas;
+    }
+
+    public List<Humano> getHumans() {
+        return humanos;
+    }
+
+    public List<Zombie> getZombies() {
+        return zombies;
     }
 
     public int getCurrentTeamId() {
@@ -1108,7 +1105,7 @@ public class TWDGameManager {
         return 0;
     }
 
-     public List<Integer> getIdsInSafeHaven() {
+    public List<Integer> getIdsInSafeHaven() {
         List<Integer> ids = new ArrayList<>();
         for(Creature criatura: safeHeaven) {
             ids.add(criatura.getId());
@@ -1147,19 +1144,32 @@ public class TWDGameManager {
         return descricao;
     }
 
+
+    //erro
     public boolean saveGame(File fich) {
-        // Por Implementar -> falta escrever para dentro do ficheiro
-        try {
-            BufferedReader leitorFicheiro = null;
-            leitorFicheiro = new BufferedReader(new FileReader(fich.getPath()));
-            for(Creature criatura: criaturas) {
-                criatura.setEquipmentId(0);
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fich.getPath(), true));
+                writer.write(rows);
+                writer.write(columns);
+                writer.write(currentTeam + "\n");
+                writer.write(criaturas.size());
+                for(Creature criatura : criaturas) {
+                    writer.write(criatura.getId() + " : " + criatura.getIdTipo() + " : " + criatura.getNome() + " : " + criatura.getX() + " : " + criatura.getY());
+                }
+                writer.write(equipamentos.size());
+                for(Equipamento equipamento: equipamentos) {
+                    writer.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY());
+                }
+                writer.write(portas.size());
+                for(Porta porta : portas) {
+                    writer.write(porta.getX() + " : " + porta.getY());
+                }
+                writer.close();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            startGame(fich);
-            return true;
-        } catch (IOException e) {
             return false;
-        }
     }
 
     public boolean loadGame(File fich) {
@@ -1181,6 +1191,17 @@ public class TWDGameManager {
         return strings;
     }
 
+    public boolean hasEquipment(int creatureId, int equipmentTypeId) {
+        for(Humano humano: humanos) {
+            for(Equipamento equipamento: equipamentos) {
+                if (humano.getId() == creatureId) {
+                    if(humano.getIdEquipamento() == equipamento.getId() && equipmentTypeId == equipamento.getIdTipo()) {
+                        return true;
+                    }
 
-
+                }
+            }
+        }
+        return false;
+    }
 }

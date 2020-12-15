@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-public class Creature {
+public abstract class Creature {
     int id;
     int idTipo;
     String nome;
@@ -15,7 +15,7 @@ public class Creature {
     int idTipoEquipamento;
     int alcance;
     int equipamentosApanhados = 0;
-    Boolean moverDiagonal = true;
+    boolean moverDiagonal = true;
 
 
     public Creature(int id, int idTipo, String nome, int x, int y) {
@@ -25,139 +25,45 @@ public class Creature {
         this.x = x;
         this.y = y;
         this.idEquipamento = 0;
-        if(idTipo == 0) {
-            nome = "Criança (Zombie)";
-            equipa = 20;
-            alcance = 1;
-            nomeEquipa = "Os Outros";
-            foto = "zombie.png";
-        } else if(idTipo == 1) {
-            nome = "Adulto (Zombie)";
-            equipa = 20;
-            alcance = 2;
-            nomeEquipa = "Os Outros";
-            foto = "zombie.png";
-        } else if (idTipo == 2) {
-            nome = "Militar (Zombie)";
-            equipa = 20;
-            alcance = 3;
-            nomeEquipa = "Os Outros";
-            foto = "zombie.png";
-        } else if (idTipo == 3) {
-            nome = "Idoso (Zombie)";
-            equipa = 20;
-            alcance = 1;
-            nomeEquipa = "Os Outros";
-            foto = "zombie.png";
-            moverDiagonal = false;
-        } else if (idTipo == 4) {
-            nome = "Zombie Vampiro";
-            equipa = 20;
-            alcance = 2;
-            nomeEquipa = "Os Outros";
-            foto = "zombie.png";
-        } else if (idTipo == 5) {
-            nome = "Criança (Vivo)";
-            equipa = 10;
-            alcance = 1;
-            nomeEquipa = "Os Vivos";
-            foto = "human.png";
-        } else if (idTipo == 6) {
-            nome = "Adulto (Vivo)";
-            equipa = 10;
-            alcance = 2;
-            nomeEquipa = "Os Vivos";
-            foto = "human.png";
-        } else if (idTipo == 7) {
-            nome = "Militar (Vivo)";
-            equipa = 10;
-            alcance = 3;
-            nomeEquipa = "Os Vivos";
-            foto = "human.png";
-        } else if (idTipo == 8) {
-            nome = "Idoso (Vivo)";
-            equipa = 10;
-            alcance = 1;
-            nomeEquipa = "Os Vivos";
-            foto = "human.png";
-            moverDiagonal = false;
-        } else if(idTipo == 9) {
-            nome = "Cão";
-            equipa = 10;
-            alcance = 2;
-            nomeEquipa = "Os Vivos";
-            foto = "human.png";
-        }
     }
 
-    public Boolean getMoverDiagonal() {
-        return moverDiagonal;
-    }
+    abstract public Boolean getMoverDiagonal();
 
-    public int getX() { return x; }
+    abstract public int getX();
 
-    public int getY() { return y; }
+    abstract public int getY();
 
-    public void setX(int x) {
-        this.x = x;
-    }
+    abstract public void setX(int x);
 
-    public void setY(int y) {
-        this.y = y;
-    }
+    abstract public void setY(int y);
 
-    public int getId() { return id; }
+    abstract public int getId();
 
-    public int getIdTipo() { return idTipo; }
+    abstract public int getIdTipo();
 
-    public int getEquipa() { return equipa; }
+    abstract public int getEquipa();
 
-    public String getNome() { return nome; }
+    abstract public String getNome();
 
-    public String getImagePNG() { return foto; }
+    abstract public String getImagePNG();
 
-    public void adicionaEquipamentosEncontrados (int adiciona) {
-        equipamentosApanhados += adiciona;
-    }
+    abstract public void adicionaEquipamentosEncontrados (int adiciona);
 
-    public int getEquipamentosApanhados() {
-        return equipamentosApanhados;
-    }
+    abstract public int getEquipamentosApanhados();
 
-    public void setEquipmentId(int id) {
-        this.idEquipamento = id;
-    }
+    abstract public void setEquipmentId(int id);
 
-    public int getIdEquipamento() {
-        return idEquipamento;
-    }
+    abstract public int getIdEquipamento();
 
-    public void setIdTipoEquipamento(int idTipoEquipamento) {
-        this.idTipoEquipamento = idTipoEquipamento;
-    }
+    abstract public void setIdTipoEquipamento(int idTipoEquipamento);
 
-    public int getIdTipoEquipamento() {
-        return idTipoEquipamento;
-    }
+    abstract public int getIdTipoEquipamento();
 
-    public int getAlcance() { return alcance; }
+    abstract public int getAlcance();
 
-    public void setLocal(String local) {
-        this.local = local;
-    }
+    abstract public void setLocal(String local);
 
-    public String getLocal() {
-        return local;
-    }
+    abstract public String getLocal();
 
-    @Override
-    public String toString() {
-        if (local == "safe haven") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
-        } else if (local == "morta") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
-        } else {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
-        }
-    }
+    abstract public String toString();
 }

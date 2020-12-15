@@ -1,15 +1,15 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Equipamento {
-    int id;
-    int idTipo;
-    int x;
-    int y;
-    int duracao;
-    String titulo;
-    String descricao;
-    String defensivoOuOfensivo;
-    String foto;
+    private int id;
+    private int idTipo;
+    private int x;
+    private int y;
+    private int duracao;
+    private String titulo;
+    private String descricao;
+    private String defensivoOuOfensivo;
+    private String foto;
 
 
     public Equipamento(int id, int idTipo, int x, int y) {
