@@ -105,7 +105,7 @@ public class Humano extends Creature {
         } else if (local == "morta") {
             return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (RIP)" ;
         } else {
-            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
         }
     }
 }
