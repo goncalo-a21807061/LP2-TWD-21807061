@@ -101,11 +101,11 @@ public class Zombie extends Creature {
     @Override
     public String toString() {
         if (local == "safe haven") {
-            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (A salvo)" ;
         } else if (local == "morta") {
-            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (RIP)" ;
         } else {
-            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
         }
     }
 

@@ -1192,8 +1192,7 @@ public class TWDGameManager {
     }
 
     public String[] popCultureExtravaganza() {
-        String[] strings = new String[100];
-        strings[0] = "Resident Evil";
+        String[] strings = new String[0];
         return strings;
     }
 
