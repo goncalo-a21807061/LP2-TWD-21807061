@@ -82,8 +82,6 @@ public class TWDGameManager {
                             criaturas.add(criatura);
                             humanos.add((Humano) criatura);
                         }
-
-
                         tabuleiro[y][x] = id;
                     }
                 } else if (count > count1 && count <= count1 + 1) {
@@ -1194,7 +1192,8 @@ public class TWDGameManager {
     }
 
     public String[] popCultureExtravaganza() {
-        String[] strings = new String[0];
+        String[] strings = new String[100];
+        strings[0] = "Resident Evil";
         return strings;
     }
 
