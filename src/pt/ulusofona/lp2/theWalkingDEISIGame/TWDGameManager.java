@@ -218,7 +218,8 @@ public class TWDGameManager {
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 1) {
-                                                    tabuleiro[yD][xD] = 0;
+                                                    tabuleiro[yO][xO] = 0;
+                                                    tabuleiro[yD][xD] = id;
                                                     envenenados.add(zombie);
                                                     zombie.setLocal("morta");
                                                     turnos++;
@@ -1227,7 +1228,7 @@ public class TWDGameManager {
                 idTipo = equipamento.getIdTipo();
                 if (idTipo == 0) {
                     descricao = descricao + " | 1";
-                } else if (idTipo == 1 || idTipo == 2) {
+                } else if (idTipo == 1 || idTipo == 7) {
                     descricao = descricao + " | 3";
                 }
             }
