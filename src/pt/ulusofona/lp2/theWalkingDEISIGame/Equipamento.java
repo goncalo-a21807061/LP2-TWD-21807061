@@ -62,7 +62,7 @@ public class Equipamento {
             duracao = 100;
         } else if(idTipo == 7) {
             defensivoOuOfensivo = "Defensivo";
-            titulo = "Garrafa de lixívia (1 litro)";
+            titulo = "Garrafa de Lixívia (1 litro)";
             descricao = "Permite obter protecção contra ataques de Zombies, pois o Zombies não sente o cheiro do vivo.\\n\\n Para uma defesa ser bem sucedida, são necessários/gastos 0.3 litros de lixívia.";
             foto = "bleach.png";
             duracao = 3;
@@ -74,7 +74,7 @@ public class Equipamento {
             duracao = 3;
         } else if(idTipo == 9) {
             defensivoOuOfensivo = "Defensivo";
-            titulo = "Antidoto (para os envenenados)";
+            titulo = "Antídoto";
             descricao = "O antídoto cura um “Vivo” envenenado.\\n\\nApenas podem apanhar o antídoto os “vivos” que estejam envenenados.\\n\\nAo ser apanhado, o antídoto é consumido e desaparece automaticamente do jogo.";
             foto = "antidote.png";
             duracao = 100;
