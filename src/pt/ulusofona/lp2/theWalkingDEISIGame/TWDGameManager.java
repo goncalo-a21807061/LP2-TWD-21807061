@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import javax.sound.sampled.Port;
 import java.io.*;
 import java.util.*;
 
@@ -1295,35 +1294,5 @@ public class TWDGameManager {
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
         return strings;
-    }
-
-    public boolean hasEquipment(int creatureId, int equipmentTypeId) {
-        for(Humano humano: humanos) {
-            for(Equipamento equipamento: equipamentos) {
-                if (humano.getId() == creatureId) {
-                    if(humano.getIdEquipamento() == equipamento.getId() && equipmentTypeId == equipamento.getIdTipo()) {
-                        return true;
-                    }
-
-                }
-            }
-        }
-        return false;
-    }
-
-    public List<String> getSurvivors() {
-        humanos.sort(Comparator.comparing(Humano::getId)); //ordenar ID's
-        zombies.sort(Comparator.comparing(Zombie::getId));
-        List<String> survivors = new ArrayList<>();
-        survivors.add("Nr. de turnos terminados:\n");
-        survivors.add(String.valueOf(turnos)+"\n\n");
-        survivors.add("OS VIVOS:\n");
-        for(Humano humano: humanos) {
-            survivors.add(humano.getId() + " " + humano.getNome());
-        }
-        for(Zombie zombie: zombies) {
-            survivors.add(String.valueOf(zombie.getId()));
-        }
-        return survivors;
     }
 }
