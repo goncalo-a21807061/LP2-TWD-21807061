@@ -19,7 +19,7 @@ public class Equipamento {
         this.y = y;
         if(idTipo == 0) {
             defensivoOuOfensivo = "Defensivo";
-            titulo = "Escudo de madeira";
+            titulo = "Escudo de Madeira";
             descricao = "Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.";
             foto = "equipment_0.png";
             duracao = 1;
@@ -38,7 +38,7 @@ public class Equipamento {
             duracao = 3;
         } else if(idTipo == 3) {
             defensivoOuOfensivo = "Defensivo";
-            titulo = "Escudo táctico";
+            titulo = "Escudo Táctico";
             descricao = "Permite obter protecção contra vários ataques.";
             foto = "tactical_shield.png";
             duracao = 100;
@@ -80,7 +80,7 @@ public class Equipamento {
             duracao = 100;
         } else if(idTipo == 10) {
             defensivoOuOfensivo = "Defensivo/Ofensivo";
-            titulo = "Beskar helmet";
+            titulo = "Beskar Helmet";
             descricao = "Este fantástico capacete futurista não só defende quem o usa, como também serve como arma, dado que multiplica a força das cabeçadas por um número muito grande.";
             foto = "beskar_helmet.png";
             duracao = 100;
@@ -120,7 +120,7 @@ public class Equipamento {
     }
 
     public String getDescricao() {
-        return descricao;
+        return titulo;
     }
 
     public void setDuracao(int duracao) {

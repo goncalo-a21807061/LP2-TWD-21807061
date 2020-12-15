@@ -6,32 +6,32 @@ public class Zombie extends Creature {
         super(id, idTipo, nome, x, y);
         this.idEquipamento = 0;
         if(idTipo == 0) {
-            nome = "Criança (Zombie)";
+            nomePersonagem = "Criança (Zombie)";
             equipa = 20;
             alcance = 1;
             nomeEquipa = "Os Outros";
             foto = "zombie.png";
         } else if(idTipo == 1) {
-            nome = "Adulto (Zombie)";
+            nomePersonagem = "Adulto (Zombie)";
             equipa = 20;
             alcance = 2;
             nomeEquipa = "Os Outros";
             foto = "zombie.png";
         } else if (idTipo == 2) {
-            nome = "Militar (Zombie)";
+            nomePersonagem = "Militar (Zombie)";
             equipa = 20;
             alcance = 3;
             nomeEquipa = "Os Outros";
             foto = "zombie.png";
         } else if (idTipo == 3) {
-            nome = "Idoso (Zombie)";
+            nomePersonagem = "Idoso (Zombie)";
             equipa = 20;
             alcance = 1;
             nomeEquipa = "Os Outros";
             foto = "zombie.png";
             moverDiagonal = false;
         } else if (idTipo == 4) {
-            nome = "Zombie Vampiro";
+            nomePersonagem = "Zombie Vampiro";
             equipa = 20;
             alcance = 2;
             nomeEquipa = "Os Outros";
@@ -101,11 +101,11 @@ public class Zombie extends Creature {
     @Override
     public String toString() {
         if (local == "safe haven") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
         } else if (local == "morta") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
         } else {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
         }
     }
 

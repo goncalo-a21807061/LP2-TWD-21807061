@@ -42,6 +42,13 @@ public class TWDGameManager {
         String linha;
         int count = 0, count1 = 0, count2 = 0;
         int id, idTipo, x, y;
+        criaturas = new ArrayList<>();
+        humanos = new ArrayList<>();
+        zombies = new ArrayList<>();
+        equipamentos = new ArrayList<>();
+        envenenados = new ArrayList<>();
+        portas = new ArrayList<>();
+        safeHeaven = new ArrayList<>();
         try {
             leitorFicheiro = new BufferedReader(new FileReader(ficheiroInicial.getPath()));
             while ((linha = leitorFicheiro.readLine()) != null) {

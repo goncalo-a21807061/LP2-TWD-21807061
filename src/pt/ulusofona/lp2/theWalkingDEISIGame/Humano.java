@@ -6,32 +6,32 @@ public class Humano extends Creature {
         super(id, idTipo, nome, x, y);
         this.idEquipamento = 0;
         if (idTipo == 5) {
-            nome = "Criança (Vivo)";
+            nomePersonagem = "Criança (Vivo)";
             equipa = 10;
             alcance = 1;
             nomeEquipa = "Os Vivos";
             foto = "human.png";
         } else if (idTipo == 6) {
-            nome = "Adulto (Vivo)";
+            nomePersonagem = "Adulto (Vivo)";
             equipa = 10;
             alcance = 2;
             nomeEquipa = "Os Vivos";
             foto = "human.png";
         } else if (idTipo == 7) {
-            nome = "Militar (Vivo)";
+            nomePersonagem = "Militar (Vivo)";
             equipa = 10;
             alcance = 3;
             nomeEquipa = "Os Vivos";
             foto = "human.png";
         } else if (idTipo == 8) {
-            nome = "Idoso (Vivo)";
+            nomePersonagem = "Idoso (Vivo)";
             equipa = 10;
             alcance = 1;
             nomeEquipa = "Os Vivos";
             foto = "human.png";
             moverDiagonal = false;
         } else if(idTipo == 9) {
-            nome = "Cão";
+            nomePersonagem = "Cão";
             equipa = 10;
             alcance = 2;
             nomeEquipa = "Os Vivos";
@@ -101,11 +101,11 @@ public class Humano extends Creature {
     @Override
     public String toString() {
         if (local == "safe haven") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (A salvo)" ;
         } else if (local == "morta") {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (RIP)" ;
         } else {
-            return id + " | " + idTipo + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
+            return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " | " + equipamentosApanhados + " @ (" + x + ", " + y + ")";
         }
     }
 }

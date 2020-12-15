@@ -5,6 +5,7 @@ public abstract class Creature {
     int idTipo;
     String nome;
     String nomeEquipa;
+    String nomePersonagem;
     String foto;
     String local = "jogo";
     int x;
