@@ -60,7 +60,7 @@ public class TWDGameManager {
                     this.height = columns - 1;
                     tabuleiro = new int[rows][columns];
                 } else if (count == 1) {
-                    equipaInicial = Integer.parseInt(linha.trim());
+                    equipaInicial = Integer.parseInt(linha);
                     currentTeam = equipaInicial;
                 } else if (count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
@@ -1202,9 +1202,9 @@ public class TWDGameManager {
             }
         }
         if (equipmentId == 0) {
-            descricao = descricao + " | 1";
+            descricao.concat(" | 1");
         } else if (equipmentId == 1 || equipmentId == 2) {
-            descricao = descricao + " | 3";
+            descricao.concat(" | 3");
         }
         return descricao;
     }
