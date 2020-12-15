@@ -1196,15 +1196,17 @@ public class TWDGameManager {
 
     public String getEquipmentInfo(int equipmentId) {
         String descricao = "";
+        int idTipo;
         for (Equipamento equipamento : equipamentos) {
             if (equipamento.getId() == equipmentId) {
                 descricao = equipamento.getDescricao();
+                idTipo = equipamento.getIdTipo();
+                if (idTipo == 0) {
+                    descricao.concat(" | 1");
+                } else if (idTipo == 1 || idTipo == 2) {
+                    descricao.concat(" | 3");
+                }
             }
-        }
-        if (equipmentId == 0) {
-            descricao.concat(" | 1");
-        } else if (equipmentId == 1 || equipmentId == 2) {
-            descricao.concat(" | 3");
         }
         return descricao;
     }
