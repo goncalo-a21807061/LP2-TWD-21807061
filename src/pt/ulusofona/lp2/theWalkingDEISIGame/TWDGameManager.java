@@ -424,6 +424,9 @@ public class TWDGameManager {
                                             }
                                         }
                                     } else if (idTipo != 8 && idTipo != 9){
+                                        if(idTipo == 0 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
+                                            return false;
+                                        }
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 humano.setX(xD);
@@ -920,7 +923,7 @@ public class TWDGameManager {
                                             }
                                         }
                                     } else if (idTipo != 4) {
-                                        if(idTipo == 3 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
+                                        if((idTipo == 3 || idTipo == 0) && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                             return false;
                                         }
                                         if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
@@ -1318,16 +1321,16 @@ public class TWDGameManager {
         String[] strings = new String[14];
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
-        strings[2] = "The Night Eats the World";
-        strings[3] = "The Walking Dead";
-        strings[4] = "";
+        strings[2] = "A Noite Devorou o Mundo";
+        strings[3] = "";
+        strings[4] = "Astérix e Obélix";
         strings[5] = "";
         strings[6] = "Mandalorians";
         strings[7] = "Game of Death";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
         strings[10] = "Sean Connery";
-        strings[11] = "";
+        strings[11] = "The Walking Dead";
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
         return strings;
