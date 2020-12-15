@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public abstract class Creature {
-    int id;
+    protected int id;
     int idTipo;
     String nome;
     String nomeEquipa;

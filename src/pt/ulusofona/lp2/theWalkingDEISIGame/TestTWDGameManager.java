@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
+
 import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
@@ -16,7 +16,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento humano - andar 2 posicoes
-        assertEquals(false , twdGameManager.move(3,3,3,1));
+        assertEquals(false, twdGameManager.move(3, 3, 3, 1));
 
     }
 
@@ -27,7 +27,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento fora do grafico humano
-        assertEquals(false,twdGameManager.move(3,3,3,-1));
+        assertEquals(false, twdGameManager.move(3, 3, 3, -1));
 
     }
 
@@ -37,7 +37,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste humano ataca Zombie
-        assertEquals(true, twdGameManager.move(3,4,3,3));
+        assertEquals(true, twdGameManager.move(3, 4, 3, 3));
     }
 
     @Test
@@ -46,8 +46,8 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento fora do grafico zombie
-        assertEquals(false, twdGameManager.move(4,4,4,-1));
-      
+        assertEquals(false, twdGameManager.move(4, 4, 4, -1));
+
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste movimento humano safe haven
-        assertEquals(true,twdGameManager.move(5,5,6,6));
+        assertEquals(true, twdGameManager.move(5, 5, 6, 6));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste movimento zombie safe haven
-        assertEquals(false,twdGameManager.move(5,4,6,6));
+        assertEquals(false, twdGameManager.move(5, 4, 6, 6));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste movimento humano apanhar a espada
-        assertEquals(true,twdGameManager.move(2,2,2,3));
+        assertEquals(true, twdGameManager.move(2, 2, 2, 3));
     }
 
     @Test
@@ -83,9 +83,10 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste equipa inicial
-        assertEquals(10,twdGameManager.getInitialTeam());
+        assertEquals(10, twdGameManager.getInitialTeam());
     }
-
+}
+/*
     @Test
     public void test09popCultureExtravaganza() {
         TWDGameManager twdGameManager = new TWDGameManager();

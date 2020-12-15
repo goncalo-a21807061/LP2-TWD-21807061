@@ -1204,4 +1204,20 @@ public class TWDGameManager {
         }
         return false;
     }
+
+    public List<String> getSurvivors() {
+        humanos.sort(Comparator.comparing(Humano::getId)); //ordenar ID's
+        zombies.sort(Comparator.comparing(Zombie::getId));
+        List<String> survivors = new ArrayList<>();
+        survivors.add("Nr. de turnos terminados:\n");
+        survivors.add(String.valueOf(turnos)+"\n\n");
+        survivors.add("OS VIVOS:\n");
+        for(Humano humano: humanos) {
+            survivors.add(humano.getId() + " " + humano.getNome());
+        }
+        for(Zombie zombie: zombies) {
+            survivors.add(String.valueOf(zombie.getId()));
+        }
+        return survivors;
+    }
 }
