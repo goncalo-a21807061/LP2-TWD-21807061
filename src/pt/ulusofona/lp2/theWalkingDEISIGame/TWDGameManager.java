@@ -1228,7 +1228,7 @@ public class TWDGameManager {
                 idTipo = equipamento.getIdTipo();
                 if (idTipo == 0) {
                     descricao = descricao + " | 1";
-                } else if (idTipo == 1 || idTipo == 7) {
+                } else if (idTipo == 2 || idTipo == 7) {
                     descricao = descricao + " | 3";
                 }
             }
