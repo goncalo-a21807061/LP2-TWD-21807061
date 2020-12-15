@@ -1254,7 +1254,15 @@ public class TWDGameManager {
     }
 
     public String[] popCultureExtravaganza() {
-        String[] strings = new String[0];
+        String[] strings = new String[14];
+        strings[0] = "Resident Evil";
+        strings[6] = "Mandalorians";
+        strings[7] = "Game of Death";
+        strings[8] = "Kill Bill";
+        strings[9] = "1978";
+        strings[10] = "Sean Connery";
+        strings[12] = "Cabeça de alho xoxo";
+        strings[13] = "Farrokh Bulsara";
         return strings;
     }
 
