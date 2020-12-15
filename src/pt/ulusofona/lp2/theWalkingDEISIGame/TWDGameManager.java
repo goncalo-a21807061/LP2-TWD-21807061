@@ -149,9 +149,9 @@ public class TWDGameManager {
                                 idTipoEquipamento = equipamento.getIdTipo();
                                 id = humano.getId();
                                 if (tabuleiro[yO][xO] == id) {
-                                    // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos
+                                    // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
                                     if(idTipo == 8 && (turnos == 0 || turnos == 4 || turnos == 8)) {
-                                        if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
+                                        if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 humano.setX(xD);
                                                 humano.setY(yD);
@@ -360,7 +360,67 @@ public class TWDGameManager {
                                                 }
                                             }
                                         }
-                                    } else if (idTipo != 8){
+                                    } else if(idTipo == 9) {
+                                        if (((Math.abs(xD -xO) > 0 && Math.abs(xD -xO) <= 2) && (Math.abs(yD - yO) > 0 && Math.abs(yD - yO) <= 2))) {
+                                            if (tabuleiro[yD][xD] == 0) {
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                tabuleiro[yD][xD] = id;
+                                                tabuleiro[yO][xO] = 0;
+                                                turnos++;
+                                                if (currentTeam == 10) {
+                                                    currentTeam = 20;
+                                                } else {
+                                                    currentTeam = 10;
+                                                }
+                                                return true;
+                                            }
+                                            if (tabuleiro[yD][xD] == idEquipamento) {
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                tabuleiro[yD][xD] = id;
+                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                humano.setIdTipoEquipamento(idTipoEquipamento);
+                                                humano.adicionaEquipamentosEncontrados(1);
+                                                humano.setEquipmentId(idEquipamento);
+                                                turnos++;
+                                                if (currentTeam == 10) {
+                                                    currentTeam = 20;
+                                                } else {
+                                                    currentTeam = 10;
+                                                }
+                                                return true;
+                                            }
+                                            if (tabuleiro[yD][xD] == 99) {
+                                                tabuleiro[yO][xO] = 0;
+                                                safeHeaven.add(humano);
+                                                humano.setLocal("safe haven");  // toString
+                                                turnos++;
+                                                if (currentTeam == 10) {
+                                                    currentTeam = 20;
+                                                } else {
+                                                    currentTeam = 10;
+                                                }
+                                                return true;
+                                            }
+                                            if (tabuleiro[yD][xD] == idZombie) {
+                                                if (zombie.getEquipa() == 20) {
+                                                    if (humano.getIdEquipamento() == 0) {
+                                                        tabuleiro[yO][xO] = 0;
+                                                        envenenados.add(humano);
+                                                        humano.setLocal("morta");   // toString
+                                                        turnos++;
+                                                        if (currentTeam == 10) {
+                                                            currentTeam = 20;
+                                                        } else {
+                                                            currentTeam = 10;
+                                                        }
+                                                        return true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else if (idTipo != 8 && idTipo != 9){
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 humano.setX(xD);
