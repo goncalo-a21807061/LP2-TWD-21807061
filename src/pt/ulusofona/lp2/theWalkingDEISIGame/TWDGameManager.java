@@ -428,7 +428,76 @@ public class TWDGameManager {
                                             return false;
                                         }
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
+
                                             if (tabuleiro[yD][xD] == 0) {
+                                                if (xD - xO > 1) {
+                                                    for(Humano humano1: humanos) {
+                                                        if(tabuleiro[yO][xO+1] == humano1.getId()) {  // Garantir que não passa por cima de um humano
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Equipamento equipamento1: equipamentos) { // Garantir que nao passa por cima de um equipamento
+                                                        if(tabuleiro[yO][xO+1] == equipamento1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Zombie zombie1 : zombies) {
+                                                        if(tabuleiro[yO][xO+1] == zombie1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
+                                                if(xO - xD > 1) {
+                                                    for(Humano humano1: humanos) {
+                                                        if(tabuleiro[yO][xO-1] == humano1.getId()) {  // Garantir que não passa por cima de um humano
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Equipamento equipamento1: equipamentos) { // Garantir que nao passa por cima de um equipamento
+                                                        if(tabuleiro[yO][xO-1] == equipamento1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Zombie zombie1 : zombies) {
+                                                        if(tabuleiro[yO][xO-1] == zombie1.getId()) { // Garantir que nao passa por cima de um zombie
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
+                                                if(yD - yO > 1) {
+                                                    for(Humano humano1: humanos) {
+                                                        if(tabuleiro[yO+1][xO] == humano1.getId()) {  // Garantir que não passa por cima de um humano
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Equipamento equipamento1: equipamentos) { // Garantir que nao passa por cima de um equipamento
+                                                        if(tabuleiro[yO+1][xO] == equipamento1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Zombie zombie1 : zombies) {
+                                                        if(tabuleiro[yO+1][xO] == zombie1.getId()) { // Garantir que nao passa por cima de um zombie
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
+                                                if(yO - yD > 1) {
+                                                    for(Humano humano1: humanos) {
+                                                        if(tabuleiro[yO-1][xO] == humano1.getId()) {  // Garantir que não passa por cima de um humano
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Equipamento equipamento1: equipamentos) { // Garantir que nao passa por cima de um equipamento
+                                                        if(tabuleiro[yO-1][xO] == equipamento1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                    for(Zombie zombie1 : zombies) { // Garantir que nao passa por cima de um zombie
+                                                        if(tabuleiro[yO-1][xO] == zombie1.getId()) {
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
