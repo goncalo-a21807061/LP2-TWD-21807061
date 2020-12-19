@@ -2,21 +2,21 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public abstract class Creature {
     protected int id;
-    int idTipo;
-    String nome;
-    String nomeEquipa;
-    String nomePersonagem;
-    String foto;
-    String local = "jogo";
-    int x;
-    int y;
-    int equipa;
-    Equipamento equipamento;
-    int idEquipamento;
-    int idTipoEquipamento;
-    int alcance;
-    int equipamentosApanhados = 0;
-    boolean moverDiagonal = true;
+    protected int idTipo;
+    protected String nome;
+    protected String nomeEquipa;
+    protected String nomePersonagem;
+    protected String foto;
+    protected String local = "jogo";
+    protected int x;
+    protected int y;
+    protected int equipa;
+    protected Equipamento equipamento;
+    protected int idEquipamento;
+    protected int idTipoEquipamento;
+    protected int alcance;
+    protected int equipamentosApanhados = 0;
+    protected boolean moverDiagonal = true;
 
 
     public Creature(int id, int idTipo, String nome, int x, int y) {
