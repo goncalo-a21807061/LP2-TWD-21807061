@@ -91,18 +91,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste verificar se é safe haven -> retornar true
-        assertEquals(true, twdGameManager.isDoorToSafeHaven(6,6));
-    }
-}
-/*
-    @Test
-    public void test09popCultureExtravaganza() {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-        String[] strings = new String[0];
-
-        //teste funçao popCultureExtravaganza -> retornar lista vazia
-        assertEquals(strings,twdGameManager.popCultureExtravaganza());
+        assertEquals(true, twdGameManager.isDoorToSafeHaven(6, 6));
     }
 
 
@@ -112,7 +101,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste verificar se é safe haven -> retornar false
-        assertEquals(false, twdGameManager.isDoorToSafeHaven(6,5));
+        assertEquals(false, twdGameManager.isDoorToSafeHaven(6, 5));
     }
 
     @Test
@@ -124,11 +113,11 @@ public class TestTWDGameManager {
         // teste verificar se é safe haven -> retornar false
         assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
 
-        twdGameManager12.move(5,5,6,6);
+        twdGameManager12.move(5, 5, 6, 6);
         idsinSafeHaven.add(3);
 
         //teste verificar ids in safe haven -> no inicio ainda não há nenhum
-        assertEquals(idsinSafeHaven,twdGameManager12.getIdsInSafeHaven());
+        assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
     }
 
     @Test
@@ -137,7 +126,7 @@ public class TestTWDGameManager {
         twdGameManager13.startGame(new File("dados.txt"));
         int currentTeam = 10;
 
-        assertEquals(currentTeam,twdGameManager13.getCurrentTeamId());
+        assertEquals(currentTeam, twdGameManager13.getCurrentTeamId());
     }
 
     @Test
@@ -145,7 +134,7 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager14 = new TWDGameManager();
 
         //teste load game - deve retornar true
-        assertEquals(true,twdGameManager14.loadGame(new File("dados.txt")));
+        assertEquals(true, twdGameManager14.loadGame(new File("dados.txt")));
     }
 
     @Test
@@ -153,71 +142,74 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager15 = new TWDGameManager();
 
         //teste load game - deve retornar false
-        assertEquals(false,twdGameManager15.loadGame(new File("ola")));
+        assertEquals(false, twdGameManager15.loadGame(new File("ola")));
     }
 
     @Test
     public void test16CreateNewDoor() {
         // testar a criação de uma porta e a mudança de posiçao
 
-        Porta porta = new Porta(1,2);
+        Porta porta = new Porta(1, 2);
 
-        assertEquals(1,porta.getX());
-        assertEquals(2,porta.getY());
+        assertEquals(1, porta.getX());
+        assertEquals(2, porta.getY());
 
         porta.setX(2);
         porta.setY(3);
 
-        assertEquals(2,porta.getX());
+        assertEquals(2, porta.getX());
         assertEquals(3, porta.getY());
-        assertEquals("door.png",porta.getImagePNG());
+        assertEquals("door.png", porta.getImagePNG());
     }
 
     @Test
     public void test17CreateNewEquipment() {
         //testar a criação de equipamentos com os vários IDTipos e a mudança de posiçao
-        Equipamento equipamento = new Equipamento(-5,0,2,1);
+        Equipamento equipamento = new Equipamento(-5, 0, 2, 1);
         assertEquals(2, equipamento.getX());
-        assertEquals(1,equipamento.getY());
+        assertEquals(1, equipamento.getY());
 
         equipamento.setX(3);
         equipamento.setY(2);
 
-        assertEquals(3,equipamento.getX());
-        assertEquals(2,equipamento.getY());
-        assertEquals("equipment_0.png",equipamento.getImagePNG());
+        assertEquals(3, equipamento.getX());
+        assertEquals(2, equipamento.getY());
+        assertEquals("equipment_0.png", equipamento.getImagePNG());
         assertEquals("Escudo de madeira", equipamento.getTitulo());
-        assertEquals("Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.",equipamento.getDescricao());
+        assertEquals("Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.", equipamento.getDescricao());
 
         equipamento.setDuracao(1);
 
-        assertEquals(0,equipamento.getDuracao());
+        assertEquals(0, equipamento.getDuracao());
 
 
         //IdTipo = 2
-        Equipamento equipamento1 = new Equipamento(-6,2,3,1);
+        Equipamento equipamento1 = new Equipamento(-6, 2, 3, 1);
 
         // IdTipo = 3
-        Equipamento equipamento2 = new Equipamento(-7,3,3,1);
+        Equipamento equipamento2 = new Equipamento(-7, 3, 3, 1);
 
         // IdTipo = 4
-        Equipamento equipamento3 = new Equipamento(-7,4,3,1);
+        Equipamento equipamento3 = new Equipamento(-7, 4, 3, 1);
 
         // IdTipo = 5
-        Equipamento equipamento4 = new Equipamento(-7,5,3,1);
+        Equipamento equipamento4 = new Equipamento(-7, 5, 3, 1);
 
         // IdTipo = 6
-        Equipamento equipamento5 = new Equipamento(-7,6,3,1);
+        Equipamento equipamento5 = new Equipamento(-7, 6, 3, 1);
 
         // IdTipo = 7
-        Equipamento equipamento6 = new Equipamento(-7,7,3,1);
+        Equipamento equipamento6 = new Equipamento(-7, 7, 3, 1);
 
         // IdTipo = 8
-        Equipamento equipamento7 = new Equipamento(-7,8,3,1);
+        Equipamento equipamento7 = new Equipamento(-7, 8, 3, 1);
 
         // IdTipo = 10
-        Equipamento equipamento8 = new Equipamento(-7,10,3,1);
+        Equipamento equipamento8 = new Equipamento(-7, 10, 3, 1);
     }
+
+}
+/*
 
     @Test
     public void test18CreateNewCreature() {
