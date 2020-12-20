@@ -61,6 +61,9 @@ public class TWDGameManager {
                 } else if (count == 1) {
                     equipaInicial = Integer.parseInt(linha);
                     currentTeam = equipaInicial;
+                    if(currentTeam != 10 && currentTeam != 20) {
+                        currentTeam = 10;
+                    }
                 } else if (count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
@@ -1196,6 +1199,9 @@ public class TWDGameManager {
     }
 
     public int getCurrentTeamId() {
+        if(currentTeam != 10 &&  currentTeam != 20) {
+            currentTeam = 10;
+        }
         return currentTeam;
     }
 

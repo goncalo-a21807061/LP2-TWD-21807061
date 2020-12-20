@@ -133,8 +133,8 @@ public class TestTWDGameManager {
     public void test14LoadGame() {
         TWDGameManager twdGameManager14 = new TWDGameManager();
 
-        //teste load game - deve retornar true
-        assertEquals(true, twdGameManager14.loadGame(new File("dados.txt")));
+        //teste load game - deve retornar false
+        assertEquals(false, twdGameManager14.loadGame(new File("dados.txt")));
     }
 
     @Test
@@ -175,7 +175,7 @@ public class TestTWDGameManager {
         assertEquals(3, equipamento.getX());
         assertEquals(2, equipamento.getY());
         assertEquals("equipment_0.png", equipamento.getImagePNG());
-        assertEquals("Escudo de madeira", equipamento.getTitulo());
+        assertEquals("Escudo de Madeira", equipamento.getTitulo());
         assertEquals("Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.", equipamento.getDescricao());
 
         equipamento.setDuracao(1);
