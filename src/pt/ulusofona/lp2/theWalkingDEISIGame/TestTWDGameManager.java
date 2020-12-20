@@ -89,9 +89,10 @@ public class TestTWDGameManager {
     public void test10isDoorToSafeHaven() {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
+        boolean var = true;
 
         // teste verificar se é safe haven -> retornar true
-        assertEquals(true, twdGameManager.isDoorToSafeHaven(6, 6));
+        assertEquals(var, twdGameManager.isDoorToSafeHaven(6, 6));
     }
 
 
@@ -99,9 +100,10 @@ public class TestTWDGameManager {
     public void test11isDoorToSafeHaven() {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
+        boolean var = false;
 
         // teste verificar se é safe haven -> retornar false
-        assertEquals(false, twdGameManager.isDoorToSafeHaven(6, 5));
+        assertEquals(var, twdGameManager.isDoorToSafeHaven(6, 5));
     }
 
     @Test
