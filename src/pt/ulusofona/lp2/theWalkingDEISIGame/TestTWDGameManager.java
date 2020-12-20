@@ -76,61 +76,8 @@ public class TestTWDGameManager {
         assertEquals(true, twdGameManager.move(2, 2, 2, 3));
     }
 
-    @Test
-    public void test08GetInitialTeam() {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        //teste equipa inicial
-        assertEquals(10, twdGameManager.getInitialTeam());
-    }
-
-    @Test
-    public void test10isDoorToSafeHaven() {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-        boolean var = true;
-
-        // teste verificar se é safe haven -> retornar true
-        assertEquals(var, twdGameManager.isDoorToSafeHaven(6, 6));
-    }
 
 
-    @Test
-    public void test11isDoorToSafeHaven() {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-        boolean var = false;
-
-        // teste verificar se é safe haven -> retornar false
-        assertEquals(var, twdGameManager.isDoorToSafeHaven(6, 5));
-    }
-
-    @Test
-    public void test12getIdsInSafeHaven() {
-        TWDGameManager twdGameManager12 = new TWDGameManager();
-        twdGameManager12.startGame(new File("dados.txt"));
-        List<Integer> idsinSafeHaven = new ArrayList<>();
-
-        // teste verificar se é safe haven -> retornar false
-        // assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
-
-        twdGameManager12.move(5, 5, 6, 6);
-        idsinSafeHaven.add(3);
-
-
-        //teste verificar ids in safe haven -> no inicio ainda não há nenhum
-        assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
-    }
-
-    @Test
-    public void test13getCurrentTeamId() {
-        TWDGameManager twdGameManager13 = new TWDGameManager();
-        twdGameManager13.startGame(new File("dados.txt"));
-        int currentTeam = 10;
-
-        assertEquals(currentTeam, twdGameManager13.getCurrentTeamId());
-    }
 
     @Test
     public void test14LoadGame() {
