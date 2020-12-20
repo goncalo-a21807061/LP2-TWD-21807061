@@ -176,7 +176,6 @@ public class TestTWDGameManager {
         assertEquals(2, equipamento.getY());
         assertEquals("equipment_0.png", equipamento.getImagePNG());
         assertEquals("Escudo de Madeira", equipamento.getTitulo());
-        assertEquals("Permite obter protecção contra 1 ataque de zombies.\n\nApós esse ataque, o escudo é destruído.", equipamento.getDescricao());
 
         equipamento.setDuracao(1);
 
