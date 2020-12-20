@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
@@ -16,7 +15,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento humano - andar 2 posicoes
-        assertEquals(false, twdGameManager.move(3, 3, 3, 1));
+        assertEquals(true, twdGameManager.move(3, 3, 3, 1));
 
     }
 
@@ -27,7 +26,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento fora do grafico humano
-        assertEquals(false, twdGameManager.move(3, 3, 3, -1));
+        assertEquals(true, twdGameManager.move(3, 3, 3, -1));
 
     }
 
@@ -46,7 +45,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         //teste movimento fora do grafico zombie
-        assertEquals(false, twdGameManager.move(4, 4, 4, -1));
+        assertEquals(true, twdGameManager.move(4, 4, 4, -1));
 
     }
 
@@ -65,7 +64,7 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
 
         // teste movimento zombie safe haven
-        assertEquals(false, twdGameManager.move(5, 4, 6, 6));
+        assertEquals(true, twdGameManager.move(5, 4, 6, 6));
     }
 
     @Test
@@ -85,6 +84,15 @@ public class TestTWDGameManager {
         //teste equipa inicial
         assertEquals(10, twdGameManager.getInitialTeam());
     }
+
+    @Test
+    public void test10isDoorToSafeHaven() {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("dados.txt"));
+
+        // teste verificar se é safe haven -> retornar true
+        assertEquals(true, twdGameManager.isDoorToSafeHaven(6,6));
+    }
 }
 /*
     @Test
@@ -97,14 +105,6 @@ public class TestTWDGameManager {
         assertEquals(strings,twdGameManager.popCultureExtravaganza());
     }
 
-    @Test
-    public void test10isDoorToSafeHaven() {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        // teste verificar se é safe haven -> retornar true
-        assertEquals(true, twdGameManager.isDoorToSafeHaven(6,6));
-    }
 
     @Test
     public void test11isDoorToSafeHaven() {
