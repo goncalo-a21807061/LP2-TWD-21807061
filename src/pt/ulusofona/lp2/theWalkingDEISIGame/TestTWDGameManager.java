@@ -113,10 +113,11 @@ public class TestTWDGameManager {
         List<Integer> idsinSafeHaven = new ArrayList<>();
 
         // teste verificar se é safe haven -> retornar false
-        assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
+        // assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
 
         twdGameManager12.move(5, 5, 6, 6);
         idsinSafeHaven.add(3);
+
 
         //teste verificar ids in safe haven -> no inicio ainda não há nenhum
         assertEquals(idsinSafeHaven, twdGameManager12.getIdsInSafeHaven());
