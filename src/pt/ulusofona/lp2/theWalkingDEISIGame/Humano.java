@@ -149,7 +149,6 @@ public class Humano extends Creature {
         } else if(nomePersonagem == "Idoso (Vivo)") {
             nomePersonagem = "Idoso (Zombie)";
         }
-
     }
 
     @Override
