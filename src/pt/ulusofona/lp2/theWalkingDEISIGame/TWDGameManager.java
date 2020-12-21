@@ -568,7 +568,8 @@ public class TWDGameManager {
                                                                 return false;
                                                             }
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
-                                                                tabuleiro[yD][xD] = 0;
+                                                                tabuleiro[yO][xO] = 0;
+                                                                tabuleiro[yD][xD] = id;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
                                                                 equipamento1.setDuracao(1);
@@ -861,6 +862,7 @@ public class TWDGameManager {
                                                                 }
                                                                 if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
+                                                                    tabuleiro[yD][xD] = idHumano;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
                                                                     equipamento1.setDuracao(1);
@@ -1065,8 +1067,8 @@ public class TWDGameManager {
                                                                     humano.setEquipmentId(0);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
-                                                                    tabuleiro[yO][xO] = idHumano;
-                                                                    tabuleiro[yD][xD] = 0;
+                                                                    tabuleiro[yO][xO] = 0;
+                                                                    tabuleiro[yD][xD] = idHumano;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
                                                                     equipamento1.setDuracao(1);
