@@ -38,62 +38,97 @@ public class Humano extends Creature {
             foto = "human.png";
         }
     }
+
+    @Override
     public Boolean getMoverDiagonal() {
         return moverDiagonal;
     }
 
+    @Override
     public int getX() { return x; }
 
+    @Override
     public int getY() { return y; }
 
+    @Override
     public void setX(int x) {
         this.x = x;
     }
 
+    @Override
     public void setY(int y) {
         this.y = y;
     }
 
+    @Override
     public int getId() { return id; }
 
+    @Override
     public int getIdTipo() { return idTipo; }
 
+    @Override
     public int getEquipa() { return equipa; }
 
+    @Override
+    public void setEquipa(int equipa) {
+        this.equipa = equipa;
+    }
+
+    @Override
+    public void setNomeEquipa(String equipa) {
+        this.nomeEquipa = nomeEquipa;
+    }
+
+    @Override
+    public void setImagePNG(String image) {
+        this.foto = image;
+    }
+
+    @Override
     public String getNome() { return nome; }
 
+    @Override
     public String getImagePNG() { return foto; }
 
+    @Override
     public void adicionaEquipamentosEncontrados (int adiciona) {
         equipamentosApanhados += adiciona;
     }
 
+    @Override
     public int getEquipamentosApanhados() {
         return equipamentosApanhados;
     }
 
+    @Override
     public void setEquipmentId(int id) {
         this.idEquipamento = id;
     }
 
+    @Override
     public int getIdEquipamento() {
         return idEquipamento;
     }
 
+    @Override
     public void setIdTipoEquipamento(int idTipoEquipamento) {
         this.idTipoEquipamento = idTipoEquipamento;
     }
 
+    @Override
     public int getIdTipoEquipamento() {
         return idTipoEquipamento;
     }
 
+    @Override
     public int getAlcance() { return alcance; }
 
+    @Override
     public void setLocal(String local) {
         this.local = local;
     }
 
+    @Override
     public String getLocal() {
         return local;
     }

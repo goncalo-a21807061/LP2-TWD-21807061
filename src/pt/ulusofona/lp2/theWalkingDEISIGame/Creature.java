@@ -67,4 +67,10 @@ public abstract class Creature {
     abstract public String getLocal();
 
     abstract public String toString();
+
+    abstract public void setEquipa(int equipa);
+
+    abstract public void setNomeEquipa(String nomeEquipa);
+
+    abstract public void setImagePNG(String image);
 }

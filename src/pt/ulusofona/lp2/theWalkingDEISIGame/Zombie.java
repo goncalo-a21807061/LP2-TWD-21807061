@@ -98,6 +98,18 @@ public class Zombie extends Creature {
         return local;
     }
 
+    public void setEquipa(int equipa) {
+        this.equipa = equipa;
+    }
+
+    public void setNomeEquipa(String equipa) {
+        this.nomeEquipa = nomeEquipa;
+    }
+
+    public void setImagePNG(String image) {
+        this.foto = image;
+    }
+
     @Override
     public String toString() {
         if (local == "safe haven") {
