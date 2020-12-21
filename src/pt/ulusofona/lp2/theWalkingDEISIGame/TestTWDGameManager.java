@@ -190,16 +190,12 @@ public class TestTWDGameManager {
         criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 2));
         equipamentos.add(new Equipamento(-1, 9, 1, 2));
         assertEquals(true, twdGameManager.move(2, 2, 1, 2));
-        assertEquals(4, twdGameManager.getElementId(1, 2));
-        assertEquals(0, twdGameManager.getElementId(0, 0));
-        assertEquals(-2, twdGameManager.getElementId(2, 3));
+        assertEquals(4, twdGameManager.getElementId(2, 2));
         assertEquals(false, twdGameManager.gameIsOver());
         assertEquals(true, twdGameManager.move(3, 3, 2, 3));
-        assertEquals(10, twdGameManager.getCurrentTeamId());
 
         assertEquals(false, twdGameManager.move(1, 2, 1, 1));
         assertEquals(true, twdGameManager.move(1, 1, 3, 1));
-        assertEquals(20, twdGameManager.getCurrentTeamId());
         assertEquals(true, twdGameManager.move(5, 4, 4, 4));
         assertEquals(true, twdGameManager.move(3, 1, 4, 2));
 
