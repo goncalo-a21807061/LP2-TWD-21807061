@@ -658,13 +658,12 @@ public class TWDGameManager {
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 7) {
-                                                    return false;
-                                                    /*
+                                                   // return false;
                                                     for (Equipamento equipamento1 : equipamentos) {
                                                         if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                             bala = equipamento1.getDuracao();
                                                             if (bala == 0) {
-                                                                equipamentos.remove(equipamento1);
+                                                               // equipamentos.remove(equipamento1);
                                                             }
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 humano.setX(xD);
@@ -684,8 +683,6 @@ public class TWDGameManager {
                                                         currentTeam = 10;
                                                     }
                                                     return true;
-
-                                                     */
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     return false;
                                                     /*
