@@ -73,4 +73,8 @@ public abstract class Creature {
     abstract public void setNomeEquipa(String nomeEquipa);
 
     abstract public void setImagePNG(String image);
+
+    abstract public void colocaAZeroEquipamentos();
+
+    abstract public void humanoParaZombie();
 }

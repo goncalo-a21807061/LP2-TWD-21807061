@@ -197,6 +197,8 @@ public class TWDGameManager {
                                                 if (zombie.getEquipa() == 20) {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
                                                         humano.setEquipa(20);
                                                         humano.setImagePNG("zombie.png");
                                                         turnos++;
@@ -210,7 +212,6 @@ public class TWDGameManager {
                                                 }
                                                 if (humano.getIdTipoEquipamento() == 0) {
                                                     humano.setEquipmentId(0);
-
                                                     equipamentos.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 10) {
@@ -418,6 +419,8 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -489,6 +492,8 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -788,6 +793,8 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -874,6 +881,8 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humano.colocaAZeroEquipamentos();
+                                                            humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                         }
                                                         if(zombie.getIdTipo() == 3) {
@@ -892,6 +901,8 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humano.colocaAZeroEquipamentos();
+                                                            humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                         }
                                                         turnos++;
@@ -1007,6 +1018,8 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -1074,6 +1087,8 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humano.colocaAZeroEquipamentos();
+                                                            humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                             equipamentos.remove(equipamento);
                                                         }
@@ -1091,6 +1106,8 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humano.colocaAZeroEquipamentos();
+                                                            humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                             equipamentos.remove(equipamento);
                                                         }
@@ -1106,7 +1123,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
-                                                                    equipamentos.remove(equipamento1);
+                                                                     equipamentos.remove(equipamento1);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
@@ -1361,9 +1378,9 @@ public class TWDGameManager {
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
         strings[2] = "THE NIGHT EATS THE WORLD";
-        strings[3] = "";
+        strings[3] = "King Of The Zombies";
         strings[4] = "Astérix e Obélix";
-        strings[5] = "";
+        strings[5] = "Invasão Zumbi";
         strings[6] = "Mandalorians";
         strings[7] = "Game of Death";
         strings[8] = "Kill Bill";

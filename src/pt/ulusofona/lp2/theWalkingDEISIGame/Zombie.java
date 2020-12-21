@@ -84,6 +84,11 @@ public class Zombie extends Creature {
         this.idTipoEquipamento = idTipoEquipamento;
     }
 
+    @Override
+    public void colocaAZeroEquipamentos() {
+        equipamentosApanhados = 0;
+    }
+
     public int getIdTipoEquipamento() {
         return idTipoEquipamento;
     }

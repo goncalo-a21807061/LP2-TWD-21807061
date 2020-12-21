@@ -134,6 +134,25 @@ public class Humano extends Creature {
     }
 
     @Override
+    public void colocaAZeroEquipamentos() {
+        equipamentosApanhados = 0;
+    }
+
+    @Override
+    public void humanoParaZombie() {
+        if(nomePersonagem == "Criança (Vivo)") {
+            nomePersonagem = "Criança (Zombie)";
+        } else if (nomePersonagem == "Adulto (Vivo)") {
+            nomePersonagem = "Adulto (Zombie)";
+        } else if(nomePersonagem == "Militar (Vivo)") {
+            nomePersonagem = "Militar (Zombie)";
+        } else if(nomePersonagem == "Idoso (Vivo)") {
+            nomePersonagem = "Idoso (Zombie)";
+        }
+
+    }
+
+    @Override
     public String toString() {
         if (local == "safe haven") {
             return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ (A salvo)" ;
