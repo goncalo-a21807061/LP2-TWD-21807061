@@ -190,7 +190,6 @@ public class TestTWDGameManager {
         criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 2));
         equipamentos.add(new Equipamento(-1, 9, 1, 2));
         assertEquals(true, twdGameManager.move(2, 2, 1, 2));
-        assertEquals(20, twdGameManager.getCurrentTeamId());
         assertEquals(4, twdGameManager.getElementId(1, 2));
         assertEquals(0, twdGameManager.getElementId(0, 0));
         assertEquals(-2, twdGameManager.getElementId(2, 3));

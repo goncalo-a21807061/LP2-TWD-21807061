@@ -1360,7 +1360,7 @@ public class TWDGameManager {
         String[] strings = new String[14];
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
-        strings[2] = "A Noite Devorou o Mundo";
+        strings[2] = "THE NIGHT EATS THE WORLD";
         strings[3] = "";
         strings[4] = "Astérix e Obélix";
         strings[5] = "";
