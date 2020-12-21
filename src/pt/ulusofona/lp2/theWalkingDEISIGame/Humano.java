@@ -76,7 +76,7 @@ public class Humano extends Creature {
 
     @Override
     public void setNomeEquipa(String equipa) {
-        this.nomeEquipa = nomeEquipa;
+        this.nomeEquipa = equipa;
     }
 
     @Override
@@ -141,13 +141,13 @@ public class Humano extends Creature {
     @Override
     public void humanoParaZombie() {
         if(nomePersonagem == "Criança (Vivo)") {
-            nomePersonagem = "Criança (Zombie)";
+            nomePersonagem = "Criança (Zombies)";
         } else if (nomePersonagem == "Adulto (Vivo)") {
-            nomePersonagem = "Adulto (Zombie)";
+            nomePersonagem = "Adulto (Zombies)";
         } else if(nomePersonagem == "Militar (Vivo)") {
-            nomePersonagem = "Militar (Zombie)";
+            nomePersonagem = "Militar (Zombies)";
         } else if(nomePersonagem == "Idoso (Vivo)") {
-            nomePersonagem = "Idoso (Zombie)";
+            nomePersonagem = "Idoso (Zombies)";
         }
     }
 

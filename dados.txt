@@ -10,7 +10,7 @@
 7 : 3 : Paciente Zeros : 5 : 4
 8 : 4 : Paciente Zerosa : 4 : 2
 2
--1 : 4 : 1 : 2
+-1 : 1 : 1 : 2
 -2 : 8 : 2 : 3
 2
 6 : 6
