@@ -77,8 +77,6 @@ public class TestTWDGameManager {
     }
 
 
-
-
     @Test
     public void test14LoadGame() {
         TWDGameManager twdGameManager14 = new TWDGameManager();
@@ -157,25 +155,23 @@ public class TestTWDGameManager {
         Equipamento equipamento8 = new Equipamento(-7, 10, 3, 1);
     }
 
-}
-/*
 
     @Test
     public void test18CreateNewCreature() {
         // testar a criação de uma nova criatura e mudança de posição
 
-        Creature criatura = new Creature(10,2,"Dragon",4,6);
-        assertEquals(4,criatura.getX());
-        assertEquals(6,criatura.getY());
+        Creature criatura = new Zombie(10, 2, "Dragon", 4, 6);
+        assertEquals(4, criatura.getX());
+        assertEquals(6, criatura.getY());
         assertEquals("Dragon", criatura.getNome());
-        assertEquals("zombie.png",criatura.getImagePNG());
+        assertEquals("zombie.png", criatura.getImagePNG());
         assertEquals(0, criatura.getEquipamentosApanhados());
         assertEquals(0, criatura.getIdTipoEquipamento());
         assertEquals("jogo", criatura.getLocal());
         // falta tostring
 
-        Creature criatura1 = new Creature(10,3,"Dragon",4,6);
-        Creature criatura2 = new Creature(10,7,"Dragon",4,6);
+        Creature criatura1 = new Zombie(10, 3, "Dragon", 4, 6);
+        Creature criatura2 = new Humano(10, 7, "Dragon", 4, 6);
     }
 
     @Test
@@ -184,50 +180,49 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File("dados.txt"));
         List<Creature> criaturas = new ArrayList<>();
         List<Equipamento> equipamentos = new ArrayList<>();
-        criaturas.add(new Creature(1,0,"Freddy M.",3,3));
-        criaturas.add(new Creature(2,8,"Jackie Chan",3,4));
-        criaturas.add(new Creature(3,6,"Alice",5,5));
-        criaturas.add(new Creature(4,6,"Ash",2,2));
-        criaturas.add(new Creature(5,9,"Sam",1,1));
-        criaturas.add(new Creature(6,5,"Paciente Zero",4,4));
-        criaturas.add(new Creature(7,1,"Paciente Zeros",5,4));
-        criaturas.add(new Creature(8,4,"Paciente Zerosa",4,2));
-        equipamentos.add(new Equipamento(-1,9,1,2));
-        assertEquals(true,twdGameManager.move(2,2,1,2));
+        criaturas.add(new Zombie(1, 0, "Freddy M.", 3, 3));
+        criaturas.add(new Humano(2, 8, "Jackie Chan", 3, 4));
+        criaturas.add(new Humano(3, 6, "Alice", 5, 5));
+        criaturas.add(new Humano(4, 6, "Ash", 2, 2));
+        criaturas.add(new Humano(5, 9, "Sam", 1, 1));
+        criaturas.add(new Humano(6, 5, "Paciente Zero", 4, 4));
+        criaturas.add(new Zombie(7, 1, "Paciente Zeros", 5, 4));
+        criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 2));
+        equipamentos.add(new Equipamento(-1, 9, 1, 2));
+        assertEquals(true, twdGameManager.move(2, 2, 1, 2));
         assertEquals(20, twdGameManager.getCurrentTeamId());
-        assertEquals(4,twdGameManager.getElementId(1,2));
-        assertEquals(0,twdGameManager.getElementId(0,0));
-        assertEquals(-2,twdGameManager.getElementId(2,3));
+        assertEquals(4, twdGameManager.getElementId(1, 2));
+        assertEquals(0, twdGameManager.getElementId(0, 0));
+        assertEquals(-2, twdGameManager.getElementId(2, 3));
         assertEquals(false, twdGameManager.gameIsOver());
-        assertEquals(true,twdGameManager.move(3,3,2,3));
+        assertEquals(true, twdGameManager.move(3, 3, 2, 3));
         assertEquals(10, twdGameManager.getCurrentTeamId());
 
-        assertEquals(false,twdGameManager.move(1,2,1,1));
-        assertEquals(true,twdGameManager.move(1,1,3,1));
+        assertEquals(false, twdGameManager.move(1, 2, 1, 1));
+        assertEquals(true, twdGameManager.move(1, 1, 3, 1));
         assertEquals(20, twdGameManager.getCurrentTeamId());
-        assertEquals(true,twdGameManager.move(5,4,4,4));
-        assertEquals(true, twdGameManager.move(3,1,4,2));
+        assertEquals(true, twdGameManager.move(5, 4, 4, 4));
+        assertEquals(true, twdGameManager.move(3, 1, 4, 2));
 
-        assertEquals(false,twdGameManager.move(2,3,2,0));
-        assertEquals(true, twdGameManager.move(2,3,3,4));
+        assertEquals(false, twdGameManager.move(2, 3, 2, 0));
+        assertEquals(true, twdGameManager.move(2, 3, 3, 4));
 
-        assertEquals(true, twdGameManager.move(5,5,6,6));
+        assertEquals(true, twdGameManager.move(5, 5, 6, 6));
 
-        assertEquals(true, twdGameManager.move(5,4,5,3));
-        assertEquals(true, twdGameManager.move(1,2,2,3));
-        assertEquals(false, twdGameManager.move(4,2,4,1));
-        assertEquals(true, twdGameManager.move(2,3,2,2));
-        assertEquals(true, twdGameManager.move(1,2,1,0));
-        assertEquals(true, twdGameManager.move(4,2,4,0));
+        assertEquals(true, twdGameManager.move(5, 4, 5, 3));
+        assertEquals(true, twdGameManager.move(1, 2, 2, 3));
+        assertEquals(false, twdGameManager.move(4, 2, 4, 1));
+        assertEquals(true, twdGameManager.move(2, 3, 2, 2));
+        assertEquals(true, twdGameManager.move(1, 2, 1, 0));
+        assertEquals(true, twdGameManager.move(4, 2, 4, 0));
         assertEquals(true, twdGameManager.gameIsOver());
     }
 
 
-
-
 }
 
- */
+
+
 
 
 
