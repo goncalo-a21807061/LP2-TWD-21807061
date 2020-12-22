@@ -703,6 +703,7 @@ public class TWDGameManager {
                         }
                     }
                 }
+                return false;
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
