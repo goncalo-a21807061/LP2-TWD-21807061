@@ -141,13 +141,13 @@ public class Humano extends Creature {
     @Override
     public void humanoParaZombie() {
         if(nomePersonagem == "Criança (Vivo)") {
-            nomePersonagem = "Criança (Zombies)";
+            nomePersonagem = "Criança (Zombie)";
         } else if (nomePersonagem == "Adulto (Vivo)") {
-            nomePersonagem = "Adulto (Zombies)";
+            nomePersonagem = "Adulto (Zombie)";
         } else if(nomePersonagem == "Militar (Vivo)") {
-            nomePersonagem = "Militar (Zombies)";
+            nomePersonagem = "Militar (Zombie)";
         } else if(nomePersonagem == "Idoso (Vivo)") {
-            nomePersonagem = "Idoso (Zombies)";
+            nomePersonagem = "Idoso (Zombie)";
         }
     }
 
