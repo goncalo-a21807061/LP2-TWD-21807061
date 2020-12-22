@@ -434,6 +434,7 @@ public class TWDGameManager {
                                                 }
                                             }
                                         }
+
                                     } else if (idTipo != 8 && idTipo != 9){
                                         if(idTipo == 0 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                             return false;
@@ -973,7 +974,7 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
-
+                                                        return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
@@ -1146,9 +1147,10 @@ public class TWDGameManager {
                         }
                     }
                 }
+                return false;
             }
         }
-        return false;
+        return true;
 }
 
 
