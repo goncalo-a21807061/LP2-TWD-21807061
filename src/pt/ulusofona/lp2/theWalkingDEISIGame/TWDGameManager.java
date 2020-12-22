@@ -524,7 +524,8 @@ public class TWDGameManager {
                                                             }
                                                         }
                                                         if(idZombie == 0) {
-                                                            tabuleiro[yD][xD] = 0;
+                                                            tabuleiro[yD][xD] = id;
+                                                            tabuleiro[yO][xO] = 0;
                                                             envenenados.add(zombie);
                                                             zombie.setLocal("morta");
                                                             turnos++;
@@ -559,9 +560,8 @@ public class TWDGameManager {
                                                                 humano.setEquipmentId(0);
                                                             }
                                                             if(zombie.getIdTipo() == 4) {
-                                                                return false;
-                                                            }
-                                                            if (zombie.getIdTipo() != 4 && bala > 0) {
+
+                                                            } else if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 tabuleiro[yD][xD] = id;
                                                                 envenenados.add(zombie);
@@ -630,7 +630,6 @@ public class TWDGameManager {
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 7) {
-                                                   // return false;
                                                     for (Equipamento equipamento1 : equipamentos) {
                                                         if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                             bala = equipamento1.getDuracao();
@@ -703,7 +702,6 @@ public class TWDGameManager {
                         }
                     }
                 }
-                return false;
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
@@ -735,26 +733,25 @@ public class TWDGameManager {
                                             }
                                             if (tabuleiro[yD][xD] == idEquipamento) {
                                                 if (idTipoEquipamento == 5 && zombie.getIdTipo() == 4) {
-                                                    return false;
-                                                }
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                               // equipamentos.remove(equipamento);
-                                                turnos++;
-                                                if (currentTeam == 10) {
-                                                    currentTeam = 20;
                                                 } else {
-                                                    currentTeam = 10;
+                                                    zombie.setX(xD);
+                                                    zombie.setY(yD);
+                                                    tabuleiro[yD][xD] = id;
+                                                    tabuleiro[yO][xO] = 0;
+                                                    zombie.adicionaEquipamentosEncontrados(1);
+                                                    // equipamentos.remove(equipamento);
+                                                    turnos++;
+                                                    if (currentTeam == 10) {
+                                                        currentTeam = 20;
+                                                    } else {
+                                                        currentTeam = 10;
+                                                    }
+                                                    return true;
                                                 }
-                                                return true;
                                             }
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
-                                                        return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
@@ -789,8 +786,7 @@ public class TWDGameManager {
                                                                 }
                                                             }
                                                             if (idZombie == 0) {
-                                                                tabuleiro[yD][xD] = 0;
-                                                                tabuleiro[yO][xO] = idHumano;
+                                                                tabuleiro[yO][xO] = 0;
                                                                 envenenados.add(zombie);
                                                                 zombie.setLocal("morta");
                                                                 turnos++;
@@ -802,8 +798,7 @@ public class TWDGameManager {
                                                                 return true;
                                                             }
                                                         } else {
-                                                            tabuleiro[yD][xD] = 0;
-                                                            tabuleiro[yO][xO] = idHumano;
+                                                            tabuleiro[yO][xO] = 0;
                                                             envenenados.add(zombie);
                                                             zombie.setLocal("morta");
                                                             turnos++;
@@ -854,8 +849,6 @@ public class TWDGameManager {
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                         }
-                                                        if(zombie.getIdTipo() == 3) {
-                                                        }
                                                         turnos++;
                                                         if (currentTeam == 10) {
                                                             currentTeam = 20;
@@ -864,9 +857,6 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
-                                                        if (zombie.getIdTipo() == 4) {
-                                                            return false;
-                                                        }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -882,7 +872,8 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 6) {
-                                                        tabuleiro[yO][xO] = 0;
+                                                        tabuleiro[yO][xO] = idHumano;
+                                                        tabuleiro[yD][xD] = 0;
                                                         envenenados.add(zombie);
                                                         zombie.setLocal("morta");
                                                         turnos++;
@@ -982,7 +973,7 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
-                                                        return false;
+
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
@@ -1009,8 +1000,7 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 1) {
-                                                        tabuleiro[yO][xO] = idHumano;
-                                                        tabuleiro[yD][xD] = 0;
+                                                        tabuleiro[yO][xO] = 0;
                                                         envenenados.add(zombie);
                                                         zombie.setLocal("morta");
                                                         turnos++;
@@ -1072,7 +1062,6 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() == 4) {
-                                                            return false;
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
@@ -1157,10 +1146,9 @@ public class TWDGameManager {
                         }
                     }
                 }
-                return false;
             }
         }
-        return true;
+        return false;
 }
 
 
@@ -1360,7 +1348,7 @@ public class TWDGameManager {
         String[] strings = new String[14];
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
-        strings[2] = "Trick 'r Treat";
+        strings[2] = "The Walking Dead";
         strings[3] = "King Of The Zombies";
         strings[4] = "Astérix e Obélix";
         strings[5] = "Invasão Zumbi";
