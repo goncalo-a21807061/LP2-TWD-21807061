@@ -416,9 +416,25 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == idZombie) {
-                                                return false;
+                                                if (zombie.getEquipa() == 20) {
+                                                    if (humano.getIdEquipamento() == 0) {
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
+                                                        turnos++;
+                                                        if (currentTeam == 10) {
+                                                            currentTeam = 20;
+                                                        } else {
+                                                            currentTeam = 10;
+                                                        }
+                                                        return true;
+                                                    }
+                                                }
                                             }
                                         }
+
                                     } else if (idTipo != 8 && idTipo != 9){
                                         if(idTipo == 0 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                             return false;
@@ -687,6 +703,7 @@ public class TWDGameManager {
                         }
                     }
                 }
+                return false;
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
@@ -737,7 +754,6 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
-                                                        return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
@@ -1132,9 +1148,10 @@ public class TWDGameManager {
                         }
                     }
                 }
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 
