@@ -416,22 +416,7 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == idZombie) {
-                                                if (zombie.getEquipa() == 20) {
-                                                    if (humano.getIdEquipamento() == 0) {
-                                                        humano.setNomeEquipa("Os Outros");
-                                                        humano.setEquipa(20);
-                                                        humano.colocaAZeroEquipamentos();
-                                                        humano.humanoParaZombie();
-                                                        humano.setImagePNG("zombie.png");
-                                                        turnos++;
-                                                        if (currentTeam == 10) {
-                                                            currentTeam = 20;
-                                                        } else {
-                                                            currentTeam = 10;
-                                                        }
-                                                        return true;
-                                                    }
-                                                }
+                                                return false;
                                             }
                                         }
                                     } else if (idTipo != 8 && idTipo != 9){
@@ -752,6 +737,7 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
+                                                        return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
@@ -973,7 +959,7 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if (humano.getEquipa() == 10) {
                                                     if(humano.getIdTipo() == 9) {
-
+                                                        return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
