@@ -1254,17 +1254,14 @@ public class TWDGameManager {
     }
 
     public int getEquipmentId(int creatureId) {
-        int equipament = 0;
         for (Creature criatura : criaturas) {
             for (Equipamento equipamento : equipamentos) {
                 if (criatura.getId() == creatureId) {
-                    if (criatura.getIdEquipamento() == equipamento.getId()) {
-                        equipament = equipamento.getId();
-                    }
+                    return criatura.getIdEquipamento();
                 }
             }
         }
-        return equipament;
+        return 0;
     }
 
     public List<Integer> getIdsInSafeHaven() {
