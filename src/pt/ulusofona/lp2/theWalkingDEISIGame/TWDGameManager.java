@@ -740,7 +740,9 @@ public class TWDGameManager {
                                                     zombie.setY(yD);
                                                     tabuleiro[yD][xD] = id;
                                                     tabuleiro[yO][xO] = 0;
+                                                    zombie.setIdTipoEquipamento(idTipoEquipamento);
                                                     zombie.adicionaEquipamentosEncontrados(1);
+                                                    zombie.setEquipmentId(idEquipamento);
                                                     // equipamentos.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 10) {
@@ -962,8 +964,10 @@ public class TWDGameManager {
                                                 zombie.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
+                                                zombie.setIdTipoEquipamento(idTipoEquipamento);
                                                 zombie.adicionaEquipamentosEncontrados(1);
-                                                equipamentos.remove(equipamento);
+                                                zombie.setEquipmentId(idEquipamento);
+                                                //equipamentos.remove(equipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -1255,10 +1259,8 @@ public class TWDGameManager {
 
     public int getEquipmentId(int creatureId) {
         for (Creature criatura : criaturas) {
-            for (Equipamento equipamento : equipamentos) {
-                if (criatura.getId() == creatureId) {
-                    return criatura.getIdEquipamento();
-                }
+            if (criatura.getId() == creatureId) {
+                return criatura.getIdEquipamento();
             }
         }
         return 0;
