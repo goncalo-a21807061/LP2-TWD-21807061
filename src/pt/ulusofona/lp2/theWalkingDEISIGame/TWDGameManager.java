@@ -237,6 +237,9 @@ public class TWDGameManager {
                                                                 zombie.setLocal("morta");
                                                                 equipamento1.setDuracao(1);
                                                             }
+                                                            if(zombie.getIdTipo() == 4) {
+                                                                return false;
+                                                            }
                                                         }
                                                     }
                                                     turnos++;
@@ -409,9 +412,25 @@ public class TWDGameManager {
                                                 if (humano.getIdTipoEquipamento() == 0) {
                                                     return false;
                                                 } else if (humano.getIdTipoEquipamento() == 1) {
-                                                    tabuleiro[yD][xD] = 0;
-                                                    envenenados.add(zombie);
-                                                    zombie.setLocal("morta");
+                                                    if (humano.getIdTipo() == 5) {
+                                                        idZombie = tabuleiro[yD][xD];
+                                                        for (Creature zombie1 : criaturas) {
+                                                            if (idZombie == zombie1.getId()) {
+                                                                idZombie = zombie1.getIdTipo();
+                                                            }
+                                                        }
+                                                        if (idZombie != 0) {
+                                                            return false;
+                                                        } else {
+                                                            tabuleiro[yD][xD] = 0;
+                                                            envenenados.add(zombie);
+                                                            zombie.setLocal("morta");
+                                                        }
+                                                    } else {
+                                                        tabuleiro[yO][xO] = 0;
+                                                        envenenados.add(zombie);
+                                                        zombie.setLocal("morta");
+                                                    }
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
@@ -601,16 +620,7 @@ public class TWDGameManager {
                                                                 }
                                                             }
                                                             if (idZombie == 0) {
-                                                                tabuleiro[yO][xO] = 0;
-                                                                envenenados.add(zombie);
-                                                                zombie.setLocal("morta");
-                                                                turnos++;
-                                                                if (currentTeam == 10) {
-                                                                    currentTeam = 20;
-                                                                } else {
-                                                                    currentTeam = 10;
-                                                                }
-                                                                return true;
+                                                                return false;
                                                             }
                                                         } else {
                                                             tabuleiro[yO][xO] = 0;
@@ -628,11 +638,6 @@ public class TWDGameManager {
                                                         for (Equipamento equipamento1 : equipamentos) {
                                                             if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
-                                                                if (bala == 0) {
-                                                                    //  equipamentos.remove(equipamento1);
-                                                                    humano.setEquipmentId(0);
-                                                                    return false;
-                                                                }
                                                                 if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     tabuleiro[yD][xD] = idHumano;
@@ -640,6 +645,10 @@ public class TWDGameManager {
                                                                     zombie.setLocal("morta");
                                                                     equipamento1.setDuracao(1);
                                                                 } else if (zombie.getIdTipo() == 4) {
+                                                                    return false;
+                                                                } else if (bala == 0) {
+                                                                    //  equipamentos.remove(equipamento1);
+                                                                    humano.setEquipmentId(0);
                                                                     return false;
                                                                 }
                                                             }
@@ -842,6 +851,9 @@ public class TWDGameManager {
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
                                                                     equipamento1.setDuracao(1);
+                                                                }
+                                                                if(zombie.getIdTipo() == 4) {
+                                                                    return false;
                                                                 }
                                                             }
                                                         }
