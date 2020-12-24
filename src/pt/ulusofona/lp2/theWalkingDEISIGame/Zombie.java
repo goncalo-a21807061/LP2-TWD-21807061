@@ -128,6 +128,16 @@ public class Zombie extends Creature {
         this.foto = image;
     }
 
+    public void setEnvenenado(boolean envenenado) {
+        this.envenenado = envenenado;
+    }
+
+    @Override
+    public boolean getEnvenenado() {
+        return envenenado;
+    }
+
+
     @Override
     public String toString() {
         if (local == "safe haven") {

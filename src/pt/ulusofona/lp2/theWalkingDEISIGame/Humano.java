@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Humano extends Creature {
 
+
     public Humano(int id, int idTipo, String nome, int x, int y) {
         super(id, idTipo, nome, x, y);
         this.idEquipamento = 0;
@@ -149,6 +150,16 @@ public class Humano extends Creature {
         } else if(nomePersonagem == "Idoso (Vivo)") {
             nomePersonagem = "Idoso (Zombie)";
         }
+    }
+
+    @Override
+    public void setEnvenenado(boolean envenenado) {
+        this.envenenado = envenenado;
+    }
+
+    @Override
+    public boolean getEnvenenado() {
+        return envenenado;
     }
 
     @Override
