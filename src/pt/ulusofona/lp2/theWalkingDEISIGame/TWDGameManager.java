@@ -165,6 +165,9 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == idEquipamento) {
+                                                if(equipamento.getIdTipo() == 8) {
+                                                  antidoto = true;
+                                                }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
@@ -827,7 +830,8 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 1) {
-                                                        tabuleiro[yO][xO] = 0;
+                                                        tabuleiro[yO][xO] = id;
+                                                        tabuleiro[yD][xD] = 0;
                                                         envenenados.add(zombie);
                                                         zombie.setLocal("morta");
                                                         turnos++;
