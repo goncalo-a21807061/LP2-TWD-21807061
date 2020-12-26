@@ -1138,7 +1138,7 @@ public class TWDGameManager {
         }
         for(Equipamento equipamento: equipamentos) {
             if (tabuleiro[y][x] == equipamento.getId()) {
-                return equipamento.getId();
+                return equipamento.getIdTipo();
             }
         }
         return 0;
@@ -1247,27 +1247,22 @@ public class TWDGameManager {
         try {
             BufferedWriter writerFile = null;
             writerFile = new BufferedWriter( new FileWriter(fich.getPath()));
-            /*
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fich.getPath(), true));
-            writer.write(rows);
-            writer.write(columns);
-            writer.write(currentTeam + "\n");
-            writer.write(criaturas.size());
+            writerFile.write(rows + " ");
+            writerFile.write(columns + "\n");
+            writerFile.write(currentTeam + "\n");
+            writerFile.write(criaturas.size());
             for(Creature criatura : criaturas) {
-                writer.write(criatura.getId() + " : " + criatura.getIdTipo() + " : " + criatura.getNome() + " : " + criatura.getX() + " : " + criatura.getY());
+                writerFile.write(criatura.getId() + " : " + criatura.getIdTipo() + " : " + criatura.getNome() + " : " + criatura.getX() + " : " + criatura.getY() + "\n");
             }
-            writer.write(equipamentos.size());
+            writerFile.write(equipamentos.size());
             for(Equipamento equipamento: equipamentos) {
-                writer.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY());
+                writerFile.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n");
             }
-            writer.write(portas.size());
+            writerFile.write(portas.size());
             for(Porta porta : portas) {
-                writer.write(porta.getX() + " : " + porta.getY());
+                writerFile.write(porta.getX() + " : " + porta.getY() + "\n");
             }
-            writer.close();
-
-             */
-
+            writerFile.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
