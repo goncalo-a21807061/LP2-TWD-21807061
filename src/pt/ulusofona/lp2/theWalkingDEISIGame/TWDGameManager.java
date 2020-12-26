@@ -1102,8 +1102,7 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        // transformacaoHumanoZombie == 0 && turnos >= 6) ||
-        if (humanos.size() == 0 ) {
+        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || humanos.size() == 0 ) {
             return true;
         }
         return false;
