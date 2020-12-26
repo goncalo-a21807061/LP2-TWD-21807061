@@ -797,9 +797,11 @@ public class TWDGameManager {
                                                                     humano.setEquipmentId(0);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
+                                                                    /*
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
+                                                                     */
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
@@ -1023,9 +1025,12 @@ public class TWDGameManager {
                                                                     //  equipamentos.remove(equipamento1);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
-                                                                    tabuleiro[yO][xO] = 0;
+                                                                    /*
+                                                                    //tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
                                                                     zombie.setLocal("morta");
+
+                                                                     */
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                             }
