@@ -213,7 +213,7 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                humano.setEquipmentId(0);
+                                                //humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
@@ -353,11 +353,11 @@ public class TWDGameManager {
                                                 }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
+                                                humano.setEquipmentId(idEquipamento);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 humano.adicionaEquipamentosEncontrados(1);
-                                                humano.setEquipmentId(idEquipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -649,9 +649,9 @@ public class TWDGameManager {
                                                 } else {
                                                     zombie.setX(xD);
                                                     zombie.setY(yD);
+                                                    zombie.adicionaEquipamentosEncontrados(1);
                                                     tabuleiro[yD][xD] = id;
                                                     tabuleiro[yO][xO] = 0;
-                                                    zombie.adicionaEquipamentosEncontrados(1);
                                                     // equipamentos.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 10) {
@@ -884,11 +884,11 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 }
+                                                zombie.adicionaEquipamentosEncontrados(1);
                                                 zombie.setX(xD);
                                                 zombie.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
-                                                zombie.adicionaEquipamentosEncontrados(1);
                                                 //equipamentos.remove(equipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
