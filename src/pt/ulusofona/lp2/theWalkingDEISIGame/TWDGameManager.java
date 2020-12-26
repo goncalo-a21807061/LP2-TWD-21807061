@@ -31,6 +31,7 @@ public class TWDGameManager {
     private int idTipo;
     private boolean moveDiagonal;
     private boolean antidoto = false;
+    private int transformacaoHumanoZombie = 0;
 
 
     public TWDGameManager() {
@@ -656,6 +657,7 @@ public class TWDGameManager {
                                                     if(humano.getIdTipo() == 9) {
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
+                                                        transformacaoHumanoZombie = 1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
                                                         humanos.remove(humano);
@@ -739,10 +741,12 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 4) {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
+                                                            transformacaoHumanoZombie = 1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
                                                             humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
+                                                            humano.setEquipmentId(0);
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                         }
@@ -755,9 +759,11 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                            transformacaoHumanoZombie = 1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
                                                             humanos.remove(humano);
+                                                            humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -883,6 +889,7 @@ public class TWDGameManager {
                                                         return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
+                                                        transformacaoHumanoZombie = 1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
                                                         humanos.remove(humano);
@@ -957,9 +964,11 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() == 3) {
                                                         }
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
+                                                            transformacaoHumanoZombie = 1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
                                                             humanos.remove(humano);
+                                                            humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -976,9 +985,11 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() == 4) {
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                            transformacaoHumanoZombie = 1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
                                                             humanos.remove(humano);
+                                                            humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -1068,7 +1079,7 @@ public class TWDGameManager {
 
     public boolean gameIsOver() {
 
-        if (turnos >= 12 || humanos.size() == 0 ) {
+        if ((transformacaoHumanoZombie == 0 && turnos > 6) || humanos.size() == 0 ) {
             return true;
         }
         return false;
