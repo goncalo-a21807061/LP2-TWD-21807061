@@ -1138,7 +1138,7 @@ public class TWDGameManager {
         }
         for(Equipamento equipamento: equipamentos) {
             if (tabuleiro[y][x] == equipamento.getId()) {
-                return equipamento.getIdTipo();
+                return equipamento.getId();
             }
         }
         return 0;
