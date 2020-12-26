@@ -439,7 +439,7 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yO)) {
+                                                if(verificarSobrePosicao(xO,xD,yO,yD)) {
                                                     return false;
                                                 }
                                                 humano.setX(xD);
@@ -1245,6 +1245,9 @@ public class TWDGameManager {
     //erro
     public boolean saveGame(File fich) {
         try {
+            BufferedWriter writerFile = null;
+            writerFile = new BufferedWriter( new FileWriter(fich.getPath()));
+            /*
             BufferedWriter writer = new BufferedWriter(new FileWriter(fich.getPath(), true));
             writer.write(rows);
             writer.write(columns);
@@ -1262,6 +1265,9 @@ public class TWDGameManager {
                 writer.write(porta.getX() + " : " + porta.getY());
             }
             writer.close();
+
+             */
+
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -1320,7 +1326,7 @@ public class TWDGameManager {
                 }
             }
             for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO][xO + 1] == 99) {
+                if(tabuleiro[yO][xO+1] == 99) {
                     return false;
                 }
             }
@@ -1342,7 +1348,7 @@ public class TWDGameManager {
                 }
             }
             for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO][xO - 1] == 99) {
+                if(tabuleiro[yO][xO-1] == 99) {
                     return false;
                 }
             }
@@ -1364,7 +1370,7 @@ public class TWDGameManager {
                 }
             }
             for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO + 1][xO] == 99) {
+                if(tabuleiro[yO+1][xO] == 99) {
                     return false;
                 }
             }
@@ -1386,7 +1392,7 @@ public class TWDGameManager {
                 }
             }
             for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO - 1][xO] == 99) {
+                if(tabuleiro[yO-1][xO] == 99) {
                     return false;
                 }
             }
@@ -1474,7 +1480,7 @@ public class TWDGameManager {
                 }
             }
             for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                 if(tabuleiro[yO + 1][xO + 1] == 99) {
+                 if(tabuleiro[yO+1][xO + 1] == 99) {
                      return false;
                 }
             }
