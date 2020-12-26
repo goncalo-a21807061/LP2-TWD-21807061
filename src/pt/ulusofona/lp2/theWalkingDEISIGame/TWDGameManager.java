@@ -265,7 +265,6 @@ public class TWDGameManager {
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                             if(zombie.getIdTipo() == 4) {
-                                                                return false;
                                                             }
                                                         }
                                                     }
@@ -515,7 +514,6 @@ public class TWDGameManager {
                                                                 humano.setEquipmentId(0);
                                                                 return false;
                                                             } else if(zombie.getIdTipo() == 4) {
-                                                                return false;
                                                             }
                                                         }
                                                     }
@@ -639,9 +637,7 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                if (idTipoEquipamento == 5 && zombie.getIdTipo() == 4) {
-
-                                                } else if(equipamento.getIdTipo() == 8) {
+                                                if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 } else {
                                                     zombie.setX(xD);
@@ -726,7 +722,7 @@ public class TWDGameManager {
                                                                     zombie.setLocal("morta");
                                                                     equipamento1.setDuracao(1);
                                                                 } else if (zombie.getIdTipo() == 4) {
-                                                                    return false;
+
                                                                 } else if (bala == 0) {
                                                                     //  equipamentos.remove(equipamento1);
                                                                     humano.setEquipmentId(0);
@@ -759,6 +755,8 @@ public class TWDGameManager {
                                                             humano.setEquipmentId(0);
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                        } if (zombie.getId() == 3) {
+
                                                         }
                                                         turnos++;
                                                         if (currentTeam == 10) {
@@ -956,7 +954,7 @@ public class TWDGameManager {
                                                                     equipamento1.setDuracao(1);
                                                                 }
                                                                 if(zombie.getIdTipo() == 4) {
-                                                                    return false;
+
                                                                 }
                                                             }
                                                         }
