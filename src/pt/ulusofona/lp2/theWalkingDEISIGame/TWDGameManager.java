@@ -439,12 +439,9 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD)) {
-                                                    return false;
-                                                }
+                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
