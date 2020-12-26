@@ -644,7 +644,7 @@ public class TWDGameManager {
                                                 }
                                                 if (idTipoEquipamento == 5 && zombie.getIdTipo() == 4) {
 
-                                                } else if(equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
+                                                } else if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 } else {
                                                     zombie.setX(xD);
@@ -881,7 +881,7 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                if(equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
+                                                if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 }
                                                 zombie.setX(xD);
@@ -1037,7 +1037,6 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
-                                                                    humano.setEquipmentId(0);
                                                                     //  equipamentos.remove(equipamento1);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
