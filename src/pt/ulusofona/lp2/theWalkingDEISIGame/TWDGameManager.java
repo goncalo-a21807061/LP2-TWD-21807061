@@ -1037,6 +1037,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    humano.setEquipmentId(0);
                                                                     //  equipamentos.remove(equipamento1);
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
@@ -1102,7 +1103,8 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || humanos.size() == 0 ) {
+        // transformacaoHumanoZombie == 0 && turnos >= 6) ||
+        if (humanos.size() == 0 ) {
             return true;
         }
         return false;
