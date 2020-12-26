@@ -140,6 +140,8 @@ public class TWDGameManager {
                 for(Creature criatura : criaturas) {
                     if(criatura.getEnvenenado() == true) {
                         tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
+                        humanos.remove(criatura);
+                        envenenados.add(criatura);
                     }
                 }
             }
@@ -208,6 +210,7 @@ public class TWDGameManager {
                                                 humano.setY(yD);
                                                 humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
+                                                humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
                                                 turnos++;
                                                 if (currentTeam == 10) {
@@ -360,6 +363,7 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
+                                                humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
                                                 turnos++;
                                                 if (currentTeam == 10) {
@@ -433,6 +437,7 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
+                                                humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
                                                 turnos++;
                                                 if (currentTeam == 10) {
@@ -653,6 +658,7 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
@@ -735,6 +741,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -750,6 +757,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -877,6 +885,7 @@ public class TWDGameManager {
                                                     if (humano.getIdEquipamento() == 0) {
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
@@ -950,6 +959,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -968,6 +978,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
@@ -1056,13 +1067,8 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        int count = 0;
-        for(Creature criatura : criaturas) {
-            if(criatura.getEquipa() == 10) {
-                count++;
-            }
-        }
-        if (turnos >= 12 || count == 0) {
+
+        if (turnos >= 12 || humanos.size() == 0 ) {
             return true;
         }
         return false;

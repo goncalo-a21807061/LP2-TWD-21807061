@@ -65,7 +65,7 @@ public class Equipamento {
             titulo = "Garrafa de lixívia (1 litro)";
             descricao = "Permite obter protecção contra ataques de Zombies, pois o Zombies não sente o cheiro do vivo.\\n\\n Para uma defesa ser bem sucedida, são necessários/gastos 0.3 litros de lixívia.";
             foto = "bleach.png";
-            duracao = 1;
+            duracao = 3;
         } else if(idTipo == 8) {
             defensivoOuOfensivo = "Defensivo";
             titulo = "Veneno";
