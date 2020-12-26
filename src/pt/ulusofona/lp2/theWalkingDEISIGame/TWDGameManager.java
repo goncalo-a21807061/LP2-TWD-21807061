@@ -423,7 +423,7 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 9 && antidoto == true) {
                                                     antidoto = false;
                                                 }
-                                                humano.setEquipmentId(tabuleiro[yD][xD]);
+                                                humano.setEquipmentId(idEquipamento);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
