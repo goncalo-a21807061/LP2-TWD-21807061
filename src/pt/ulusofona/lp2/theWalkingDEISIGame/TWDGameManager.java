@@ -1103,8 +1103,7 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        // transformacaoHumanoZombie == 0 && turnos >= 6) ||
-        if (humanos.size() == 0 ) {
+        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || humanos.size() == 0 ) {
             return true;
         }
         return false;
@@ -1246,29 +1245,6 @@ public class TWDGameManager {
 
     //erro
     public boolean saveGame(File fich) {
-        try {
-            BufferedWriter writerFile = null;
-            writerFile = new BufferedWriter( new FileWriter(fich.getPath()));
-            writerFile.write(rows + " ");
-            writerFile.write(columns + "\n");
-            writerFile.write(currentTeam + "\n");
-            writerFile.write(criaturas.size());
-            for(Creature criatura : criaturas) {
-                writerFile.write(criatura.getId() + " : " + criatura.getIdTipo() + " : " + criatura.getNome() + " : " + criatura.getX() + " : " + criatura.getY() + "\n");
-            }
-            writerFile.write(equipamentos.size());
-            for(Equipamento equipamento: equipamentos) {
-                writerFile.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n");
-            }
-            writerFile.write(portas.size());
-            for(Porta porta : portas) {
-                writerFile.write(porta.getX() + " : " + porta.getY() + "\n");
-            }
-            writerFile.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return false;
     }
 
