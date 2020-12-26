@@ -213,7 +213,7 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                //humano.setEquipmentId(0);
+                                                humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
@@ -423,13 +423,13 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 9 && antidoto == true) {
                                                     antidoto = false;
                                                 }
+                                                humano.setEquipmentId(tabuleiro[yD][xD]);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 humano.adicionaEquipamentosEncontrados(1);
-                                                humano.setEquipmentId(idEquipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
