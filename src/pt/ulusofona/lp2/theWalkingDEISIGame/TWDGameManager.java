@@ -172,6 +172,7 @@ public class TWDGameManager {
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
+                                                tabuleiro[yO][xO] = 0;
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -1078,8 +1079,7 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-
-        if ((transformacaoHumanoZombie == 0 && turnos > 6) || humanos.size() == 0 ) {
+        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || humanos.size() == 0 ) {
             return true;
         }
         return false;
