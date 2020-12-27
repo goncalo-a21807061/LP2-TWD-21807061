@@ -210,10 +210,10 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                               // tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                humano.setEquipmentId(0);
+                                               // humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
@@ -319,6 +319,7 @@ public class TWDGameManager {
                                                 }
                                             }
                                         }
+                                        //Cão
                                     } else if(idTipo == 9) {
                                         if (((Math.abs(xD -xO) > 0 && Math.abs(xD -xO) <= 2) && (Math.abs(yD - yO) > 0 && Math.abs(yD - yO) <= 2))) {
                                             if (tabuleiro[yD][xD] == 0) {
@@ -370,8 +371,8 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(0);
+                                                //tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                 //humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
@@ -460,8 +461,8 @@ public class TWDGameManager {
                                                 }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(0);
+                                              //  tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                              //  humano.setEquipmentId(0);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 humano.setLocal("safe haven");  // toString
