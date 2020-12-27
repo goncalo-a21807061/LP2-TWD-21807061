@@ -1149,6 +1149,8 @@ public class TWDGameManager {
         return zombies;
     }
 
+    public List<Equipamento> getEquipamentos() { return equipamentos;}
+
     public int getCurrentTeamId() {
         return currentTeam;
     }
@@ -1297,9 +1299,6 @@ public class TWDGameManager {
         try {
             BufferedReader leitorFicheiro = null;
             leitorFicheiro = new BufferedReader(new FileReader(fich.getPath()));
-            for(Creature criatura: criaturas) {
-                criatura.setEquipmentId(0);
-            }
             startGame(fich);
             return true;
         } catch (IOException e) {
