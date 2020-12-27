@@ -194,6 +194,13 @@ public class TestTWDGameManager {
         twdGameManager.loadGame(new File("dados.txt"));
         twdGameManager.verificarSobrePosicao(3,3,3,5);
         twdGameManager.move(3,4,3,5);
+        twdGameManager.verificarSobrePosicao(3,3,4,2);
+        twdGameManager.verificarSobrePosicao(1,1,1,3);
+        twdGameManager.verificarSobrePosicao(5,3,4,4);
+        twdGameManager.verificarSobrePosicao(4,6,4,4);
+        twdGameManager.verificarSobrePosicao(3,5,3,5);
+        twdGameManager.verificarSobrePosicao(5,3,5,3);
+        twdGameManager.verificarSobrePosicao(3,1,3,5);
         assertEquals(4, twdGameManager.getElementId(2, 2));
         assertEquals(false, twdGameManager.gameIsOver());
         assertEquals(false, twdGameManager.move(1, 2, 1, 1));

@@ -206,7 +206,6 @@ public class TWDGameManager {
                                                 humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 turnos++;
-                                                System.out.println(tabuleiro[yO][xO]);
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
                                                 } else {
@@ -1026,6 +1025,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() == 4) {
+                                                            return false;
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             transformacaoHumanoZombie = 1;
@@ -1213,10 +1213,20 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        if (turnos == 2 || turnos == 3 || turnos == 6 || turnos == 7 || turnos == 10 || turnos == 11) {
-            return false;
+        int count = 0;
+        boolean isDiurno = true;
+        for(int i = 0; i < turnos; i++) {
+            count++;
+            if (count > 1) {
+                count = 0;
+                if (isDiurno){
+                    isDiurno = false;
+                } else {
+                    isDiurno = true;
+                }
+            }
         }
-        return true;
+        return isDiurno;
     }
 
     public int getEquipmentId(int creatureId) {
