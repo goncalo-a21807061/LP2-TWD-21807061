@@ -389,9 +389,10 @@ public class TWDGameManager {
                                         }
 
                                     } else if (idTipo != 8 && idTipo != 9){
-                                        if(idTipo == 0 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
+                                        if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                             return false;
                                         }
+
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 //alcance diagonal Adulto
@@ -399,9 +400,6 @@ public class TWDGameManager {
                                                     if (xD - xO > 2 && yO - yD > 2) {
                                                         return false;
                                                     }
-
-                                                    // falta ver sobreposicao
-
 
                                                     // alcance diagonal Militar
                                                 } else if(humano.getIdTipo() == 7) {
@@ -641,6 +639,9 @@ public class TWDGameManager {
                                     if(idTipo == 4 && (turnos == 3 || turnos == 7 || turnos == 11)) {
                                         if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
+                                                if (xD - xO > 2 && yO - yD > 2) {
+                                                    return false;
+                                                }
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
@@ -1409,7 +1410,7 @@ public class TWDGameManager {
                 }
             }
         }
-        if (xD - xO > 1 ) {
+        if (xD - xO > 1 && Math.abs(yD-yO) == 0 ) {
             for(Humano humano1: humanos) {
                 if(tabuleiro[yO][xO+1] == humano1.getId()) {            // Garantir que não passa por cima de um humano
                     return false;
@@ -1431,7 +1432,7 @@ public class TWDGameManager {
                 }
             }
         }
-        if(xO - xD > 1) {
+        if(xO - xD > 1 && Math.abs(yD-yO) == 0) {
             for(Humano humano1: humanos) {
                 if(tabuleiro[yO][xO-1] == humano1.getId()) {          // Garantir que não passa por cima de um humano
                     return false;
@@ -1453,7 +1454,7 @@ public class TWDGameManager {
                 }
             }
         }
-        if(yD - yO > 1) {
+        if(yD - yO > 1 && Math.abs(xD-xO) == 0) {
             for(Humano humano1: humanos) {
                 if(tabuleiro[yO+1][xO] == humano1.getId()) {        // Garantir que não passa por cima de um humano
                     return false;
@@ -1475,7 +1476,7 @@ public class TWDGameManager {
                 }
             }
         }
-        if(yO - yD > 1) {
+        if(yO - yD > 1 && Math.abs(xD-xO) == 0) {
             for(Humano humano1: humanos) {
                 if(tabuleiro[yO-1][xO] == humano1.getId()) {     // Garantir que não passa por cima de um humano
                     return false;

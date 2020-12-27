@@ -5,8 +5,8 @@
 2 : 7 : Jackie Chan : 3 : 4
 3 : 5 : Alice : 5 : 5
 4 : 6 : Ash : 2 : 2
-5 : 8 : Sam : 1 : 1
-6 : 0 : Paciente Zero : 4 : 4
+5 : 9 : Sam : 1 : 1
+6 : 2 : Paciente Zero : 4 : 4
 7 : 3 : Paciente Zeros : 5 : 4
 8 : 4 : Paciente Zerosa : 4 : 2
 9 : 0 : Paciente Um : 2 : 1
