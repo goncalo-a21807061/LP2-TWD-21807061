@@ -174,10 +174,12 @@ public class TestTWDGameManager {
         criaturas.add(new Humano(5, 9, "Sam", 1, 1));
         criaturas.add(new Humano(6, 5, "Paciente Zero", 4, 4));
         criaturas.add(new Zombie(7, 1, "Paciente Zeros", 5, 4));
-        criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 2));
+        criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 3));
+        criaturas.add(new Zombie(8,4,"zombie",2,4));
         equipamentos.add(new Equipamento(-1, 9, 1, 2));
         equipamentos.add(new Equipamento(-2, 2, 3, 2));
         portas.add(new Porta(0,0));
+        portas.add(new Porta(2,4));
         twdGameManager.isDay();
         twdGameManager.move(2, 2, 1, 2);
         twdGameManager.getElementId(1,2);
@@ -201,6 +203,10 @@ public class TestTWDGameManager {
         twdGameManager.verificarSobrePosicao(3,5,3,5);
         twdGameManager.verificarSobrePosicao(5,3,5,3);
         twdGameManager.verificarSobrePosicao(3,1,3,5);
+        twdGameManager.verificarSobrePosicao(3,1,3,5);
+        twdGameManager.verificarSobrePosicao(2,0,2,2);
+        twdGameManager.verificarSobrePosicao(2,2,5,3);
+        twdGameManager.verificarSobrePosicao(2,4,4,2);
         assertEquals(4, twdGameManager.getElementId(2, 2));
         assertEquals(false, twdGameManager.gameIsOver());
         assertEquals(false, twdGameManager.move(1, 2, 1, 1));
@@ -225,11 +231,4 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File(""));
     }
 
-
 }
-
-
-
-
-
-
