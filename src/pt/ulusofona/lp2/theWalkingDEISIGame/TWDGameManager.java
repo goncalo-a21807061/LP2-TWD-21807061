@@ -199,13 +199,14 @@ public class TWDGameManager {
                                                     antidoto = false;
                                                 }
                                                 humano.adicionaEquipamentosEncontrados(1);
-                                                humano.setEquipmentId(idEquipamento);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 turnos++;
+                                                System.out.println(tabuleiro[yO][xO]);
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
                                                 } else {

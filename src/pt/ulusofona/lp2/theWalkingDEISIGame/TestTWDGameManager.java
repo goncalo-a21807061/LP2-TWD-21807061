@@ -176,7 +176,7 @@ public class TestTWDGameManager {
         criaturas.add(new Zombie(7, 1, "Paciente Zeros", 5, 4));
         criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 2));
         equipamentos.add(new Equipamento(-1, 9, 1, 2));
-        equipamentos.add(new Equipamento(-2, 2, 2, 2));
+        equipamentos.add(new Equipamento(-2, 2, 3, 2));
         portas.add(new Porta(0,0));
         twdGameManager.isDay();
         twdGameManager.move(2, 2, 1, 2);
@@ -191,20 +191,18 @@ public class TestTWDGameManager {
         twdGameManager.getEquipmentTypeId(-30);
         twdGameManager.popCultureExtravaganza();
         twdGameManager.getEquipmentInfo(-1);
+        twdGameManager.loadGame(new File("dados.txt"));
+        twdGameManager.verificarSobrePosicao(3,3,3,5);
+        twdGameManager.move(3,4,3,5);
         assertEquals(4, twdGameManager.getElementId(2, 2));
         assertEquals(false, twdGameManager.gameIsOver());
-        assertEquals(false, twdGameManager.move(3, 3, 2, 3));
         assertEquals(false, twdGameManager.move(1, 2, 1, 1));
         assertEquals(false, twdGameManager.move(1, 1, 3, 1));
         assertEquals(false, twdGameManager.move(5, 4, 4, 4));
         assertEquals(false, twdGameManager.move(3, 1, 4, 2));
-
         assertEquals(false, twdGameManager.move(2, 3, 2, 0));
         assertEquals(false, twdGameManager.move(2, 3, 3, 4));
-
         assertEquals(false, twdGameManager.move(5, 5, 6, 6));
-
-        assertEquals(false, twdGameManager.move(5, 4, 5, 3));
         assertEquals(false, twdGameManager.move(1, 2, 2, 3));
         assertEquals(false, twdGameManager.move(4, 2, 4, 1));
         assertEquals(false, twdGameManager.move(2, 3, 2, 2));
