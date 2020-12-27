@@ -194,13 +194,13 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 9 && antidoto == true) {
                                                     antidoto = false;
                                                 }
+                                                humano.adicionaEquipamentosEncontrados(1);
+                                                humano.setEquipmentId(idEquipamento);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
-                                                humano.adicionaEquipamentosEncontrados(1);
-                                                humano.setEquipmentId(idEquipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -427,9 +427,10 @@ public class TWDGameManager {
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setEquipmentId(idEquipamento);
+                                                humano.setIdTipoEquipamento(idTipoEquipamento);
+                                                System.out.println(humano);
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
@@ -643,15 +644,15 @@ public class TWDGameManager {
                                                     return false;
                                                 }
                                                 if (idTipoEquipamento == 5 && zombie.getIdTipo() == 4) {
-
+                                                    return false;
                                                 } else if(equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
                                                     return false;
                                                 } else {
+                                                    zombie.adicionaEquipamentosEncontrados(1);
                                                     zombie.setX(xD);
                                                     zombie.setY(yD);
                                                     tabuleiro[yD][xD] = id;
                                                     tabuleiro[yO][xO] = 0;
-                                                    zombie.adicionaEquipamentosEncontrados(1);
                                                     // equipamentos.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 10) {
@@ -881,14 +882,14 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                if(equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
+                                                if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 }
+                                                zombie.adicionaEquipamentosEncontrados(1);
                                                 zombie.setX(xD);
                                                 zombie.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
-                                                zombie.adicionaEquipamentosEncontrados(1);
                                                 //equipamentos.remove(equipamento);
                                                 turnos++;
                                                 if (currentTeam == 10) {
