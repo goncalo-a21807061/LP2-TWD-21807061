@@ -234,5 +234,4 @@ public class TestTWDGameManager {
         twdGameManager.startGame(new File(""));
     }
 
-
 }

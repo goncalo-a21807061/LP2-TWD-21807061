@@ -168,7 +168,7 @@ public class TWDGameManager {
                                 id = humano.getId();
                                 if (tabuleiro[yO][xO] == id) {
                                     // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
-                                    if(idTipo == 8 && (turnos == 0 || turnos == 4 || turnos == 8)) {
+                                    if(idTipo == 8 && isDay() == true) {
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 if(humano.getIdEquipamento() != 0) {
@@ -641,7 +641,7 @@ public class TWDGameManager {
                                 id = zombie.getId();
                                 if (tabuleiro[yO][xO] == id) {
                                     // validar se é zombie vampiro, se for só pode jogar nos turnos noturnos
-                                    if(idTipo == 4 && (turnos == 3 || turnos == 7 || turnos == 11)) {
+                                    if(idTipo == 4 && isDay() == false) {
                                         if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 if (xD - xO > 2 && yO - yD > 2) {
