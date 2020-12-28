@@ -207,6 +207,9 @@ public class TestTWDGameManager {
         twdGameManager.verificarSobrePosicao(2,0,2,2);
         twdGameManager.verificarSobrePosicao(2,2,5,3);
         twdGameManager.verificarSobrePosicao(2,4,4,2);
+        twdGameManager.saveGame(new File("Novo Documento de Texto"));
+        twdGameManager.saveGame(new File(""));
+        twdGameManager.getElementId(1,2);
         assertEquals(4, twdGameManager.getElementId(2, 2));
         assertEquals(false, twdGameManager.gameIsOver());
         assertEquals(false, twdGameManager.move(1, 2, 1, 1));
@@ -230,5 +233,6 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File(""));
     }
+
 
 }
