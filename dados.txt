@@ -1,11 +1,12 @@
 7 7
 10
-9
+10
 1 : 1 : Freddie M. : 4 : 3
 2 : 7 : Jackie Chan : 3 : 5
 3 : 5 : Alice : 5 : 5
 4 : 6 : Ash : 2 : 2
 5 : 8 : Sam : 1 : 1
+10 : 9 : Cão : 0 : 3  
 6 : 2 : Paciente Zero : 4 : 4
 7 : 3 : Paciente Zeros : 5 : 4
 8 : 4 : Paciente Zerosa : 4 : 2
