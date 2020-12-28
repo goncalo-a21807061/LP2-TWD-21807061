@@ -1434,7 +1434,7 @@ public class TWDGameManager {
         String[] strings = new String[14];
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
-        strings[2] = "The Walking Dead";
+        strings[2] = "I Am Legend";
         strings[3] = "King Of The Zombies";
         strings[4] = "Astérix e Obélix";
         strings[5] = "Invasão Zumbi";
