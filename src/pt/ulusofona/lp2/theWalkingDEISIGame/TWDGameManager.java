@@ -182,8 +182,6 @@ public class TWDGameManager {
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
-                                                } else {
-                                                    currentTeam = 10;
                                                 }
                                                 return true;
                                             }
@@ -208,8 +206,6 @@ public class TWDGameManager {
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
-                                                } else {
-                                                    currentTeam = 10;
                                                 }
                                                 return true;
                                             }
@@ -224,8 +220,6 @@ public class TWDGameManager {
                                                 turnos++;
                                                 if (currentTeam == 10) {
                                                     currentTeam = 20;
-                                                } else {
-                                                    currentTeam = 10;
                                                 }
                                                 return true;
                                             }
@@ -247,8 +241,6 @@ public class TWDGameManager {
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 2) {
@@ -276,8 +268,6 @@ public class TWDGameManager {
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 3) {
@@ -296,8 +286,6 @@ public class TWDGameManager {
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
                                                     }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 7) {
@@ -316,8 +304,6 @@ public class TWDGameManager {
                                                     turnos++;
                                                     if (currentTeam == 10) {
                                                         currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
                                                     }
                                                     return true;
                                                 }
@@ -1643,3 +1629,4 @@ public class TWDGameManager {
         return true;
     }
 }
+
