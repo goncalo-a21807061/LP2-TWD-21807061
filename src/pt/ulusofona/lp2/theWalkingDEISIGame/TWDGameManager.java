@@ -765,7 +765,7 @@ public class TWDGameManager {
                                                 }
                                                 if (idTipoEquipamento == 5) {
                                                     return false;
-                                                } else if(equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
+                                                } else if(equipamento.getIdTipo() == 8) {
                                                     return false;
                                                 } else {
                                                     zombie.adicionaEquipamentosEncontrados(1);
