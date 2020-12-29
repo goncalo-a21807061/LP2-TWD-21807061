@@ -1368,6 +1368,9 @@ public class TWDGameManager {
     }
 
     public boolean verificarSobrePosicao(int xO, int xD, int yO, int yD) {
+        if((Math.abs(xO-xD) >= 2 && Math.abs(yO-yD) == 1) || (Math.abs(xD-xO) == 1 && Math.abs(yD-yO) >= 2)) {
+            return false;
+        }
         if(xD-xO > 1 && yO - yD > 1) {
             for (Humano humano1 : humanos) {
                 if (tabuleiro[yO - 1][xO + 1] == humano1.getId()) {     // Garantir que não passa por cima de um humano
