@@ -775,7 +775,7 @@ public class TWDGameManager {
                                                     zombie.setY(yD);
                                                     tabuleiro[yD][xD] = id;
                                                     tabuleiro[yO][xO] = 0;
-                                                    // equipamentos.remove(equipamento);
+                                                    equipamentos.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 20) {
                                                         currentTeam = 10;
@@ -806,7 +806,7 @@ public class TWDGameManager {
                                                     }
                                                     if (humano.getIdTipoEquipamento() == 0) {
                                                         humano.setEquipmentId(0);
-                                                        //  equipamentos.remove(equipamento);
+                                                        equipamentos.remove(equipamento);
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
@@ -986,7 +986,7 @@ public class TWDGameManager {
                                                 zombie.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
-                                                //equipamentos.remove(equipamento);
+                                                equipamentos.remove(equipamento);
                                                 turnos++;
                                                 if (currentTeam == 20) {
                                                     currentTeam = 10;
@@ -1017,7 +1017,7 @@ public class TWDGameManager {
                                                     }
                                                     if (humano.getIdTipoEquipamento() == 0) {
                                                         humano.setEquipmentId(0);
-                                                        // equipamentos.remove(equipamento);
+                                                        equipamentos.remove(equipamento);
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
@@ -1075,7 +1075,7 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            //  equipamentos.remove(equipamento);
+                                                            equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
                                                         if (currentTeam == 20) {
@@ -1095,7 +1095,7 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            //  equipamentos.remove(equipamento);
+                                                            equipamentos.remove(equipamento);
                                                         }
                                                         turnos++;
                                                         if (currentTeam == 20) {
@@ -1349,7 +1349,7 @@ public class TWDGameManager {
                     string += creature.getId() + " : " + creature.getIdTipo() + " : " + creature.getNome() + " : " + creature.getX() + " : " + creature.getY() + "\n";
                 }
             }
-            string += nrEquipamentos + "\n";
+            string += equipamentos.size() + "\n";
             for(Equipamento equipamento: equipamentos) {
                 string += equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n";
             }
