@@ -944,9 +944,6 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 10) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        envenenados.add(zombie);
-                                                        zombie.setLocal("morta");
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
@@ -1152,9 +1149,6 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 10) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        envenenados.add(zombie);
-                                                        zombie.setLocal("morta");
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
