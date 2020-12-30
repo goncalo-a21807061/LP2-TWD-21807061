@@ -932,14 +932,13 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        return false;
-                                                        /*
+                                                         //return false;
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
                                                         }
                                                         return true;
-                                                         */
+
                                                     } else if (humano.getIdTipoEquipamento() == 9) {
                                                         turnos++;
                                                         if (currentTeam == 20) {
@@ -1136,15 +1135,12 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        return false;
-                                                        /*
+                                                         //return false;
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
                                                         }
                                                         return true;
-
-                                                         */
                                                     } else if (humano.getIdTipoEquipamento() == 9) {
                                                         turnos++;
                                                         if (currentTeam == 20) {
