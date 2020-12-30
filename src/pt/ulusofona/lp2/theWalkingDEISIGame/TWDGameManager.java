@@ -607,6 +607,7 @@ public class TWDGameManager {
                                                             }
                                                         }
                                                         if (idZombie != 0) { //diferente de criança
+                                                            return false;
                                                         } else {
                                                             humano.setX(xD);
                                                             humano.setY(yD);
