@@ -568,9 +568,12 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
+                                                /*
                                                 if(verificarSobrePosicao(xO,xD,yO,yD)) {
                                                     return false;
                                                 }
+
+                                                 */
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -1336,25 +1339,23 @@ public class TWDGameManager {
         try {
             int count = 0;
             for (Creature creature: criaturas) {
-                if(creature.getEquipa() == 10) {
-                    if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
-                        count++;
-                    }
+                if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
+                    count++;
                 }
             }
             String string = rows + " " + columns + "\n" + getCurrentTeamId() + "\n" + count + "\n";
             for (Creature creature: criaturas) {
                 if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
-                    string.concat(creature.getId() + " : " + creature.getIdTipo() + " : " + creature.getNome() + " : " + creature.getX() + " : " + creature.getY() + "\n");
+                    string += creature.getId() + " : " + creature.getIdTipo() + " : " + creature.getNome() + " : " + creature.getX() + " : " + creature.getY() + "\n";
                 }
             }
-            string.concat(nrEquipamentos + "\n");
+            string += nrEquipamentos + "\n";
             for(Equipamento equipamento: equipamentos) {
-                string.concat(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n");
+                string += equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n";
             }
-            string.concat(nrPortas + "\n");
+            string += nrPortas + "\n";
             for(Porta porta: portas) {
-                string.concat(porta.getX() + " : " + porta.getY() + "\n");
+                string += porta.getX() + " : " + porta.getY() + "\n";
             }
             FileWriter fileWriter = new FileWriter(fich.getPath());
             PrintWriter printWriter = new PrintWriter(fileWriter);
