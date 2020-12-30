@@ -1172,7 +1172,15 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || humanos.size() == 0 ) {
+        int count = 0;
+        for (Creature creature: criaturas) {
+            if(creature.getEquipa() == 10) {
+                if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
+                    count++;
+                }
+            }
+        }
+        if ((transformacaoHumanoZombie == 0 && turnos >= 6) || count == 0 ) {
             return true;
         }
         return false;
