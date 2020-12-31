@@ -1231,38 +1231,38 @@ public class TWDGameManager {
         safeHeaven.sort(Comparator.comparing(Creature::getId));
         envenenados.sort(Comparator.comparing(Creature::getId));
         List<String> survivors = new ArrayList<>();
-        survivors.add("Nr. de turnos terminados:\n");
-        survivors.add(String.valueOf(turnos) + "\n\n");
-        survivors.add("Ainda pelo bairro:\n\n");
-        survivors.add("OS VIVOS:\n");
+        survivors.add("Nr. de turnos terminados:, " + String.valueOf(turnos) + ", , Ainda pelo bairro:, OS VIVOS, ");
+
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 10) {
-                survivors.add(criatura.getId() + " " + criatura.getNome() + "\n\n");
+                if(criatura.getLocal() != "safe haven" && criatura.getLocal() != "morta")
+                    survivors.add(criatura.getId() + " " + criatura.getNome() + ", ");
             }
         }
-        survivors.add("OS OUTROS:\n");
+        survivors.add("OS OUTROS, ");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como <Nome da criatura>)\n\n");
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ", ");
             }
         }
-        survivors.add("Num safe haven:\n\n");
-        survivors.add("OS VIVOS:\n");
+        survivors.add("Num safe haven:, , OS VIVOS, ");
         for (Creature criatura : safeHeaven) {
             if (criatura.getEquipa() == 10) {
-                survivors.add(criatura.getId() + " " + criatura.getNome() + "\n\n");
+                if(criatura.getLocal() == "safe haven")
+                survivors.add(criatura.getId() + " " + criatura.getNome() + ", ");
             }
         }
-        survivors.add("Envenenados / Destruidos\n\n");
-        for (Creature criatura : envenenados) {
+        survivors.add("Envenenados / Destruidos, OS VIVOS, ");
+        for (Creature criatura : humanos) {
             if (criatura.getEquipa() == 10) {
-                survivors.add(criatura.getId() + " " + criatura.getNome() + "\n\n");
+                if(criatura.getLocal() == "morta")
+                survivors.add(criatura.getId() + " " + criatura.getNome() + ", ");
             }
         }
-        survivors.add("OS OUTROS:\n");
+        survivors.add("OS OUTROS, ");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como <Nome da criatura>)\n\n");
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ", ");
             }
         }
         return survivors;
