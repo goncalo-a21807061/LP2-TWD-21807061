@@ -9,6 +9,7 @@ public class TWDGameManager {
     private static List<Humano> humanos = new ArrayList<>();
     private static List<Zombie> zombies = new ArrayList<>();
     private static List<Equipamento> equipamentos = new ArrayList<>();
+    private static List<Equipamento> equipamentosRemove = new ArrayList<>();
     private static List<Porta> portas = new ArrayList<>();
     private static List<Creature> safeHeaven = new ArrayList<>();
     private static List<Creature> envenenados = new ArrayList<>();
@@ -52,6 +53,7 @@ public class TWDGameManager {
         humanos = new ArrayList<>();
         zombies = new ArrayList<>();
         equipamentos = new ArrayList<>();
+        equipamentosRemove = new ArrayList<>();
         envenenados = new ArrayList<>();
         portas = new ArrayList<>();
         safeHeaven = new ArrayList<>();
@@ -102,6 +104,7 @@ public class TWDGameManager {
                         y = Integer.parseInt(dados[3].trim());
                         Equipamento equipamento = new Equipamento(id, idTipo, x, y);
                         equipamentos.add(equipamento);
+                        equipamentosRemove.add(equipamento);
                         tabuleiro[y][x] = id;
                     }
                 } else if (count > count2 +1 && count <= count2 + 2) {
@@ -776,7 +779,7 @@ public class TWDGameManager {
                                                     zombie.setY(yD);
                                                     tabuleiro[yD][xD] = id;
                                                     tabuleiro[yO][xO] = 0;
-                                                    equipamentos.remove(equipamento);
+                                                    equipamentosRemove.remove(equipamento);
                                                     turnos++;
                                                     if (currentTeam == 20) {
                                                         currentTeam = 10;
@@ -807,7 +810,7 @@ public class TWDGameManager {
                                                     }
                                                     if (humano.getIdTipoEquipamento() == 0) {
                                                         humano.setEquipmentId(0);
-                                                        equipamentos.remove(equipamento);
+                                                        equipamentosRemove.remove(equipamento);
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
@@ -986,7 +989,7 @@ public class TWDGameManager {
                                                 zombie.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
-                                                equipamentos.remove(equipamento);
+                                                equipamentosRemove.remove(equipamento);
                                                 turnos++;
                                                 if (currentTeam == 20) {
                                                     currentTeam = 10;
@@ -1017,7 +1020,7 @@ public class TWDGameManager {
                                                     }
                                                     if (humano.getIdTipoEquipamento() == 0) {
                                                         humano.setEquipmentId(0);
-                                                        equipamentos.remove(equipamento);
+                                                        equipamentosRemove.remove(equipamento);
                                                         turnos++;
                                                         if (currentTeam == 20) {
                                                             currentTeam = 10;
@@ -1075,7 +1078,7 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            equipamentos.remove(equipamento);
+                                                            equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
                                                         if (currentTeam == 20) {
@@ -1095,7 +1098,7 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            equipamentos.remove(equipamento);
+                                                            equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
                                                         if (currentTeam == 20) {
@@ -1346,8 +1349,8 @@ public class TWDGameManager {
                     string += creature.getId() + " : " + creature.getIdTipo() + " : " + creature.getNome() + " : " + creature.getX() + " : " + creature.getY() + "\n";
                 }
             }
-            string += equipamentos.size() + "\n";
-            for(Equipamento equipamento: equipamentos) {
+            string += equipamentosRemove.size() + "\n";
+            for(Equipamento equipamento: equipamentosRemove) {
                 string += equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n";
             }
             string += nrPortas + "\n";
