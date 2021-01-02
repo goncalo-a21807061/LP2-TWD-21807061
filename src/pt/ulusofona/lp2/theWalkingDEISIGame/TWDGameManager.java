@@ -1463,7 +1463,7 @@ public class TWDGameManager {
         strings[7] = "1972";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
-        strings[10] = "Sean Connery";
+        strings[10] = "James Bond";
         strings[11] = "The Walking Dead";
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
