@@ -947,6 +947,8 @@ public class TWDGameManager {
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
                                                         }
+                                                        if(zombie.getIdTipo() == 4){
+                                                        }
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 10) {
@@ -1172,7 +1174,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() == 4) {
-                                                            return false;
+                                                            //return false;
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             turnosGameIsOver = -1;
