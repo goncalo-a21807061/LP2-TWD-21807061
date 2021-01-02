@@ -878,8 +878,8 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 6) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        tabuleiro[yD][xD] = idHumano;
+                                                        tabuleiro[yO][xO] = idHumano;
+                                                        tabuleiro[yD][xD] = 0;
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                         turnos++;
@@ -1031,6 +1031,7 @@ public class TWDGameManager {
                                                                 }
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
+                                                                    tabuleiro[yD][xD] = idHumano;
                                                                     zombie.setLocal("morta");
                                                                     envenenados.add(zombie);
                                                                     equipamento1.setDuracao(1);
@@ -1095,7 +1096,8 @@ public class TWDGameManager {
                                                         }
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 6) {
-                                                        tabuleiro[yO][xO] = 0;
+                                                        tabuleiro[yO][xO] = idHumano;
+                                                        tabuleiro[yD][xD] = 0;
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                         turnos++;
