@@ -144,7 +144,6 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         int id, idEquipamento,idHumano, idZombie = 30;
         if (!gameIsOver()) {
-            System.out.println(getGameResults());
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
@@ -211,7 +210,7 @@ public class TWDGameManager {
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = id;
+                                                tabuleiro[yD][xD] = idEquipamento;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
@@ -583,7 +582,7 @@ public class TWDGameManager {
                                                 }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = id;
+                                                tabuleiro[yD][xD] = idEquipamento;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setEquipmentId(idEquipamento);
