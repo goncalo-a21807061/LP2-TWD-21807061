@@ -1288,15 +1288,11 @@ public class TWDGameManager {
         envenenados.sort(Comparator.comparing(Creature::getId));
         List<String> survivors = new ArrayList<>();
         survivors.add("Nr. de turnos terminados:");
-        survivors.add("");
         survivors.add(String.valueOf(turnos));
         survivors.add("");
-        survivors.add("");
-        survivors.add("Ainda pelo bairro:");
-        survivors.add("");
+        survivors.add("Ainda pelo bairo:");
         survivors.add("");
         survivors.add("OS VIVOS:");
-        survivors.add("");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() != "safe haven" && criatura.getLocal() != "morta") {
@@ -1304,18 +1300,17 @@ public class TWDGameManager {
                 }
             }
         }
-        survivors.add("OS OUTROS:");
         survivors.add("");
+        survivors.add("OS OUTROS:");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 20) {
                 survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
             }
         }
+        survivors.add("");
         survivors.add("Num safe haven:");
         survivors.add("");
-        survivors.add("");
         survivors.add("OS VIVOS:");
-        survivors.add("");
         for (Creature criatura : safeHeaven) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "safe haven") {
@@ -1323,11 +1318,10 @@ public class TWDGameManager {
                 }
             }
         }
+        survivors.add("");
         survivors.add("Envenenados / Destruidos");
         survivors.add("");
-        survivors.add("");
         survivors.add("OS VIVOS:");
-        survivors.add("");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "morta") {
@@ -1335,8 +1329,8 @@ public class TWDGameManager {
                 }
             }
         }
-        survivors.add("OS OUTROS:");
         survivors.add("");
+        survivors.add("OS OUTROS:");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 20) {
                 survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
@@ -1462,11 +1456,11 @@ public class TWDGameManager {
         strings[0] = "Resident Evil";
         strings[1] = "Evil Dead";
         strings[2] = "I Am Legend";
-        strings[3] = "King Of The Zombies";
-        strings[4] = "Astérix e Obélix";
-        strings[5] = "Invasão Zumbi";
+        strings[3] = "I Am Legend";
+        strings[4] = "Dragon Ball";
+        strings[5] = "World War Z";
         strings[6] = "Mandalorians";
-        strings[7] = "Game of Death";
+        strings[7] = "1972";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
         strings[10] = "Sean Connery";
