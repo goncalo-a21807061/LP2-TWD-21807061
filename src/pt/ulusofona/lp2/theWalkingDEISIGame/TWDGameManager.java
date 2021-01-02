@@ -768,10 +768,10 @@ public class TWDGameManager {
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
-                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
+                                                        humanos.remove(humano);
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 20) {
@@ -846,11 +846,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
-                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.setEquipmentId(0);
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                            humanos.remove(humano);
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
@@ -863,11 +863,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
-                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                            humanos.remove(humano);
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
@@ -991,10 +991,10 @@ public class TWDGameManager {
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
-                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
+                                                        humanos.remove(humano);
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 20) {
@@ -1061,11 +1061,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
-                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                            humanos.remove(humano);
                                                             equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -1082,11 +1082,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
-                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                            humanos.remove(humano);
                                                             equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
