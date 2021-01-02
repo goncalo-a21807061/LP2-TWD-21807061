@@ -144,6 +144,7 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         int id, idEquipamento,idHumano, idZombie = 30;
         if (!gameIsOver()) {
+            System.out.println(getGameResults());
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
@@ -1286,45 +1287,59 @@ public class TWDGameManager {
         safeHeaven.sort(Comparator.comparing(Creature::getId));
         envenenados.sort(Comparator.comparing(Creature::getId));
         List<String> survivors = new ArrayList<>();
-        survivors.add("Nr. de turnos terminados:\n");
-        survivors.add(String.valueOf(turnos) + "\n\n");
-        survivors.add("Ainda pelo bairro:\n\n");
-        survivors.add("OS VIVOS:\n");
+        survivors.add("Nr. de turnos terminados:");
+        survivors.add("");
+        survivors.add(String.valueOf(turnos));
+        survivors.add("");
+        survivors.add("");
+        survivors.add("Ainda pelo bairro:");
+        survivors.add("");
+        survivors.add("");
+        survivors.add("OS VIVOS:");
+        survivors.add("");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() != "safe haven" && criatura.getLocal() != "morta") {
-                    survivors.add(criatura.getId() + " " + criatura.getNome() + "\n");
+                    survivors.add(criatura.getId() + " " + criatura.getNome());
                 }
             }
         }
-        survivors.add("OS OUTROS:\n");
+        survivors.add("OS OUTROS:");
+        survivors.add("");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ")\n");
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
             }
         }
-        survivors.add("Num safe haven:\n\n");
-        survivors.add("OS VIVOS:\n");
+        survivors.add("Num safe haven:");
+        survivors.add("");
+        survivors.add("");
+        survivors.add("OS VIVOS:");
+        survivors.add("");
         for (Creature criatura : safeHeaven) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "safe haven") {
-                    survivors.add(criatura.getId() + " " + criatura.getNome() + "\n\n");
+                    survivors.add(criatura.getId() + " " + criatura.getNome());
                 }
             }
         }
-        survivors.add("Envenenados / Destruidos\n\n");
-        survivors.add("OS VIVOS:\n");
+        survivors.add("Envenenados / Destruidos");
+        survivors.add("");
+        survivors.add("");
+        survivors.add("OS VIVOS:");
+        survivors.add("");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "morta") {
-                    survivors.add(criatura.getId() + " " + criatura.getNome() + "\n");
+                    survivors.add(criatura.getId() + " " + criatura.getNome());
                 }
             }
         }
-        survivors.add("OS OUTROS:\n");
+        survivors.add("OS OUTROS:");
+        survivors.add("");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ")\n");
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
             }
         }
         return survivors;
