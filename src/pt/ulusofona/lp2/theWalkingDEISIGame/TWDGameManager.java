@@ -183,12 +183,11 @@ public class TWDGameManager {
                                                 if(humano.getIdEquipamento() != 0) {
                                                     tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                     humano.setEquipmentId(0);
-                                                } else {
-                                                    tabuleiro[yO][xO] = 0;
                                                 }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
+                                                tabuleiro[yO][xO] = 0;
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 if (currentTeam == 10) {
@@ -209,11 +208,11 @@ public class TWDGameManager {
                                                     antidoto = false;
                                                 }
                                                 humano.adicionaEquipamentosEncontrados(1);
+                                                humano.setX(xD);
+                                                humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(idEquipamento);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 turnos++;
                                                 turnosGameIsOver++;
@@ -364,8 +363,8 @@ public class TWDGameManager {
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
+                                                humano.setEquipmentId(idEquipamento);
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 if (currentTeam == 10) {
@@ -482,10 +481,38 @@ public class TWDGameManager {
                                                     return false;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     return false;
-
+                                                   /*
+                                                    antidoto = true;
+                                                    // mal implementado -> humano nao morre
+                                                    if (turnosVeneno > 2) {
+                                                        //  criaturas.remove(humano);
+                                                    }
+                                                    turnos++;
+                                                    turnosVeneno++;
+                                                    if (currentTeam == 10) {
+                                                        currentTeam = 20;
+                                                    } else {
+                                                        currentTeam = 10;
+                                                    }
+                                                    return true;
+                                                    */
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
                                                     return false;
-
+                                                    /*
+                                                    if (antidoto) {
+                                                        tabuleiro[yD][xD] = 0;
+                                                        humano.setEquipmentId(0);
+                                                        tabuleiro[yD][xD] = id;
+                                                        // equipamentos.remove(equipamento);
+                                                    }
+                                                    turnos++;
+                                                    if (currentTeam == 10) {
+                                                        currentTeam = 20;
+                                                    } else {
+                                                        currentTeam = 10;
+                                                    }
+                                                    return true;
+                                                     */
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     humano.setX(xD);
                                                     humano.setY(yD);
@@ -568,6 +595,11 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
+                                                /*
+                                                if(verificarSobrePosicao(xO,xD,yO,yD)) {
+                                                    return false;
+                                                }
+                                                 */
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -675,10 +707,38 @@ public class TWDGameManager {
                                                     return false;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     return false;
-
+                                                   /*
+                                                    antidoto = true;
+                                                    // mal implementado -> humano nao morre
+                                                    if (turnosVeneno > 2) {
+                                                        //  criaturas.remove(humano);
+                                                    }
+                                                    turnos++;
+                                                    turnosVeneno++;
+                                                    if (currentTeam == 10) {
+                                                        currentTeam = 20;
+                                                    } else {
+                                                        currentTeam = 10;
+                                                    }
+                                                    return true;
+                                                    */
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
                                                     return false;
-
+                                                    /*
+                                                    if (antidoto) {
+                                                        tabuleiro[yD][xD] = 0;
+                                                        humano.setEquipmentId(0);
+                                                        tabuleiro[yD][xD] = id;
+                                                        // equipamentos.remove(equipamento);
+                                                    }
+                                                    turnos++;
+                                                    if (currentTeam == 10) {
+                                                        currentTeam = 20;
+                                                    } else {
+                                                        currentTeam = 10;
+                                                    }
+                                                    return true;
+                                                     */
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     humano.setX(xD);
                                                     humano.setY(yD);
@@ -768,10 +828,10 @@ public class TWDGameManager {
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
-                                                        humanos.remove(humano);
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 20) {
@@ -846,11 +906,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.setEquipmentId(0);
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            humanos.remove(humano);
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
@@ -863,11 +923,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            humanos.remove(humano);
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
@@ -991,10 +1051,10 @@ public class TWDGameManager {
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
+                                                        humanos.remove(humano);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
-                                                        humanos.remove(humano);
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 20) {
@@ -1061,11 +1121,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            humanos.remove(humano);
                                                             equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -1082,11 +1142,11 @@ public class TWDGameManager {
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
+                                                            humanos.remove(humano);
                                                             humano.setEquipmentId(0);
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
-                                                            humanos.remove(humano);
                                                             equipamentosRemove.remove(equipamento);
                                                         }
                                                         turnos++;
@@ -1402,7 +1462,7 @@ public class TWDGameManager {
         strings[7] = "1972";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
-        strings[10] = "Daniel Craig";
+        strings[10] = "James Bond";
         strings[11] = "The Walking Dead";
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
