@@ -447,6 +447,7 @@ public class TWDGameManager {
                                                             } else if (bala == 0) {
                                                                 //  equipamentos.remove(equipamento1);
                                                                 humano.setEquipmentId(0);
+                                                                return false;
                                                             } else if (zombie.getIdTipo() == 4) {
                                                                 return false;
                                                             }
@@ -643,6 +644,7 @@ public class TWDGameManager {
                                                             } else if (bala == 0) {
                                                                 //  equipamentos.remove(equipamento1);
                                                                 humano.setEquipmentId(0);
+                                                                return false;
                                                             } else if(zombie.getIdTipo() == 4) {
                                                                 return false;
                                                             }
@@ -824,6 +826,7 @@ public class TWDGameManager {
                                                                 } else if (bala == 0) {
                                                                     //  equipamentos.remove(equipamento1);
                                                                     humano.setEquipmentId(0);
+                                                                    return false;
                                                                 }
                                                             }
                                                         }
@@ -893,7 +896,7 @@ public class TWDGameManager {
                                                                     //    equipamentos.remove(equipamento1);
                                                                     humano.setEquipmentId(0);
                                                                 }
-                                                                if(zombie.getIdTipo() != 4 && bala > 0) {
+                                                                if(bala > 0) {
                                                                     /*
                                                                     tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
@@ -1073,7 +1076,6 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() == 4) {
-                                                            return false;
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
                                                             turnosGameIsOver = -1;
@@ -1110,7 +1112,7 @@ public class TWDGameManager {
                                                                 if(bala == 0) {
                                                                     //  equipamentos.remove(equipamento1);
                                                                 }
-                                                                if(zombie.getIdTipo() != 4 && bala > 0) {
+                                                                if(bala > 0) {
                                                                     /*
                                                                     //tabuleiro[yO][xO] = 0;
                                                                     envenenados.add(zombie);
