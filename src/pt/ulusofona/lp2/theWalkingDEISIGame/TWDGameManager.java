@@ -364,8 +364,8 @@ public class TWDGameManager {
                                                 humano.setY(yD);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 humano.setEquipmentId(idEquipamento);
+                                                humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 if (currentTeam == 10) {
@@ -568,11 +568,6 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
-                                                /*
-                                                if(verificarSobrePosicao(xO,xD,yO,yD)) {
-                                                    return false;
-                                                }
-                                                 */
                                                 humano.setX(xD);
                                                 humano.setY(yD);
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -680,38 +675,10 @@ public class TWDGameManager {
                                                     return false;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     return false;
-                                                   /*
-                                                    antidoto = true;
-                                                    // mal implementado -> humano nao morre
-                                                    if (turnosVeneno > 2) {
-                                                        //  criaturas.remove(humano);
-                                                    }
-                                                    turnos++;
-                                                    turnosVeneno++;
-                                                    if (currentTeam == 10) {
-                                                        currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
-                                                    }
-                                                    return true;
-                                                    */
+
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
                                                     return false;
-                                                    /*
-                                                    if (antidoto) {
-                                                        tabuleiro[yD][xD] = 0;
-                                                        humano.setEquipmentId(0);
-                                                        tabuleiro[yD][xD] = id;
-                                                        // equipamentos.remove(equipamento);
-                                                    }
-                                                    turnos++;
-                                                    if (currentTeam == 10) {
-                                                        currentTeam = 20;
-                                                    } else {
-                                                        currentTeam = 10;
-                                                    }
-                                                    return true;
-                                                     */
+
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     humano.setX(xD);
                                                     humano.setY(yD);
@@ -1435,7 +1402,7 @@ public class TWDGameManager {
         strings[7] = "1972";
         strings[8] = "Kill Bill";
         strings[9] = "1978";
-        strings[10] = "James Bond";
+        strings[10] = "Daniel Craig";
         strings[11] = "The Walking Dead";
         strings[12] = "Cabeça de alho xoxo";
         strings[13] = "Farrokh Bulsara";
