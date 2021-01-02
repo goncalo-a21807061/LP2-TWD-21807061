@@ -197,6 +197,7 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
                                                     antidoto = true;
                                                     venenoUsado = true;
+                                                    humano.setEnvenenado(true);
                                                 }
                                                 if(equipamento.getIdTipo() == 9 && antidoto == false) {
                                                     return false;
@@ -347,6 +348,7 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
                                                     antidoto = true;
                                                     venenoUsado = true;
+                                                    humano.setEnvenenado(true);
                                                 }
                                                 if(equipamento.getIdTipo() == 9 && antidoto == false) {
                                                     return false;
@@ -530,7 +532,6 @@ public class TWDGameManager {
                                         if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                             return false;
                                         }
-
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
                                                 //alcance diagonal Adulto
@@ -569,6 +570,7 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
                                                     antidoto = true;
                                                     venenoUsado = true;
+                                                    humano.setEnvenenado(true);
                                                 }
                                                 if(equipamento.getIdTipo() == 9 && antidoto == false) {
                                                     return false;
