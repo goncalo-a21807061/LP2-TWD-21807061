@@ -39,6 +39,7 @@ public class TWDGameManager {
     public TWDGameManager() {
     }
 
+
     public boolean startGame(File ficheiroInicial) {
         BufferedReader leitorFicheiro = null;
         String linha;
@@ -146,7 +147,6 @@ public class TWDGameManager {
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
-            System.out.println(getGameResults());
             if(antidoto == true) {
                 turnosVeneno++;
             }
