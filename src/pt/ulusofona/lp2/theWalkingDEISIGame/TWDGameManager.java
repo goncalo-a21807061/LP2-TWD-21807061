@@ -860,6 +860,8 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                            tabuleiro[yD][xD] = 0;
+                                                            /*
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -867,8 +869,10 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                             */
                                                             humanos.remove(humano);
                                                         }
+
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         if (currentTeam == 10) {
