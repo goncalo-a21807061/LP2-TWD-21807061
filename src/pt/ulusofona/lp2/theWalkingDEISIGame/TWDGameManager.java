@@ -1292,7 +1292,7 @@ public class TWDGameManager {
         survivors.add("");
         survivors.add("Ainda pelo bairo:");
         survivors.add("");
-        survivors.add("OS VIVOS:");
+        survivors.add("OS VIVOS");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() != "safe haven" && criatura.getLocal() != "morta") {
@@ -1301,16 +1301,16 @@ public class TWDGameManager {
             }
         }
         survivors.add("");
-        survivors.add("OS OUTROS:");
+        survivors.add("OS OUTROS");
         for (Creature criatura : criaturas) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ")");
             }
         }
         survivors.add("");
         survivors.add("Num safe haven:");
         survivors.add("");
-        survivors.add("OS VIVOS:");
+        survivors.add("OS VIVOS");
         for (Creature criatura : safeHeaven) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "safe haven") {
@@ -1321,7 +1321,7 @@ public class TWDGameManager {
         survivors.add("");
         survivors.add("Envenenados / Destruidos");
         survivors.add("");
-        survivors.add("OS VIVOS:");
+        survivors.add("OS VIVOS");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 10) {
                 if(criatura.getLocal() == "morta") {
@@ -1330,10 +1330,10 @@ public class TWDGameManager {
             }
         }
         survivors.add("");
-        survivors.add("OS OUTROS:");
+        survivors.add("OS OUTROS");
         for (Creature criatura : envenenados) {
             if (criatura.getEquipa() == 20) {
-                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome());
+                survivors.add(criatura.getId() + " (antigamente conhecido como " + criatura.getNome() + ")");
             }
         }
         return survivors;
