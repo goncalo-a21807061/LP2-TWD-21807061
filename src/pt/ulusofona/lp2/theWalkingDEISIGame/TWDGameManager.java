@@ -210,7 +210,7 @@ public class TWDGameManager {
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = idEquipamento;
+                                                tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
@@ -361,7 +361,7 @@ public class TWDGameManager {
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = idEquipamento;
+                                                tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
                                                 humano.setEquipmentId(idEquipamento);
@@ -582,7 +582,7 @@ public class TWDGameManager {
                                                 }
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = idEquipamento;
+                                                tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setEquipmentId(idEquipamento);
