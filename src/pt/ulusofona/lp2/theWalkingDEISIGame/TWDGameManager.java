@@ -904,9 +904,7 @@ public class TWDGameManager {
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
-                                                        if (currentTeam == 10) {
-                                                            currentTeam = 20;
-                                                        } else {
+                                                        if(currentTeam == 20) {
                                                             currentTeam = 10;
                                                         }
                                                         return true;
