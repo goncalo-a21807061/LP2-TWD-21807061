@@ -151,9 +151,11 @@ public class TWDGameManager {
                 turnosVeneno++;
             }
             if(turnosVeneno > 2) {
+                antidoto = false;
                 for(Creature criatura : criaturas) {
                     if(criatura.getEnvenenado() == true) {
-                        tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
+                        tabuleiro[criatura.getY()][criatura.getX()] = 0;//criatura.getIdEquipamento();
+                        criatura.setLocal("morta");
                         humanos.remove(criatura);
                         envenenados.add(criatura);
                     }
