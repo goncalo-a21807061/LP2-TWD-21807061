@@ -154,7 +154,7 @@ public class TWDGameManager {
                 antidoto = false;
                 for(Creature criatura : criaturas) {
                     if(criatura.getEnvenenado() == true) {
-                        tabuleiro[criatura.getY()][criatura.getX()] = 0;//criatura.getIdEquipamento();
+                        tabuleiro[criatura.getY()][criatura.getX()] = 0;
                         criatura.setLocal("morta");
                         humanos.remove(criatura);
                         envenenados.add(criatura);
@@ -857,7 +857,6 @@ public class TWDGameManager {
                                                                 }
                                                             }
                                                             if (idZombie == 0) {
-                                                                return false;
                                                             }
                                                         } else {
                                                             tabuleiro[yO][xO] = 0;
