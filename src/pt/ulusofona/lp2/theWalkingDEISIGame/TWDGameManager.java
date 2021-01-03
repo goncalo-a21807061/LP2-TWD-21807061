@@ -711,6 +711,12 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                             }
+                                            if (tabuleiro[yD][xD] == 99) {
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 10;
+                                                return true;
+                                            }
                                             if (tabuleiro[yD][xD] == idHumano) {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
@@ -902,6 +908,12 @@ public class TWDGameManager {
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
                                                 equipamentosRemove.remove(equipamento);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 10;
+                                                return true;
+                                            }
+                                            if (tabuleiro[yD][xD] == 99) {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 10;
