@@ -1114,10 +1114,10 @@ public class TWDGameManager {
                         }
                     }
                 }
-               // return false;
+               return false;
             }
         }
-        return false;
+        return true;
     }
 
 
