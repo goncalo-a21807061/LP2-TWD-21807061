@@ -208,21 +208,6 @@ public class TestTWDGameManager {
         twdGameManager.saveGame(new File("Novo Documento de Texto"));
         twdGameManager.saveGame(new File(""));
         twdGameManager.getElementId(1,2);
-        assertEquals(4, twdGameManager.getElementId(2, 2));
-        assertEquals(false, twdGameManager.gameIsOver());
-        assertEquals(false, twdGameManager.move(1, 2, 1, 1));
-        assertEquals(false, twdGameManager.move(1, 1, 3, 1));
-        assertEquals(false, twdGameManager.move(5, 4, 4, 4));
-        assertEquals(false, twdGameManager.move(3, 1, 4, 2));
-        assertEquals(false, twdGameManager.move(2, 3, 2, 0));
-        assertEquals(false, twdGameManager.move(2, 3, 3, 4));
-        assertEquals(true, twdGameManager.move(5, 5, 6, 6));
-        assertEquals(false, twdGameManager.move(1, 2, 2, 3));
-        assertEquals(false, twdGameManager.move(4, 2, 4, 1));
-        assertEquals(false, twdGameManager.move(2, 3, 2, 2));
-        assertEquals(false, twdGameManager.move(1, 2, 1, 0));
-        assertEquals(false, twdGameManager.move(4, 2, 4, 0));
-        assertEquals(false, twdGameManager.gameIsOver());
         twdGameManager.getIdsInSafeHaven();
     }
 
