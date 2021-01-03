@@ -186,9 +186,9 @@ public class TWDGameManager {
                                                 } else {
                                                     tabuleiro[yO][xO] = 0;
                                                 }
+                                                tabuleiro[yD][xD] = id;
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = id;
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
@@ -220,10 +220,10 @@ public class TWDGameManager {
                                             }
                                             if (tabuleiro[yD][xD] == 99) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setX(xD);
-                                                humano.setY(yD);
                                                 humano.setEquipmentId(0);
                                                 humano.setLocal("safe haven");  // toString
+                                                humano.setX(xD);
+                                                humano.setY(yD);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 turnos++;
@@ -362,6 +362,8 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
                                                 humano.setLocal("safe haven");  // toString
+                                                humano.setX(xD);
+                                                humano.setY(yD);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 turnos++;
