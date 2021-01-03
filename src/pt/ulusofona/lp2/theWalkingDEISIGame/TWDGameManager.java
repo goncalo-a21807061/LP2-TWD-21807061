@@ -265,6 +265,7 @@ public class TWDGameManager {
                                                             if (bala == 0) {
                                                                 //   equipamentos.remove(equipamento1);
                                                                 humano.setEquipmentId(0);
+                                                                return false;
                                                             }
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 humano.setX(xD);
@@ -870,6 +871,8 @@ public class TWDGameManager {
                                                             humano.colocaAZeroEquipamentos();
                                                             humano.humanoParaZombie();
                                                             humano.setImagePNG("zombie.png");
+                                                        }
+                                                        if(zombie.getIdTipo() == 4) {
                                                         }
                                                         turnos++;
                                                         turnosGameIsOver++;
