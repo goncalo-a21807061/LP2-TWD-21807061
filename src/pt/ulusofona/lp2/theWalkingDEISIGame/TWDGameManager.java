@@ -1305,7 +1305,7 @@ public class TWDGameManager {
         strings[9] = "1978";
         strings[10] = "Bond, James Bond.";
         strings[11] = "Lost";
-        strings[12] = "chocho";
+        strings[12] = "Cabeça de Alho Chocho";
         strings[13] = "Farrokh Bulsara";
         return strings;
     }

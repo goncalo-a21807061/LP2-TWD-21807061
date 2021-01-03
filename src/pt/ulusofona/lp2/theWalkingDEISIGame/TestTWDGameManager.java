@@ -187,7 +187,6 @@ public class TestTWDGameManager {
         twdGameManager.getGameResults();
         twdGameManager.getEquipmentId(1);
         twdGameManager.getEquipmentId(-30);
-        twdGameManager.isDoorToSafeHaven(0,0);
         twdGameManager.isDoorToSafeHaven(0,1);
         twdGameManager.getEquipmentTypeId(-1);
         twdGameManager.getEquipmentTypeId(-30);
