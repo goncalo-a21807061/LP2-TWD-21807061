@@ -520,10 +520,10 @@ public class TWDGameManager {
                                                 if(equipamento.getIdTipo() == 9 && antidoto == true) {
                                                     antidoto = false;
                                                 }
+                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                tabuleiro[yD][xD] = id;
                                                 humano.setX(xD);
                                                 humano.setY(yD);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 humano.setEquipmentId(idEquipamento);
                                                 humano.setIdTipoEquipamento(idTipoEquipamento);
