@@ -209,6 +209,8 @@ public class TestTWDGameManager {
         twdGameManager.saveGame(new File(""));
         twdGameManager.getElementId(1,2);
         twdGameManager.getIdsInSafeHaven();
+        twdGameManager.move(0,0,-1,-1);
+
     }
 
     @Test
@@ -216,5 +218,6 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File(""));
     }
+
 
 }
