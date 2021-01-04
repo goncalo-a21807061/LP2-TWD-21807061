@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TestTWDGameManager {
 
@@ -210,6 +210,11 @@ public class TestTWDGameManager {
         twdGameManager.getElementId(1,2);
         twdGameManager.getIdsInSafeHaven();
         twdGameManager.move(0,0,-1,-1);
+        twdGameManager.isDoorToSafeHaven(0,0);
+        twdGameManager.isDoorToSafeHaven(0,1);
+        twdGameManager.move(2,2,1,2);
+        twdGameManager.move(1,2,3,2);
+        twdGameManager.move(4,3,3,3);
 
     }
 
@@ -218,6 +223,15 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File(""));
     }
+
+    @Test
+    public void test20() {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("dados.txt"));
+
+    }
+
+
 
 
 }
