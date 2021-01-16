@@ -250,6 +250,7 @@ public class TWDGameManager {
                                                     tabuleiro[yD][xD] = id;
                                                     humano.setX(xD);
                                                     humano.setY(yD);
+                                                    humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
                                                     turnos++;
@@ -268,6 +269,7 @@ public class TWDGameManager {
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 tabuleiro[yD][xD] = id;
+                                                                humano.setMortos();
                                                                 humano.setX(xD);
                                                                 humano.setY(yD);
                                                                 zombie.setLocal("morta");
@@ -291,6 +293,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 6) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     humano.setX(xD);
                                                     humano.setY(yD);
                                                     zombie.setLocal("morta");
@@ -308,6 +311,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     humano.setX(xD);
                                                     humano.setY(yD);
                                                     zombie.setLocal("morta");
@@ -401,14 +405,17 @@ public class TWDGameManager {
                                                         } else {
                                                             tabuleiro[yO][xO] = 0;
                                                             tabuleiro[yD][xD] = id;
+                                                            humano.setMortos();
                                                             humano.setX(xD);
                                                             humano.setY(yD);
+                                                            humano.setMortos();
                                                             zombie.setLocal("morta");
                                                             envenenados.add(zombie);
                                                         }
                                                     } else {
                                                         tabuleiro[yO][xO] = 0;
                                                         tabuleiro[yD][xD] = id;
+                                                        humano.setMortos();
                                                         humano.setX(xD);
                                                         humano.setY(yD);
                                                         zombie.setLocal("morta");
@@ -425,6 +432,7 @@ public class TWDGameManager {
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 tabuleiro[yD][xD] = id;
+                                                                humano.setMortos();
                                                                 humano.setX(xD);
                                                                 humano.setY(yD);
                                                                 zombie.setLocal("morta");
@@ -451,6 +459,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 6) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     humano.setX(xD);
                                                     humano.setY(yD);
                                                     zombie.setLocal("morta");
@@ -468,6 +477,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     humano.setX(xD);
                                                     humano.setY(yD);
                                                     envenenados.add(zombie);
@@ -577,6 +587,7 @@ public class TWDGameManager {
                                                         } else {
                                                             tabuleiro[yO][xO] = 0;
                                                             tabuleiro[yD][xD] = id;
+                                                            humano.setMortos();
                                                             humano.setX(xD);
                                                             humano.setY(yD);
                                                             zombie.setLocal("morta");
@@ -585,6 +596,7 @@ public class TWDGameManager {
                                                     } else {
                                                         tabuleiro[yO][xO] = 0;
                                                         tabuleiro[yD][xD] = id;
+                                                        humano.setMortos();
                                                         humano.setX(xD);
                                                         humano.setY(yD);
                                                         zombie.setLocal("morta");
@@ -601,6 +613,7 @@ public class TWDGameManager {
                                                             if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                 tabuleiro[yO][xO] = 0;
                                                                 tabuleiro[yD][xD] = id;
+                                                                humano.setMortos();
                                                                 humano.setX(xD);
                                                                 humano.setY(yD);
                                                                 zombie.setLocal("morta");
@@ -627,6 +640,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 6) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     humano.setX(xD);
                                                     humano.setY(yD);
@@ -644,6 +658,7 @@ public class TWDGameManager {
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
+                                                    humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     humano.setX(xD);
                                                     humano.setY(yD);
@@ -772,6 +787,7 @@ public class TWDGameManager {
                                                             }
                                                         } else {
                                                             tabuleiro[yO][xO] = 0;
+                                                            humano.setMortos();
                                                             zombie.setLocal("morta");
                                                             envenenados.add(zombie);
                                                             turnos++;
@@ -785,6 +801,7 @@ public class TWDGameManager {
                                                                 bala = equipamento1.getDuracao();
                                                                 if (zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
+                                                                    humano.setMortos();
                                                                     zombie.setLocal("morta");
                                                                     envenenados.add(zombie);
                                                                     equipamento1.setDuracao(1);
@@ -851,6 +868,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 6) {
                                                         tabuleiro[yO][xO] = 0;
+                                                        humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                         turnos++;
@@ -990,6 +1008,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 1) {
                                                         tabuleiro[yO][xO] = 0;
+                                                        humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                         turnos++;
@@ -1016,6 +1035,7 @@ public class TWDGameManager {
                                                                 if(zombie.getIdTipo() != 4 && bala > 0) {
                                                                     tabuleiro[yO][xO] = 0;
                                                                     tabuleiro[yD][xD] = idHumano;
+                                                                    humano.setMortos();
                                                                     zombie.setLocal("morta");
                                                                     envenenados.add(zombie);
                                                                     equipamento1.setDuracao(1);
@@ -1074,6 +1094,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 6) {
                                                         tabuleiro[yO][xO] = 0;
+                                                        humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                         turnos++;
@@ -1144,6 +1165,7 @@ public class TWDGameManager {
         //3 Zombies que mais transformaram
         List<String> zombies = new ArrayList<>();
         criaturas.stream()
+                .filter((c) -> c.getEquipa() == 20)
                 .filter((c) -> c.getMortos() >= 1)
                 .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
                 .limit(3)
@@ -1151,6 +1173,12 @@ public class TWDGameManager {
 
         //3 Vivos que mais Zombies destruiram
         List<String> vivos = new ArrayList<>();
+        criaturas.stream()
+                .filter((c) -> c.getEquipa() == 10)
+                .filter((c) -> c.getMortos() >= 1)
+                .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
+                .limit(3)
+                .forEach(c -> vivos.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
 
         //Equipamentos que mais safaram os Vivos
         List<String> equipamentos = new ArrayList<>();
