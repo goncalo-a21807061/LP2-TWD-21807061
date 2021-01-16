@@ -8,20 +8,18 @@ public class InvalidTWDInitialFileException extends Exception {
     String line;
     boolean validCreatures = true;
 
-    public InvalidTWDInitialFileException(int nrCreatures) {
-        this.nrCreatures = nrCreatures;
-    }
 
-    public InvalidTWDInitialFileException(boolean validCreatures, String line) {
+    public InvalidTWDInitialFileException(int nrCreatures, boolean validCreatures, String line) {
+        this.nrCreatures = nrCreatures;
         this.validCreatures = validCreatures;
         this.line = line;
     }
 
     public boolean validNrOfCreatures() {
-        if(nrCreatures < 2) {
-            return false;
+        if(nrCreatures > 2) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean validCreatureDefinition() {

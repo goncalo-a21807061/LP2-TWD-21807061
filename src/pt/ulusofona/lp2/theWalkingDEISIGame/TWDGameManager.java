@@ -75,7 +75,7 @@ public class TWDGameManager {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
                     if(nrCriaturas < 2) {
-                        throw new InvalidTWDInitialFileException(nrCriaturas);
+                        throw new InvalidTWDInitialFileException(nrCriaturas,true,"");
                     }
                 } else if (count > 2 && count <= count1) {
                     String dados[] = linha.split(":");
@@ -96,7 +96,7 @@ public class TWDGameManager {
                         }
                         tabuleiro[y][x] = id;
                     } else {
-                        throw new InvalidTWDInitialFileException(false,linha);
+                        throw new InvalidTWDInitialFileException(nrCriaturas,false,linha);
                     }
                 } else if (count > count1 && count <= count1 + 1) {
                     nrEquipamentos = Integer.parseInt(linha.trim());
@@ -1144,6 +1144,7 @@ public class TWDGameManager {
         //3 Zombies que mais transformaram
         List<String> zombies = new ArrayList<>();
         criaturas.stream()
+                .filter((c) -> c.getMortos() >= 1)
                 .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
                 .limit(3)
                 .forEach(c -> zombies.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
