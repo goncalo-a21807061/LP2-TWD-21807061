@@ -137,6 +137,16 @@ public class Zombie extends Creature {
         return envenenado;
     }
 
+    @Override
+    public void setMortos() {
+        mortos++;
+    }
+
+    @Override
+    public int getMortos() {
+        return mortos;
+    }
+
 
     @Override
     public String toString() {

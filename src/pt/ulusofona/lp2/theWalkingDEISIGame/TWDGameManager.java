@@ -722,6 +722,7 @@ public class TWDGameManager {
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
                                                         turnosGameIsOver = -1;
+                                                        zombie.setMortos();
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
                                                         humanos.remove(humano);
@@ -738,6 +739,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -788,6 +790,7 @@ public class TWDGameManager {
                                                                     equipamento1.setDuracao(1);
                                                                 } else if (zombie.getIdTipo() == 4) {
                                                                 } else if (bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -812,6 +815,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 4) {
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
+                                                            zombie.setMortos();
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -829,6 +833,7 @@ public class TWDGameManager {
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 5) {
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                            zombie.setMortos();
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -857,6 +862,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -943,6 +949,7 @@ public class TWDGameManager {
                                                         return false;
                                                     }
                                                     if (humano.getIdEquipamento() == 0) {
+                                                        zombie.setMortos();
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
@@ -960,6 +967,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -993,6 +1001,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -1029,6 +1038,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() == 3) {
                                                         }
                                                         if(zombie.getIdTipo() != 3) {// Idoso zombie
+                                                            zombie.setMortos();
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -1047,6 +1057,7 @@ public class TWDGameManager {
                                                         if(zombie.getIdTipo() == 4) {
                                                         }
                                                         if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                            zombie.setMortos();
                                                             turnosGameIsOver = -1;
                                                             humano.setNomeEquipa("Os Outros");
                                                             humano.setEquipa(20);
@@ -1074,6 +1085,7 @@ public class TWDGameManager {
                                                             if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
                                                                 bala = equipamento1.getDuracao();
                                                                 if(bala == 0) {
+                                                                    zombie.setMortos();
                                                                     humano.setEquipmentId(0);
                                                                     turnosGameIsOver = -1;
                                                                     humano.setNomeEquipa("Os Outros");
@@ -1131,8 +1143,10 @@ public class TWDGameManager {
 
         //3 Zombies que mais transformaram
         List<String> zombies = new ArrayList<>();
-        criaturas.stream();
-        // filtrar por id -> tem que ser zombie
+        criaturas.stream()
+                .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
+                .limit(3)
+                .forEach(c -> zombies.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
 
         //3 Vivos que mais Zombies destruiram
         List<String> vivos = new ArrayList<>();

@@ -6,7 +6,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 public class InvalidTWDInitialFileException extends Exception {
     int nrCreatures;
     String line;
-    boolean validCreatures;
+    boolean validCreatures = true;
 
     public InvalidTWDInitialFileException(int nrCreatures) {
         this.nrCreatures = nrCreatures;

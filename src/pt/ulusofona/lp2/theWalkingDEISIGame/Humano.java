@@ -163,6 +163,16 @@ public class Humano extends Creature {
     }
 
     @Override
+    public void setMortos() {
+        mortos++;
+    }
+
+    @Override
+    public int getMortos() {
+        return mortos;
+    }
+
+    @Override
     public String toString() {
         if (local == "safe haven") {
             return id + " | " + nomePersonagem + " | " + nomeEquipa + " | " + nome + " " + equipamentosApanhados + " @ A salvo" ;

@@ -18,6 +18,7 @@ public abstract class Creature {
     protected int equipamentosApanhados = 0;
     protected boolean moverDiagonal = true;
     protected boolean envenenado = false;
+    protected int mortos;
 
 
     public Creature(int id, int idTipo, String nome, int x, int y) {
@@ -27,6 +28,7 @@ public abstract class Creature {
         this.x = x;
         this.y = y;
         this.idEquipamento = 0;
+        this.mortos = 0;
     }
 
     abstract public Boolean getMoverDiagonal();
@@ -82,4 +84,8 @@ public abstract class Creature {
     abstract public void setEnvenenado(boolean envenenado);
 
     abstract public boolean getEnvenenado();
+
+    abstract public void setMortos();
+
+    abstract public int getMortos();
 }
