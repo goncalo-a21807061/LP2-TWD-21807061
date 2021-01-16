@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import org.junit.Test;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
 public class TestTWDGameManager {
 
     @Test
-    public void test07Move() {
+    public void test07Move() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
 
@@ -153,7 +154,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void test18move() {
+    public void test18move() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("dados.txt"));
         twdGameManager.getWorldSize();
@@ -217,7 +218,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void test19FalseFile() {
+    public void test19FalseFile() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File(""));
     }

@@ -40,7 +40,7 @@ public class TWDGameManager {
     }
 
 
-    public boolean startGame(File ficheiroInicial) {
+    public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
         BufferedReader leitorFicheiro = null;
         String linha;
         turnos = 0;
@@ -74,9 +74,12 @@ public class TWDGameManager {
                 } else if (count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
+                    if(nrCriaturas < 2) {
+                        throw new InvalidTWDInitialFileException(nrCriaturas);
+                    }
                 } else if (count > 2 && count <= count1) {
                     String dados[] = linha.split(":");
-                    if (dados.length > 4) {
+                    if (dados.length > 4 && dados.length < 6) {
                         id = Integer.parseInt(dados[0].trim());
                         idTipo = Integer.parseInt(dados[1].trim());
                         String nome = dados[2].trim();
@@ -92,6 +95,8 @@ public class TWDGameManager {
                             humanos.add((Humano) criatura);
                         }
                         tabuleiro[y][x] = id;
+                    } else {
+                        throw new InvalidTWDInitialFileException(false,linha);
                     }
                 } else if (count > count1 && count <= count1 + 1) {
                     nrEquipamentos = Integer.parseInt(linha.trim());
@@ -123,9 +128,10 @@ public class TWDGameManager {
                 count++;
             }
             leitorFicheiro.close();
-            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            return false;
+            e.printStackTrace();
         }
     }
 
@@ -1120,6 +1126,36 @@ public class TWDGameManager {
         return true;
     }
 
+    public Map<String, List<String>> getGameStatistics() {
+        Map<String,List<String>> stats = new HashMap<>();
+
+        //3 Zombies que mais transformaram
+        List<String> zombies = new ArrayList<>();
+        criaturas.stream();
+        // filtrar por id -> tem que ser zombie
+
+        //3 Vivos que mais Zombies destruiram
+        List<String> vivos = new ArrayList<>();
+
+        //Equipamentos que mais safaram os Vivos
+        List<String> equipamentos = new ArrayList<>();
+
+        //Total de equipamentos destruidos por tipo de Zombie
+        List<String> equipamentosDestruidos = new ArrayList<>();
+
+        //Criaturas que mais equipamentos apanharam/destruiram
+        List<String> equipamentosApanhados = new ArrayList<>();
+
+
+        stats.put("os3ZombiesMaisTramados", zombies);
+        stats.put("os3VivosMaisDuros",vivos);
+        stats.put("tiposDeEquipamentoMaisUteis",equipamentos);
+        stats.put("tiposDeZombieESeusEquipamentosDestruidos",equipamentosDestruidos);
+        stats.put("criaturasMaisEquipadas",equipamentosApanhados);
+
+        return stats;
+    }
+
 
     public boolean gameIsOver() {
         int count = 0;
@@ -1338,7 +1374,7 @@ public class TWDGameManager {
             leitorFicheiro = new BufferedReader(new FileReader(fich.getPath()));
             startGame(fich);
             return true;
-        } catch (IOException e) {
+        } catch (IOException | InvalidTWDInitialFileException e) {
             return false;
         }
     }
