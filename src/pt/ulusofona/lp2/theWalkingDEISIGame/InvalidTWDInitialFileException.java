@@ -16,7 +16,7 @@ public class InvalidTWDInitialFileException extends Exception {
     }
 
     public boolean validNrOfCreatures() {
-        if(nrCreatures > 2) {
+        if(nrCreatures >= 2) {
             return true;
         }
         return false;
