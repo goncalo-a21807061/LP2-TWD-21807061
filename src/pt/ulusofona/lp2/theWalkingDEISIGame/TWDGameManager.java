@@ -129,7 +129,7 @@ public class TWDGameManager {
             }
             leitorFicheiro.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException();
         } catch (IOException e) {
             e.printStackTrace();
         }

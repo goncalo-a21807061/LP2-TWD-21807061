@@ -1,8 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 
-// no construtor receber um ficheiro igual ao do startgame ou receber as criaturas e isso
-
 public class InvalidTWDInitialFileException extends Exception {
     int nrCreatures;
     String line;
