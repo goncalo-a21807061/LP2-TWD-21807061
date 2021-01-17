@@ -553,9 +553,9 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == 99) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
-                                                humano.setLocal("safe haven");  // toString
                                                 humano.setX(xD);
                                                 humano.setY(yD);
+                                                humano.setLocal("safe haven");  // toString
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 turnos++;
@@ -1461,11 +1461,6 @@ public class TWDGameManager {
                     return false;
                 }
             }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO - 1][xO + 1] == 99) {
-                    return false;
-                }
-            }
         }
         if(xO - xD > 1 && yD - yO > 1) {
             for (Humano humano1 : humanos) {
@@ -1480,11 +1475,6 @@ public class TWDGameManager {
             }
             for (Zombie zombie1 : zombies) {                    // Garantir que nao passa por cima de um zombie
                 if (tabuleiro[yO + 1][xO - 1] == zombie1.getId()) {
-                    return false;
-                }
-            }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO + 1][xO - 1] == 99) {
                     return false;
                 }
             }
@@ -1505,11 +1495,6 @@ public class TWDGameManager {
                     return false;
                 }
             }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO - 1][xO - 1] == 99) {
-                    return false;
-                }
-            }
         }
         if(xD - xO > 1 && yD - yO > 1) {
             for (Humano humano1 : humanos) {
@@ -1524,11 +1509,6 @@ public class TWDGameManager {
             }
             for (Zombie zombie1 : zombies) {                            // Garantir que nao passa por cima de um zombie
                 if (tabuleiro[yO + 1][xO + 1] == zombie1.getId()) {
-                    return false;
-                }
-            }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO + 1][xO + 1] == 99) {
                     return false;
                 }
             }
@@ -1549,11 +1529,6 @@ public class TWDGameManager {
                     return false;
                 }
             }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO][xO+1] == 99) {
-                    return false;
-                }
-            }
         }
         if(xO - xD > 1 && Math.abs(yD-yO) == 0) {
             for(Humano humano1: humanos) {
@@ -1568,11 +1543,6 @@ public class TWDGameManager {
             }
             for(Zombie zombie1 : zombies) {
                 if(tabuleiro[yO][xO-1] == zombie1.getId()) {         // Garantir que nao passa por cima de um zombie
-                    return false;
-                }
-            }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO][xO-1] == 99) {
                     return false;
                 }
             }
@@ -1593,11 +1563,6 @@ public class TWDGameManager {
                     return false;
                 }
             }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO+1][xO] == 99) {
-                    return false;
-                }
-            }
         }
         if(yO - yD > 1 && Math.abs(xD-xO) == 0) {
             for(Humano humano1: humanos) {
@@ -1612,11 +1577,6 @@ public class TWDGameManager {
             }
             for(Zombie zombie1 : zombies) {                    // Garantir que nao passa por cima de um zombie
                 if(tabuleiro[yO-1][xO] == zombie1.getId()) {
-                    return false;
-                }
-            }
-            for (Porta porta: portas) {                         // Garantir que não passa por cima de uma porta
-                if(tabuleiro[yO-1][xO] == 99) {
                     return false;
                 }
             }
