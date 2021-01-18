@@ -496,21 +496,6 @@ public class TWDGameManager {
                                         }
                                         if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                             if (tabuleiro[yD][xD] == 0) {
-                                                //alcance diagonal Adulto
-                                                if(humano.getIdTipo() == 6) {
-                                                    if (xD - xO > 2 && yO - yD > 2) {
-                                                        return false;
-                                                    }
-
-                                                    // alcance diagonal Militar
-                                                } else if(humano.getIdTipo() == 7) {
-                                                    if (xD - xO > 3 && yO - yD > 3) {
-                                                        return false;
-                                                    }
-                                                    if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                        return false;
-                                                    }
-                                                }
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
@@ -901,7 +886,6 @@ public class TWDGameManager {
                                                         currentTeam = 10;
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        //return false;
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 10;
@@ -1127,7 +1111,6 @@ public class TWDGameManager {
                                                         currentTeam = 10;
                                                         return true;
                                                     } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        //return false;
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 10;
@@ -1174,7 +1157,7 @@ public class TWDGameManager {
         criaturas.stream()
                 .filter((c) -> c.getEquipa() == 10)
                 .filter((c) -> c.getMortos() >= 1)
-                .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
+                .sorted((c2,c1) -> c1.getMortos() - c2.getMortos())
                 .limit(3)
                 .forEach(c -> vivos.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
 
@@ -1184,11 +1167,12 @@ public class TWDGameManager {
         //Total de equipamentos destruidos por tipo de Zombie
         List<String> equipamentosDestruidos = new ArrayList<>();
 
+
         //Criaturas que mais equipamentos apanharam/destruiram
         List<String> equipamentosApanhados = new ArrayList<>();
         criaturas.stream()
                 .filter((c) -> c.getLocal().equals("jogo"))
-                .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
+                .sorted((c1,c2) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
                 .limit(5)
                 .forEach(c -> equipamentosApanhados.add(c.getId() + ":" + c.getNome() + ":" +  c.getEquipamentosApanhados()));
 

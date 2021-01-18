@@ -222,11 +222,7 @@ public class TestTWDGameManager {
     @Test
     public void test19FalseFile() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
-        try {
-            twdGameManager.startGame(new File("dados.txt"));
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
-        }
+        twdGameManager.startGame(new File("dados.txt"));
 
     }
 
