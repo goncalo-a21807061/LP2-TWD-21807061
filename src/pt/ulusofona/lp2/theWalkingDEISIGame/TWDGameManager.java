@@ -1190,7 +1190,7 @@ public class TWDGameManager {
                 .filter((c) -> c.getLocal().equals("Em jogo"))
                 .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
                 .limit(5)
-                .forEach(c -> equipamentosApanhados.add(c.getId() + ":" + c.getNome() + c.getEquipamentosApanhados()));
+                .forEach(c -> equipamentosApanhados.add(c.getId() + ":" + c.getNome() + ":" +  c.getEquipamentosApanhados()));
 
 
 
