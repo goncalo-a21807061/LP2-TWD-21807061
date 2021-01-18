@@ -3,6 +3,8 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,7 +222,12 @@ public class TestTWDGameManager {
     @Test
     public void test19FalseFile() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File(""));
+        try {
+            twdGameManager.startGame(new File("dados.txt"));
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        }
+
     }
 
 

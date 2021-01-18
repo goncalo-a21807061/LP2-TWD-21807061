@@ -29,7 +29,6 @@ public abstract class Creature {
         this.y = y;
         this.idEquipamento = 0;
         this.mortos = 0;
-        this.setLocal("Em jogo");
     }
 
     abstract public Boolean getMoverDiagonal();

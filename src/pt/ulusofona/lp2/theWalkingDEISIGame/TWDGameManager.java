@@ -1187,7 +1187,7 @@ public class TWDGameManager {
         //Criaturas que mais equipamentos apanharam/destruiram
         List<String> equipamentosApanhados = new ArrayList<>();
         criaturas.stream()
-                .filter((c) -> c.getLocal().equals("Em jogo"))
+                .filter((c) -> c.getLocal().equals("jogo"))
                 .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
                 .limit(5)
                 .forEach(c -> equipamentosApanhados.add(c.getId() + ":" + c.getNome() + ":" +  c.getEquipamentosApanhados()));
