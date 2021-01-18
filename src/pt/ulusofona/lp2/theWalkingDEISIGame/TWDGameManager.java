@@ -227,9 +227,9 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == 99) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
-                                                humano.setLocal("safe haven");  // toString
                                                 humano.setX(xD);
                                                 humano.setY(yD);
+                                                humano.setLocal("safe haven");  // toString
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 turnos++;
@@ -676,7 +676,6 @@ public class TWDGameManager {
                         }
                     }
                 }
-                return false;
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
@@ -1153,10 +1152,9 @@ public class TWDGameManager {
                         }
                     }
                 }
-               return false;
             }
         }
-        return true;
+        return false;
     }
 
     public Map<String, List<String>> getGameStatistics() {
