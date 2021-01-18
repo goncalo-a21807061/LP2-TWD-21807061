@@ -19,6 +19,7 @@ public abstract class Creature {
     protected boolean moverDiagonal = true;
     protected boolean envenenado = false;
     protected int mortos;
+    protected int vidas = 0;
 
 
     public Creature(int id, int idTipo, String nome, int x, int y) {
@@ -88,5 +89,6 @@ public abstract class Creature {
     abstract public void setMortos();
 
     abstract public int getMortos();
+
 
 }

@@ -172,6 +172,8 @@ public class Humano extends Creature {
         return mortos;
     }
 
+
+
     @Override
     public String toString() {
         if (local == "safe haven") {

@@ -10,6 +10,7 @@ public class Equipamento {
     private String descricao;
     private String defensivoOuOfensivo;
     private String foto;
+    private int salvacoes;
 
 
     public Equipamento(int id, int idTipo, int x, int y) {
@@ -129,5 +130,13 @@ public class Equipamento {
 
     public int getDuracao() {
         return duracao;
+    }
+
+    public void setSalvacoes() {
+        salvacoes++;
+    }
+
+    public int getSalvacoes() {
+        return salvacoes;
     }
 }

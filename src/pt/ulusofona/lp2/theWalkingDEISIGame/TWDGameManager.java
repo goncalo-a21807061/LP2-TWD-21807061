@@ -1162,7 +1162,12 @@ public class TWDGameManager {
                 .forEach(c -> vivos.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
 
         //Equipamentos que mais safaram os Vivos
-        List<String> equipamentos = new ArrayList<>();
+        List<String> equipamentosSalvacao = new ArrayList<>();
+        equipamentos.stream()
+                .sorted((e2,e1) -> e1.getSalvacoes() - e2.getSalvacoes())
+                .filter((equipamento) -> equipamento.getSalvacoes() >= 0)
+                .sorted((e1,e2) -> e1.getSalvacoes() - e2.getSalvacoes())
+                .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()) );
 
         //Total de equipamentos destruidos por tipo de Zombie
         List<String> equipamentosDestruidos = new ArrayList<>();
@@ -1172,7 +1177,7 @@ public class TWDGameManager {
         List<String> equipamentosApanhados = new ArrayList<>();
         criaturas.stream()
                 .filter((c) -> c.getLocal().equals("jogo"))
-                .sorted((c1,c2) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
+                .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
                 .limit(5)
                 .forEach(c -> equipamentosApanhados.add(c.getId() + ":" + c.getNome() + ":" +  c.getEquipamentosApanhados()));
 
@@ -1180,7 +1185,7 @@ public class TWDGameManager {
 
         stats.put("os3ZombiesMaisTramados", zombies);
         stats.put("os3VivosMaisDuros",vivos);
-        stats.put("tiposDeEquipamentoMaisUteis",equipamentos);
+        stats.put("tiposDeEquipamentoMaisUteis",equipamentosSalvacao);
         stats.put("tiposDeZombieESeusEquipamentosDestruidos",equipamentosDestruidos);
         stats.put("criaturasMaisEquipadas",equipamentosApanhados);
 

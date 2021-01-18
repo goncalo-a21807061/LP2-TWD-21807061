@@ -148,6 +148,7 @@ public class Zombie extends Creature {
     }
 
 
+
     @Override
     public String toString() {
         if (local == "safe haven") {
