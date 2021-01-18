@@ -227,8 +227,8 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == 99) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
+                                               // humano.setX(xD);
+                                               // humano.setY(yD);
                                                 humano.setLocal("safe haven");  // toString
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
@@ -372,8 +372,8 @@ public class TWDGameManager {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
                                                 humano.setLocal("safe haven");  // toString
-                                                humano.setX(xD);
-                                                humano.setY(yD);
+                                                //humano.setX(xD);
+                                               // humano.setY(yD);
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
                                                 turnos++;
@@ -553,8 +553,8 @@ public class TWDGameManager {
                                             if (tabuleiro[yD][xD] == 99) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 humano.setEquipmentId(0);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
+                                                //humano.setX(xD);
+                                               // humano.setY(yD);
                                                 humano.setLocal("safe haven");  // toString
                                                 safeHeaven.add(humano);
                                                 humanos.remove(humano);
