@@ -15,22 +15,19 @@ public class TWDGameManager {
     private static List<Creature> envenenados = new ArrayList<>();
 
     private int[][] tabuleiro;
-    private int width;
-    private int height;
     private int rows;
     private int columns;
 
     private int equipaInicial;
     private int currentTeam;
-    private int turnos = 0;
-    private int turnosGameIsOver = 0;
     private int nrCriaturas;
     private int nrEquipamentos;
     private int nrPortas;
+    private int turnos = 0;
+    private int turnosGameIsOver = 0;
     private int idTipoEquipamento;
     private int bala;
     private int turnosVeneno = 0;
-    private int idTipo;
     private boolean moveDiagonal;
     private boolean antidoto = false;
     private boolean venenoUsado = false;
@@ -65,8 +62,6 @@ public class TWDGameManager {
                     String dados[] = linha.split(" ");
                     rows = Integer.parseInt(dados[0].trim());
                     columns = Integer.parseInt(dados[1].trim());
-                    this.width = rows - 1;
-                    this.height = columns - 1;
                     tabuleiro = new int[rows][columns];
                 } else if (count == 1) {
                     equipaInicial = Integer.parseInt(linha);
@@ -74,8 +69,8 @@ public class TWDGameManager {
                 } else if (count == 2) {
                     nrCriaturas = Integer.parseInt(linha.trim());
                     count1 = count + nrCriaturas;
-                    if(nrCriaturas < 2) {
-                        throw new InvalidTWDInitialFileException(nrCriaturas,true,"");
+                    if (nrCriaturas < 2) {
+                        throw new InvalidTWDInitialFileException(nrCriaturas, true, "");
                     }
                 } else if (count > 2 && count <= count1) {
                     String dados[] = linha.split(":");
@@ -85,18 +80,18 @@ public class TWDGameManager {
                         String nome = dados[2].trim();
                         x = Integer.parseInt(dados[3].trim());
                         y = Integer.parseInt(dados[4].trim());
-                        if(idTipo == 0 || idTipo == 1 || idTipo == 2 || idTipo == 3 || idTipo == 4) {
+                        if (idTipo == 0 || idTipo == 1 || idTipo == 2 || idTipo == 3 || idTipo == 4) {
                             Creature criatura = new Zombie(id, idTipo, nome, x, y);
                             criaturas.add(criatura);
                             zombies.add((Zombie) criatura);
                         } else {
-                            Creature criatura = new Humano(id,idTipo,nome,x,y);
+                            Creature criatura = new Humano(id, idTipo, nome, x, y);
                             criaturas.add(criatura);
                             humanos.add((Humano) criatura);
                         }
                         tabuleiro[y][x] = id;
                     } else {
-                        throw new InvalidTWDInitialFileException(nrCriaturas,false,linha);
+                        throw new InvalidTWDInitialFileException(nrCriaturas, false, linha);
                     }
                 } else if (count > count1 && count <= count1 + 1) {
                     nrEquipamentos = Integer.parseInt(linha.trim());
@@ -113,7 +108,7 @@ public class TWDGameManager {
                         equipamentosRemove.add(equipamento);
                         tabuleiro[y][x] = id;
                     }
-                } else if (count > count2 +1 && count <= count2 + 2) {
+                } else if (count > count2 + 1 && count <= count2 + 2) {
                     nrPortas = Integer.parseInt(linha.trim());
                 } else if (count > count2 + 2 && count <= count2 + 2 + nrPortas) {
                     String dados[] = linha.split(":");
@@ -135,7 +130,8 @@ public class TWDGameManager {
         }
     }
 
-    public int[] getWorldSize() {
+
+        public int[] getWorldSize() {
         int[] worldSize = new int[2];
         worldSize[0] = rows;
         worldSize[1] = columns;
@@ -148,7 +144,7 @@ public class TWDGameManager {
 
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        int id, idEquipamento,idHumano, idZombie = 30;
+        int id, idEquipamento = 0,idHumano, idZombie = 30;
         if (!gameIsOver()) {
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
@@ -172,14 +168,17 @@ public class TWDGameManager {
                 for (Creature humano : criaturas) {
                     if (humano.getEquipa() == 10) {
                         for (Equipamento equipamento : equipamentos) {
+                            idEquipamento = equipamento.getId();
+                            idTipoEquipamento = equipamento.getIdTipo();
+                        }
                             for (Creature zombie : criaturas) {
                                 moveDiagonal = humano.getMoverDiagonal();
                                 if(zombie.getEquipa() == 20) {
                                     idZombie = zombie.getId();
                                 }
-                                idEquipamento = equipamento.getId();
-                                idTipo = humano.getIdTipo();
-                                idTipoEquipamento = equipamento.getIdTipo();
+                                 //idEquipamento = equipamento.getId();
+                                int idTipo = humano.getIdTipo();
+                                //idTipoEquipamento = equipamento.getIdTipo();
                                 id = humano.getId();
                                 if (tabuleiro[yO][xO] == id) {
                                     // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
@@ -201,16 +200,20 @@ public class TWDGameManager {
                                                 return true;
                                             }
                                             if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                    antidoto = true;
-                                                    venenoUsado = true;
-                                                    humano.setEnvenenado(true);
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                    return false;
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                    antidoto = false;
+                                                for(Equipamento equipamento: equipamentos) {
+                                                    if (equipamento.getId() == idEquipamento) {
+                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                            antidoto = true;
+                                                            venenoUsado = true;
+                                                            humano.setEnvenenado(true);
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                            return false;
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                            antidoto = false;
+                                                        }
+                                                    }
                                                 }
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 tabuleiro[yD][xD] = id;
@@ -342,16 +345,20 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                    antidoto = true;
-                                                    venenoUsado = true;
-                                                    humano.setEnvenenado(true);
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                    return false;
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                    antidoto = false;
+                                                for(Equipamento equipamento: equipamentos) {
+                                                    if (equipamento.getId() == idEquipamento) {
+                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                            antidoto = true;
+                                                            venenoUsado = true;
+                                                            humano.setEnvenenado(true);
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                            return false;
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                            antidoto = false;
+                                                        }
+                                                    }
                                                 }
                                                 humano.adicionaEquipamentosEncontrados(1);
                                                 tabuleiro[yD][xD] = id;
@@ -512,16 +519,20 @@ public class TWDGameManager {
                                                 if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                     return false;
                                                 }
-                                                if(equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                    antidoto = true;
-                                                    venenoUsado = true;
-                                                    humano.setEnvenenado(true);
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                    return false;
-                                                }
-                                                if(equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                    antidoto = false;
+                                                for(Equipamento equipamento: equipamentos) {
+                                                    if (equipamento.getId() == idEquipamento) {
+                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                            antidoto = true;
+                                                            venenoUsado = true;
+                                                            humano.setEnvenenado(true);
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                            return false;
+                                                        }
+                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                            antidoto = false;
+                                                        }
+                                                    }
                                                 }
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                 tabuleiro[yD][xD] = id;
@@ -658,7 +669,6 @@ public class TWDGameManager {
                                     }
                                 }
                             }
-                        }
                     }
                 }
             } else {
@@ -667,7 +677,7 @@ public class TWDGameManager {
                         for (Equipamento equipamento : equipamentos) {
                             for (Creature humano : criaturas) {
                                 idHumano = humano.getId();
-                                idTipo = zombie.getIdTipo();
+                                int idTipo = zombie.getIdTipo();
                                 idEquipamento = equipamento.getId();
                                 idTipoEquipamento = equipamento.getIdTipo();
                                 id = zombie.getId();
@@ -1148,7 +1158,7 @@ public class TWDGameManager {
         criaturas.stream()
                 .filter((c) -> c.getEquipa() == 20)
                 .filter((c) -> c.getMortos() >= 1)
-                .sorted((c1,c2) -> c1.getMortos() - c2.getMortos())
+                .sorted((c2,c1) -> c1.getMortos() - c2.getMortos())
                 .limit(3)
                 .forEach(c -> zombies.add(c.getId() + ":" + c.getNome() + ":" + c.getMortos()));
 
@@ -1167,7 +1177,7 @@ public class TWDGameManager {
                 .sorted((e2,e1) -> e1.getSalvacoes() - e2.getSalvacoes())
                 .filter((equipamento) -> equipamento.getSalvacoes() >= 0)
                 .sorted((e1,e2) -> e1.getSalvacoes() - e2.getSalvacoes())
-                .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()) );
+                .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()));
 
         //Total de equipamentos destruidos por tipo de Zombie
         List<String> equipamentosDestruidos = new ArrayList<>();
@@ -1389,7 +1399,7 @@ public class TWDGameManager {
             for(Equipamento equipamento: equipamentosRemove) {
                 string += equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n";
             }
-            string += nrPortas + "\n";
+            string += portas.size() + "\n";
             for(Porta porta: portas) {
                 string += porta.getX() + " : " + porta.getY() + "\n";
             }
