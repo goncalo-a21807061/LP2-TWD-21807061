@@ -171,254 +171,411 @@ public class TWDGameManager {
                             idEquipamento = equipamento.getId();
                             idTipoEquipamento = equipamento.getIdTipo();
                         }
-                            for (Creature zombie : criaturas) {
-                                moveDiagonal = humano.getMoverDiagonal();
-                                if(zombie.getEquipa() == 20) {
-                                    idZombie = zombie.getId();
-                                }
-                                 //idEquipamento = equipamento.getId();
-                                int idTipo = humano.getIdTipo();
-                                //idTipoEquipamento = equipamento.getIdTipo();
-                                id = humano.getId();
-                                if (tabuleiro[yO][xO] == id) {
-                                    // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
-                                    if(idTipo == 8 && isDay() == true) {
-                                        if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
-                                            if (tabuleiro[yD][xD] == 0) {
-                                                if(humano.getIdEquipamento() != 0) {
-                                                    tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                    humano.setEquipmentId(0);
+                        for (Creature zombie : criaturas) {
+                            moveDiagonal = humano.getMoverDiagonal();
+                            if(zombie.getEquipa() == 20) {
+                                idZombie = zombie.getId();
+                            }
+                            int idTipo = humano.getIdTipo();
+                            id = humano.getId();
+                            if (tabuleiro[yO][xO] == id) {
+                                // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
+                                if(idTipo == 8 && isDay() == true) {
+                                    if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
+                                        if (tabuleiro[yD][xD] == 0) {
+                                            if(humano.getIdEquipamento() != 0) {
+                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                humano.setEquipmentId(0);
+                                            } else {
+                                                tabuleiro[yO][xO] = 0;
+                                            }
+                                            tabuleiro[yD][xD] = id;
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idEquipamento) {
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if (equipamento.getId() == idEquipamento) {
+                                                    if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                        antidoto = true;
+                                                        venenoUsado = true;
+                                                        humano.setEnvenenado(true);
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                        return false;
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                        antidoto = false;
+                                                    }
+                                                }
+                                            }
+                                            humano.adicionaEquipamentosEncontrados(1);
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            humano.setEquipmentId(idEquipamento);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            humano.setIdTipoEquipamento(idTipoEquipamento);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == 99) {
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            humano.setEquipmentId(0);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            humano.setLocal("safe haven");  // toString
+                                            safeHeaven.add(humano);
+                                            humanos.remove(humano);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idZombie) {
+                                            if (zombie.getEquipa() == 20) {
+                                                if (humano.getIdEquipamento() == 0) {
+                                                    return false;
+                                                }
+                                            }
+                                            if (humano.getIdTipoEquipamento() == 0) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 1) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                humano.setMortos();
+                                                zombie.setLocal("morta");
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 2) {
+                                                for (Equipamento equipamento1 : equipamentos) {
+                                                    if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                        bala = equipamento1.getDuracao();
+                                                        if (bala == 0) {
+                                                            humano.setEquipmentId(0);
+                                                            return false;
+                                                        }
+                                                        if (zombie.getIdTipo() != 4 && bala > 0) {
+                                                            tabuleiro[yO][xO] = 0;
+                                                            tabuleiro[yD][xD] = id;
+                                                            humano.setMortos();
+                                                            humano.setX(xD);
+                                                            humano.setY(yD);
+                                                            zombie.setLocal("morta");
+                                                            envenenados.add(zombie);
+                                                            equipamento1.setDuracao(1);
+                                                        }
+                                                        if(zombie.getIdTipo() == 4) {
+                                                        }
+                                                    }
+                                                }
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 3) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 4) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 5) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 6) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                zombie.setLocal("morta");
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 7) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 8) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 9) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 10) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                zombie.setLocal("morta");
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                } else if(idTipo == 9) {
+                                    if (((Math.abs(xD -xO) > 0 && Math.abs(xD - xO) <= 2) && (Math.abs(yD - yO) > 0 && Math.abs(yD - yO) <= 2))) {
+                                        if (tabuleiro[yD][xD] == 0) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idEquipamento) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if (equipamento.getId() == idEquipamento) {
+                                                    if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                        antidoto = true;
+                                                        venenoUsado = true;
+                                                        humano.setEnvenenado(true);
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                        return false;
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                        antidoto = false;
+                                                    }
+                                                }
+                                            }
+                                            humano.adicionaEquipamentosEncontrados(1);
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            humano.setIdTipoEquipamento(idTipoEquipamento);
+                                            humano.setEquipmentId(idEquipamento);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == 99) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            humano.setEquipmentId(0);
+                                            humano.setLocal("safe haven");  // toString
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            safeHeaven.add(humano);
+                                            humanos.remove(humano);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idZombie) {
+                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
+                                                return false;
+                                            }
+                                            if (zombie.getEquipa() == 20) {
+                                                if (humano.getIdEquipamento() == 0) {
+                                                    return false;
+                                                }
+                                            }
+                                            if (humano.getIdTipoEquipamento() == 0) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 1) {
+                                                if (humano.getIdTipo() == 5) {
+                                                    idZombie = tabuleiro[yD][xD];
+                                                    for (Creature zombie1 : criaturas) {
+                                                        if (idZombie == zombie1.getId()) {
+                                                            idZombie = zombie1.getIdTipo();
+                                                        }
+                                                    }
+                                                    if (idZombie != 0) {
+                                                        return false;
+                                                    } else {
+                                                        tabuleiro[yO][xO] = 0;
+                                                        tabuleiro[yD][xD] = id;
+                                                        humano.setMortos();
+                                                        humano.setX(xD);
+                                                        humano.setY(yD);
+                                                        humano.setMortos();
+                                                        zombie.setLocal("morta");
+                                                        envenenados.add(zombie);
+                                                    }
                                                 } else {
                                                     tabuleiro[yO][xO] = 0;
-                                                }
-                                                tabuleiro[yD][xD] = id;
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idEquipamento) {
-                                                for(Equipamento equipamento: equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                            antidoto = true;
-                                                            venenoUsado = true;
-                                                            humano.setEnvenenado(true);
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                            return false;
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                            antidoto = false;
-                                                        }
-                                                    }
-                                                }
-                                                humano.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(idEquipamento);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                humano.setIdTipoEquipamento(idTipoEquipamento);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == 99) {
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(0);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                humano.setLocal("safe haven");  // toString
-                                                safeHeaven.add(humano);
-                                                humanos.remove(humano);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idZombie) {
-                                                if (zombie.getEquipa() == 20) {
-                                                    if (humano.getIdEquipamento() == 0) {
-                                                        return false;
-                                                    }
-                                                }
-                                                if (humano.getIdTipoEquipamento() == 0) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 1) {
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = id;
-                                                    humano.setX(xD);
-                                                    humano.setY(yD);
-                                                    humano.setMortos();
-                                                    zombie.setLocal("morta");
-                                                    envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 2) {
-                                                    for (Equipamento equipamento1 : equipamentos) {
-                                                        if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                            bala = equipamento1.getDuracao();
-                                                            if (bala == 0) {
-                                                                //equipamentos.remove(equipamento1);
-                                                                humano.setEquipmentId(0);
-                                                                return false;
-                                                            }
-                                                            if (zombie.getIdTipo() != 4 && bala > 0) {
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = id;
-                                                                humano.setMortos();
-                                                                humano.setX(xD);
-                                                                humano.setY(yD);
-                                                                zombie.setLocal("morta");
-                                                                envenenados.add(zombie);
-                                                                equipamento1.setDuracao(1);
-                                                            }
-                                                            if(zombie.getIdTipo() == 4) {
-                                                            }
-                                                        }
-                                                    }
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 3) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 4) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 5) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 6) {
-                                                    tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
                                                     humano.setMortos();
                                                     humano.setX(xD);
                                                     humano.setY(yD);
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 7) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 8) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 9) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 10) {
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = id;
-                                                    humano.setMortos();
-                                                    humano.setX(xD);
-                                                    humano.setY(yD);
-                                                    zombie.setLocal("morta");
-                                                    envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
                                                 }
-                                            }
-                                        }
-                                    } else if(idTipo == 9) {
-                                        if (((Math.abs(xD -xO) > 0 && Math.abs(xD - xO) <= 2) && (Math.abs(yD - yO) > 0 && Math.abs(yD - yO) <= 2))) {
-                                            if (tabuleiro[yD][xD] == 0) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                humano.setX(xD);
-                                                humano.setY(yD);
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
                                                 return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                for(Equipamento equipamento: equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                            antidoto = true;
-                                                            venenoUsado = true;
-                                                            humano.setEnvenenado(true);
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                            return false;
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                            antidoto = false;
-                                                        }
-                                                    }
-                                                }
-                                                humano.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                humano.setIdTipoEquipamento(idTipoEquipamento);
-                                                humano.setEquipmentId(idEquipamento);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == 99) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(0);
-                                                humano.setLocal("safe haven");  // toString
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                safeHeaven.add(humano);
-                                                humanos.remove(humano);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idZombie) {
-                                                if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                    return false;
-                                                }
-                                                if (zombie.getEquipa() == 20) {
-                                                    if (humano.getIdEquipamento() == 0) {
-                                                        return false;
-                                                    }
-                                                }
-                                                if (humano.getIdTipoEquipamento() == 0) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 1) {
-                                                    if (humano.getIdTipo() == 5) {
-                                                        idZombie = tabuleiro[yD][xD];
-                                                        for (Creature zombie1 : criaturas) {
-                                                            if (idZombie == zombie1.getId()) {
-                                                                idZombie = zombie1.getIdTipo();
-                                                            }
-                                                        }
-                                                        if (idZombie != 0) {
-                                                            return false;
-                                                        } else {
+                                            } else if (humano.getIdTipoEquipamento() == 2) {
+                                                for (Equipamento equipamento1 : equipamentos) {
+                                                    if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                        bala = equipamento1.getDuracao();
+                                                        if (zombie.getIdTipo() != 4 && bala > 0) {
                                                             tabuleiro[yO][xO] = 0;
                                                             tabuleiro[yD][xD] = id;
                                                             humano.setMortos();
                                                             humano.setX(xD);
                                                             humano.setY(yD);
-                                                            humano.setMortos();
                                                             zombie.setLocal("morta");
                                                             envenenados.add(zombie);
+                                                            equipamento1.setDuracao(1);
+                                                        } else if (bala == 0) {
+                                                            //  equipamentos.remove(equipamento1);
+                                                            humano.setEquipmentId(0);
+                                                            return false;
+                                                        } else if (zombie.getIdTipo() == 4) {
                                                         }
+                                                    }
+                                                }
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 3) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 4) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 5) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 6) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                zombie.setLocal("morta");
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 7) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 8) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 9) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 10) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                envenenados.add(zombie);
+                                                zombie.setLocal("morta");
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                } else if (idTipo != 8 && idTipo != 9){
+                                    if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
+                                        return false;
+                                    }
+                                    if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
+                                        if (tabuleiro[yD][xD] == 0) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idEquipamento) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if (equipamento.getId() == idEquipamento) {
+                                                    if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
+                                                        antidoto = true;
+                                                        venenoUsado = true;
+                                                        humano.setEnvenenado(true);
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                        return false;
+                                                    }
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == true) {
+                                                        antidoto = false;
+                                                    }
+                                                }
+                                            }
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            tabuleiro[yD][xD] = id;
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            humano.adicionaEquipamentosEncontrados(1);
+                                            humano.setEquipmentId(idEquipamento);
+                                            humano.setIdTipoEquipamento(idTipoEquipamento);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == 99) {
+                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            humano.setEquipmentId(0);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
+                                            humano.setLocal("safe haven");  // toString
+                                            safeHeaven.add(humano);
+                                            humanos.remove(humano);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 20;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idZombie) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            if (zombie.getEquipa() == 20) {
+                                                if (humano.getIdEquipamento() == 0) {
+                                                    return false;
+                                                }
+                                            }
+                                            if (humano.getIdTipoEquipamento() == 0) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 1) {
+                                                if (humano.getIdTipo() == 5) {
+                                                    idZombie = tabuleiro[yD][xD];
+                                                    for (Creature zombie1 : criaturas) {
+                                                        if (idZombie == zombie1.getId()) {
+                                                            idZombie = zombie1.getIdTipo();
+                                                        }
+                                                    }
+                                                    if (idZombie != 0) { //diferente de criança
+                                                        return false;
                                                     } else {
                                                         tabuleiro[yO][xO] = 0;
                                                         tabuleiro[yD][xD] = id;
@@ -428,42 +585,7 @@ public class TWDGameManager {
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
                                                     }
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 2) {
-                                                    for (Equipamento equipamento1 : equipamentos) {
-                                                        if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                            bala = equipamento1.getDuracao();
-                                                            if (zombie.getIdTipo() != 4 && bala > 0) {
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = id;
-                                                                humano.setMortos();
-                                                                humano.setX(xD);
-                                                                humano.setY(yD);
-                                                                zombie.setLocal("morta");
-                                                                envenenados.add(zombie);
-                                                                equipamento1.setDuracao(1);
-                                                            } else if (bala == 0) {
-                                                                //  equipamentos.remove(equipamento1);
-                                                                humano.setEquipmentId(0);
-                                                                return false;
-                                                            } else if (zombie.getIdTipo() == 4) {
-                                                            }
-                                                        }
-                                                    }
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 3) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 4) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 5) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 6) {
+                                                } else {
                                                     tabuleiro[yO][xO] = 0;
                                                     tabuleiro[yD][xD] = id;
                                                     humano.setMortos();
@@ -471,116 +593,16 @@ public class TWDGameManager {
                                                     humano.setY(yD);
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 7) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 8) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 9) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 10) {
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = id;
-                                                    humano.setMortos();
-                                                    humano.setX(xD);
-                                                    humano.setY(yD);
-                                                    envenenados.add(zombie);
-                                                    zombie.setLocal("morta");
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
                                                 }
-                                            }
-                                        }
-
-                                    } else if (idTipo != 8 && idTipo != 9){
-                                        if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
-                                            return false;
-                                        }
-                                        if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
-                                            if (tabuleiro[yD][xD] == 0) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                humano.setX(xD);
-                                                humano.setY(yD);
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
                                                 return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                for(Equipamento equipamento: equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
-                                                            antidoto = true;
-                                                            venenoUsado = true;
-                                                            humano.setEnvenenado(true);
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == false) {
-                                                            return false;
-                                                        }
-                                                        if (equipamento.getIdTipo() == 9 && antidoto == true) {
-                                                            antidoto = false;
-                                                        }
-                                                    }
-                                                }
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                tabuleiro[yD][xD] = id;
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                humano.adicionaEquipamentosEncontrados(1);
-                                                humano.setEquipmentId(idEquipamento);
-                                                humano.setIdTipoEquipamento(idTipoEquipamento);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == 99) {
-                                                tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                humano.setEquipmentId(0);
-                                                humano.setX(xD);
-                                                humano.setY(yD);
-                                                humano.setLocal("safe haven");  // toString
-                                                safeHeaven.add(humano);
-                                                humanos.remove(humano);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 20;
-                                                return true;
-                                            }
-                                            if (tabuleiro[yD][xD] == idZombie) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                if (zombie.getEquipa() == 20) {
-                                                    if (humano.getIdEquipamento() == 0) {
-                                                        return false;
-                                                    }
-                                                }
-                                                if (humano.getIdTipoEquipamento() == 0) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 1) {
-                                                    if (humano.getIdTipo() == 5) {
-                                                        idZombie = tabuleiro[yD][xD];
-                                                        for (Creature zombie1 : criaturas) {
-                                                            if (idZombie == zombie1.getId()) {
-                                                                idZombie = zombie1.getIdTipo();
-                                                            }
-                                                        }
-                                                        if (idZombie != 0) { //diferente de criança
-                                                            return false;
-                                                        } else {
+                                            } else if (humano.getIdTipoEquipamento() == 2) {
+                                                for (Equipamento equipamento1 : equipamentos) {
+                                                    if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                        bala = equipamento1.getDuracao();
+                                                        if (zombie.getIdTipo() != 4 && bala > 0) {
                                                             tabuleiro[yO][xO] = 0;
                                                             tabuleiro[yD][xD] = id;
                                                             humano.setMortos();
@@ -588,554 +610,566 @@ public class TWDGameManager {
                                                             humano.setY(yD);
                                                             zombie.setLocal("morta");
                                                             envenenados.add(zombie);
-                                                        }
-                                                    } else {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        tabuleiro[yD][xD] = id;
-                                                        humano.setMortos();
-                                                        humano.setX(xD);
-                                                        humano.setY(yD);
-                                                        zombie.setLocal("morta");
-                                                        envenenados.add(zombie);
-                                                    }
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 2) {
-                                                    for (Equipamento equipamento1 : equipamentos) {
-                                                        if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                            bala = equipamento1.getDuracao();
-                                                            if (zombie.getIdTipo() != 4 && bala > 0) {
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = id;
-                                                                humano.setMortos();
-                                                                humano.setX(xD);
-                                                                humano.setY(yD);
-                                                                zombie.setLocal("morta");
-                                                                envenenados.add(zombie);
-                                                                equipamento1.setDuracao(1);
-                                                            } else if (bala == 0) {
-                                                                //  equipamentos.remove(equipamento1);
-                                                                humano.setEquipmentId(0);
-                                                                return false;
-                                                            } else if(zombie.getIdTipo() == 4) {
-                                                            }
+                                                            equipamento1.setDuracao(1);
+                                                        } else if (bala == 0) {
+                                                            humano.setEquipmentId(0);
+                                                            return false;
+                                                        } else if(zombie.getIdTipo() == 4) {
                                                         }
                                                     }
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 3) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 4) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 5) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 6) {
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = id;
-                                                    humano.setMortos();
-                                                    zombie.setLocal("morta");
-                                                    humano.setX(xD);
-                                                    humano.setY(yD);
-                                                    envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
-                                                } else if (humano.getIdTipoEquipamento() == 7) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 8) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 9) {
-                                                    return false;
-                                                } else if (humano.getIdTipoEquipamento() == 10) {
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = id;
-                                                    humano.setMortos();
-                                                    zombie.setLocal("morta");
-                                                    humano.setX(xD);
-                                                    humano.setY(yD);
-                                                    envenenados.add(zombie);
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    return true;
                                                 }
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 3) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 4) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 5) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 6) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                zombie.setLocal("morta");
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
+                                            } else if (humano.getIdTipoEquipamento() == 7) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 8) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 9) {
+                                                return false;
+                                            } else if (humano.getIdTipoEquipamento() == 10) {
+                                                tabuleiro[yO][xO] = 0;
+                                                tabuleiro[yD][xD] = id;
+                                                humano.setMortos();
+                                                zombie.setLocal("morta");
+                                                humano.setX(xD);
+                                                humano.setY(yD);
+                                                envenenados.add(zombie);
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
                                             }
                                         }
                                     }
                                 }
                             }
+                        }
                     }
                 }
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
                         for (Equipamento equipamento : equipamentos) {
-                            for (Creature humano : criaturas) {
-                                idHumano = humano.getId();
-                                int idTipo = zombie.getIdTipo();
-                                idEquipamento = equipamento.getId();
-                                idTipoEquipamento = equipamento.getIdTipo();
-                                id = zombie.getId();
-                                if (tabuleiro[yO][xO] == id) {
-                                    // validar se é zombie vampiro, se for só pode jogar nos turnos noturnos
-                                    if(idTipo == 4 && isDay() == false) {
-                                        if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
-                                            if (tabuleiro[yD][xD] == 0) {
-                                                if (xD - xO > 2 && yO - yD > 2) {
-                                                    return false;
-                                                }
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
+                            idEquipamento = equipamento.getId();
+                            idTipoEquipamento = equipamento.getIdTipo();
+                        }
+                        for (Creature humano : criaturas) {
+                            idHumano = humano.getId();
+                            int idTipo = zombie.getIdTipo();
+                            id = zombie.getId();
+                            if (tabuleiro[yO][xO] == id) {
+                                // validar se é zombie vampiro, se for só pode jogar nos turnos noturnos
+                                if(idTipo == 4 && isDay() == false) {
+                                    if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
+                                        if (tabuleiro[yD][xD] == 0) {
+                                            if (xD - xO > 2 && yO - yD > 2) {
+                                                return false;
+                                            }
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            zombie.setX(xD);
+                                            zombie.setY(yD);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 10;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idEquipamento) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            if (idTipoEquipamento == 5) {
+                                                return false;
+                                            } else if(idTipoEquipamento == 8) {
+                                                return false;
+                                            } else {
+                                                zombie.adicionaEquipamentosEncontrados(1);
                                                 tabuleiro[yD][xD] = id;
                                                 tabuleiro[yO][xO] = 0;
                                                 zombie.setX(xD);
                                                 zombie.setY(yD);
+                                                for(Equipamento equipamento: equipamentos) {
+                                                    if(equipamento.getId() == idEquipamento) {
+                                                        equipamentosRemove.remove(equipamento);
+                                                    }
+                                                }
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 10;
                                                 return true;
                                             }
-                                            if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
+                                        }
+                                        if (tabuleiro[yD][xD] == idHumano) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            if (humano.getEquipa() == 10) {
+                                                if(humano.getIdTipo() == 9) {
                                                 }
-                                                if (idTipoEquipamento == 5) {
-                                                    return false;
-                                                } else if(equipamento.getIdTipo() == 8) {
-                                                    return false;
-                                                } else {
-                                                    zombie.adicionaEquipamentosEncontrados(1);
-                                                    tabuleiro[yD][xD] = id;
+                                                if (humano.getIdEquipamento() == 0) {
+                                                    turnosGameIsOver = -1;
+                                                    zombie.setMortos();
+                                                    humano.setNomeEquipa("Os Outros");
+                                                    humano.setEquipa(20);
+                                                    humanos.remove(humano);
+                                                    humano.colocaAZeroEquipamentos();
+                                                    humano.humanoParaZombie();
+                                                    humano.setImagePNG("zombie.png");
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                }
+                                                if (humano.getIdTipoEquipamento() == 0) {
+                                                    for(Equipamento equipamento1: equipamentos) {
+                                                        if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if(bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(bala == 1) {
+                                                                equipamento1.setDuracao(1);
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 1) {
+                                                    if (humano.getIdTipo() == 5) {
+                                                        idZombie = tabuleiro[yD][xD];
+                                                        for (Creature zombie1 : criaturas) {
+                                                            if (idZombie == zombie1.getId()) {
+                                                                idZombie = zombie1.getIdTipo();
+                                                            }
+                                                        }
+                                                        if (idZombie == 0) {
+                                                        }
+                                                    } else {
+                                                        tabuleiro[yO][xO] = 0;
+                                                        humano.setMortos();
+                                                        zombie.setLocal("morta");
+                                                        envenenados.add(zombie);
+                                                        turnos++;
+                                                        turnosGameIsOver++;
+                                                        currentTeam = 10;
+                                                        return true;
+                                                    }
+                                                } else if (humano.getIdTipoEquipamento() == 2) {
+                                                    for (Equipamento equipamento1 : equipamentos) {
+                                                        if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if (zombie.getIdTipo() != 4 && bala > 0) {
+                                                                tabuleiro[yO][xO] = 0;
+                                                                humano.setMortos();
+                                                                zombie.setLocal("morta");
+                                                                envenenados.add(zombie);
+                                                                equipamento1.setDuracao(1);
+                                                            } else if (zombie.getIdTipo() == 4) {
+                                                            } else if (bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 3) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 4) {
+                                                    if(zombie.getIdTipo() != 3) {// Idoso zombie
+                                                        zombie.setMortos();
+                                                        turnosGameIsOver = -1;
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humanos.remove(humano);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.setEquipmentId(0);
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
+                                                    }
+                                                    if(zombie.getIdTipo() == 3) {
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 5) {
+                                                    if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                        zombie.setMortos();
+                                                        turnosGameIsOver = -1;
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humanos.remove(humano);
+                                                        humano.setEquipmentId(0);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
+                                                    }
+                                                    if(zombie.getIdTipo() == 4) {
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 6) {
                                                     tabuleiro[yO][xO] = 0;
-                                                    zombie.setX(xD);
-                                                    zombie.setY(yD);
-                                                    equipamentosRemove.remove(equipamento);
+                                                    humano.setMortos();
+                                                    zombie.setLocal("morta");
+                                                    envenenados.add(zombie);
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 7) {
+                                                    for(Equipamento equipamento1: equipamentos) {
+                                                        if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if(bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(bala > 0) {
+                                                                equipamento1.setDuracao(1);
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 8) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 9) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 10) {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
                                                     return true;
                                                 }
                                             }
-                                            if (tabuleiro[yD][xD] == idHumano) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                if (humano.getEquipa() == 10) {
-                                                    if(humano.getIdTipo() == 9) {
-                                                    }
-                                                    if (humano.getIdEquipamento() == 0) {
-                                                        turnosGameIsOver = -1;
-                                                        zombie.setMortos();
-                                                        humano.setNomeEquipa("Os Outros");
-                                                        humano.setEquipa(20);
-                                                        humanos.remove(humano);
-                                                        humano.colocaAZeroEquipamentos();
-                                                        humano.humanoParaZombie();
-                                                        humano.setImagePNG("zombie.png");
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    }
-                                                    if (humano.getIdTipoEquipamento() == 0) {
-                                                        for(Equipamento equipamento1: equipamentos) {
-                                                            if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if(bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                                if(bala == 1) {
-                                                                    equipamento1.setDuracao(1);
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 1) {
-                                                        if (humano.getIdTipo() == 5) {
-                                                            idZombie = tabuleiro[yD][xD];
-                                                            for (Creature zombie1 : criaturas) {
-                                                                if (idZombie == zombie1.getId()) {
-                                                                    idZombie = zombie1.getIdTipo();
-                                                                }
-                                                            }
-                                                            if (idZombie == 0) {
-                                                            }
-                                                        } else {
-                                                            tabuleiro[yO][xO] = 0;
-                                                            humano.setMortos();
-                                                            zombie.setLocal("morta");
-                                                            envenenados.add(zombie);
-                                                            turnos++;
-                                                            turnosGameIsOver++;
-                                                            currentTeam = 10;
-                                                            return true;
-                                                        }
-                                                    } else if (humano.getIdTipoEquipamento() == 2) {
-                                                        for (Equipamento equipamento1 : equipamentos) {
-                                                            if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if (zombie.getIdTipo() != 4 && bala > 0) {
-                                                                    tabuleiro[yO][xO] = 0;
-                                                                    humano.setMortos();
-                                                                    zombie.setLocal("morta");
-                                                                    envenenados.add(zombie);
-                                                                    equipamento1.setDuracao(1);
-                                                                } else if (zombie.getIdTipo() == 4) {
-                                                                } else if (bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 3) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 4) {
-                                                        if(zombie.getIdTipo() != 3) {// Idoso zombie
-                                                            zombie.setMortos();
-                                                            turnosGameIsOver = -1;
-                                                            humano.setNomeEquipa("Os Outros");
-                                                            humano.setEquipa(20);
-                                                            humanos.remove(humano);
-                                                            humano.colocaAZeroEquipamentos();
-                                                            humano.setEquipmentId(0);
-                                                            humano.humanoParaZombie();
-                                                            humano.setImagePNG("zombie.png");
-                                                        }
-                                                        if(zombie.getIdTipo() == 3) {
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 5) {
-                                                        if(zombie.getIdTipo() != 4) { // Zombie Vampiro
-                                                            zombie.setMortos();
-                                                            turnosGameIsOver = -1;
-                                                            humano.setNomeEquipa("Os Outros");
-                                                            humano.setEquipa(20);
-                                                            humanos.remove(humano);
-                                                            humano.setEquipmentId(0);
-                                                            humano.colocaAZeroEquipamentos();
-                                                            humano.humanoParaZombie();
-                                                            humano.setImagePNG("zombie.png");
-                                                        }
-                                                        if(zombie.getIdTipo() == 4) {
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 6) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        humano.setMortos();
-                                                        zombie.setLocal("morta");
-                                                        envenenados.add(zombie);
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 7) {
-                                                        for(Equipamento equipamento1: equipamentos) {
-                                                            if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if(bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                                if(bala > 0) {
-                                                                    equipamento1.setDuracao(1);
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-
-                                                    } else if (humano.getIdTipoEquipamento() == 9) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 10) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    }
-                                                }
-                                            }
                                         }
-                                    } else if (idTipo != 4) {
-                                        if((idTipo == 3 || idTipo == 0) && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
-                                            return false;
+                                    }
+                                } else if (idTipo != 4) {
+                                    if((idTipo == 3 || idTipo == 0) && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
+                                        return false;
+                                    }
+                                    if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
+                                        if (tabuleiro[yD][xD] == 0) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            zombie.setX(xD);
+                                            zombie.setY(yD);
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 10;
+                                            return true;
                                         }
-                                        if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
-                                            if (tabuleiro[yD][xD] == 0) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 10;
-                                                return true;
+                                        if (tabuleiro[yD][xD] == idEquipamento) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
                                             }
-                                            if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                    return false;
-                                                }
-                                                if(equipamento.getIdTipo() == 8) {
-                                                    return false;
-                                                }
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                equipamentosRemove.remove(equipamento);
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 10;
-                                                return true;
+                                            if(idTipoEquipamento == 8) {
+                                                return false;
                                             }
-                                            if (tabuleiro[yD][xD] == idHumano) {
-                                                if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                            zombie.adicionaEquipamentosEncontrados(1);
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            zombie.setX(xD);
+                                            zombie.setY(yD);
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if(equipamento.getId() == idEquipamento) {
+                                                    equipamentosRemove.remove(equipamento);
+                                                }
+                                            }
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 10;
+                                            return true;
+                                        }
+                                        if (tabuleiro[yD][xD] == idHumano) {
+                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                                return false;
+                                            }
+                                            if (humano.getEquipa() == 10) {
+                                                if(humano.getIdTipo() == 9) {
                                                     return false;
                                                 }
-                                                if (humano.getEquipa() == 10) {
-                                                    if(humano.getIdTipo() == 9) {
-                                                        return false;
+                                                if (humano.getIdEquipamento() == 0) {
+                                                    zombie.setMortos();
+                                                    turnosGameIsOver = -1;
+                                                    humano.setNomeEquipa("Os Outros");
+                                                    humano.setEquipa(20);
+                                                    humanos.remove(humano);
+                                                    humano.colocaAZeroEquipamentos();
+                                                    humano.humanoParaZombie();
+                                                    humano.setImagePNG("zombie.png");
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                }
+                                                if (humano.getIdTipoEquipamento() == 0) {
+                                                    for(Equipamento equipamento1: equipamentos) {
+                                                        if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if(bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(bala == 1) {
+                                                                equipamento1.setDuracao(1);
+                                                            }
+                                                        }
                                                     }
-                                                    if (humano.getIdEquipamento() == 0) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 1) {
+                                                    tabuleiro[yO][xO] = 0;
+                                                    humano.setMortos();
+                                                    zombie.setLocal("morta");
+                                                    envenenados.add(zombie);
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 2) {
+                                                    for(Equipamento equipamento1: equipamentos) {
+                                                        if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if(bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(zombie.getIdTipo() != 4 && bala > 0) {
+                                                                tabuleiro[yO][xO] = 0;
+                                                                tabuleiro[yD][xD] = idHumano;
+                                                                humano.setMortos();
+                                                                zombie.setLocal("morta");
+                                                                envenenados.add(zombie);
+                                                                equipamento1.setDuracao(1);
+                                                            }
+                                                            if(zombie.getIdTipo() == 4) {
+                                                                return false;
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 3) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 4) {
+                                                    if(zombie.getIdTipo() == 3) {
+                                                    }
+                                                    if(zombie.getIdTipo() != 3) {// Idoso zombie
                                                         zombie.setMortos();
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");
                                                         humano.setEquipa(20);
                                                         humanos.remove(humano);
+                                                        humano.setEquipmentId(0);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
+                                                        for(Equipamento equipamento: equipamentos) {
+                                                            if(equipamento.getId() == idEquipamento) {
+                                                                equipamentosRemove.remove(equipamento);
+                                                            }
+                                                        }
                                                     }
-                                                    if (humano.getIdTipoEquipamento() == 0) {
-                                                        for(Equipamento equipamento1: equipamentos) {
-                                                            if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if(bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                                if(bala == 1) {
-                                                                    equipamento1.setDuracao(1);
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 1) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        humano.setMortos();
-                                                        zombie.setLocal("morta");
-                                                        envenenados.add(zombie);
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 2) {
-                                                        for(Equipamento equipamento1: equipamentos) {
-                                                            if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if(bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                                if(zombie.getIdTipo() != 4 && bala > 0) {
-                                                                    tabuleiro[yO][xO] = 0;
-                                                                    tabuleiro[yD][xD] = idHumano;
-                                                                    humano.setMortos();
-                                                                    zombie.setLocal("morta");
-                                                                    envenenados.add(zombie);
-                                                                    equipamento1.setDuracao(1);
-                                                                }
-                                                                if(zombie.getIdTipo() == 4) {
-                                                                    return false;
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 3) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 4) {
-                                                        if(zombie.getIdTipo() == 3) {
-                                                        }
-                                                        if(zombie.getIdTipo() != 3) {// Idoso zombie
-                                                            zombie.setMortos();
-                                                            turnosGameIsOver = -1;
-                                                            humano.setNomeEquipa("Os Outros");
-                                                            humano.setEquipa(20);
-                                                            humanos.remove(humano);
-                                                            humano.setEquipmentId(0);
-                                                            humano.colocaAZeroEquipamentos();
-                                                            humano.humanoParaZombie();
-                                                            humano.setImagePNG("zombie.png");
-                                                            equipamentosRemove.remove(equipamento);
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 5) {
-                                                        if(zombie.getIdTipo() == 4) {
-                                                        }
-                                                        if(zombie.getIdTipo() != 4) { // Zombie Vampiro
-                                                            zombie.setMortos();
-                                                            turnosGameIsOver = -1;
-                                                            humano.setNomeEquipa("Os Outros");
-                                                            humano.setEquipa(20);
-                                                            humanos.remove(humano);
-                                                            humano.setEquipmentId(0);
-                                                            humano.colocaAZeroEquipamentos();
-                                                            humano.humanoParaZombie();
-                                                            humano.setImagePNG("zombie.png");
-                                                            equipamentosRemove.remove(equipamento);
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 6) {
-                                                        tabuleiro[yO][xO] = 0;
-                                                        humano.setMortos();
-                                                        zombie.setLocal("morta");
-                                                        envenenados.add(zombie);
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 7) {
-                                                        for(Equipamento equipamento1: equipamentos) {
-                                                            if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                                bala = equipamento1.getDuracao();
-                                                                if(bala == 0) {
-                                                                    zombie.setMortos();
-                                                                    humano.setEquipmentId(0);
-                                                                    turnosGameIsOver = -1;
-                                                                    humano.setNomeEquipa("Os Outros");
-                                                                    humano.setEquipa(20);
-                                                                    humanos.remove(humano);
-                                                                    humano.setEquipmentId(0);
-                                                                    humano.colocaAZeroEquipamentos();
-                                                                    humano.humanoParaZombie();
-                                                                    humano.setImagePNG("zombie.png");
-                                                                    equipamentosRemove.remove(equipamento);
-                                                                }
-                                                                if(bala > 0) {
-                                                                    equipamento1.setDuracao(1);
-                                                                }
-                                                            }
-                                                        }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 8) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 9) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
-                                                    } else if (humano.getIdTipoEquipamento() == 10) {
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 5) {
+                                                    if(zombie.getIdTipo() == 4) {
                                                     }
+                                                    if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                        zombie.setMortos();
+                                                        turnosGameIsOver = -1;
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humanos.remove(humano);
+                                                        humano.setEquipmentId(0);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
+                                                        for(Equipamento equipamento: equipamentos) {
+                                                            if(equipamento.getId() == idEquipamento) {
+                                                                equipamentosRemove.remove(equipamento);
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 6) {
+                                                    tabuleiro[yO][xO] = 0;
+                                                    humano.setMortos();
+                                                    zombie.setLocal("morta");
+                                                    envenenados.add(zombie);
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 7) {
+                                                    for(Equipamento equipamento1: equipamentos) {
+                                                        if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
+                                                            bala = equipamento1.getDuracao();
+                                                            if(bala == 0) {
+                                                                zombie.setMortos();
+                                                                humano.setEquipmentId(0);
+                                                                turnosGameIsOver = -1;
+                                                                humano.setNomeEquipa("Os Outros");
+                                                                humano.setEquipa(20);
+                                                                humanos.remove(humano);
+                                                                humano.setEquipmentId(0);
+                                                                humano.colocaAZeroEquipamentos();
+                                                                humano.humanoParaZombie();
+                                                                humano.setImagePNG("zombie.png");
+                                                                for(Equipamento equipamento: equipamentos) {
+                                                                    if(equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(bala > 0) {
+                                                                equipamento1.setDuracao(1);
+                                                            }
+                                                        }
+                                                    }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 8) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 9) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
+                                                } else if (humano.getIdTipoEquipamento() == 10) {
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
                                                 }
                                             }
                                         }
