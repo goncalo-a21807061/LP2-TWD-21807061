@@ -1213,8 +1213,13 @@ public class TWDGameManager {
                 .sorted((e1,e2) -> e1.getSalvacoes() - e2.getSalvacoes())
                 .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()));
 
+
         //Total de equipamentos destruidos por tipo de Zombie
         List<String> equipamentosDestruidos = new ArrayList<>();
+        criaturas.stream()
+                .filter((c) -> c.getEquipa()== 20)
+                .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
+                .forEach((c) ->equipamentosDestruidos.add(c.getNome() + ":" + c.getMortos() + ":" + c.getEquipamentosApanhados()));
 
 
         //Criaturas que mais equipamentos apanharam/destruiram
