@@ -701,19 +701,25 @@ public class TWDGameManager {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                 return false;
                                             }
+                                            /*
                                             if (idTipoEquipamento == 5) {
                                                 return false;
-                                            } else if(idTipoEquipamento == 8) {
+                                            } else
+                                            */
+                                            if(idTipoEquipamento == 8) {
                                                 return false;
                                             } else {
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                for(Equipamento equipamento: equipamentos) {
-                                                    if(equipamento.getId() == idEquipamento) {
-                                                        equipamentosRemove.remove(equipamento);
+                                                if(idTipoEquipamento == 5) {
+                                                } else {
+                                                    zombie.adicionaEquipamentosEncontrados(1);
+                                                    tabuleiro[yD][xD] = id;
+                                                    tabuleiro[yO][xO] = 0;
+                                                    zombie.setX(xD);
+                                                    zombie.setY(yD);
+                                                    for (Equipamento equipamento : equipamentos) {
+                                                        if (equipamento.getId() == idEquipamento) {
+                                                            equipamentosRemove.remove(equipamento);
+                                                        }
                                                     }
                                                 }
                                                 turnos++;
@@ -1214,7 +1220,7 @@ public class TWDGameManager {
                 .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()));
 
 
-        //Total de equipamentos destruidos por tipo de Zombie
+        //Total de equipamentos destruidos por tipo de Zombie  -> ERRADO
         List<String> equipamentosDestruidos = new ArrayList<>();
         criaturas.stream()
                 .filter((c) -> c.getEquipa()== 20)
