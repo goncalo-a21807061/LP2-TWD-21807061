@@ -11,10 +11,11 @@
 7 : 3 : Paciente Zeros : 5 : 4
 8 : 4 : Paciente Zerosa : 4 : 2
 9 : 0 : Paciente Um : 2 : 1
-3
+4
 -1 : 9 : 1 : 0
 -2 : 0 : 2 : 3
 -3 : 8 : 2 : 0
+-4 : 2 : 2 : 1
 2
 6 : 6
 0 : 0

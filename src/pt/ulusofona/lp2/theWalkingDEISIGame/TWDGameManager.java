@@ -789,7 +789,7 @@ public class TWDGameManager {
                                                     for (Equipamento equipamento2 : equipamentos) {
                                                         if (equipamento.getId() == idEquipamento) {
                                                             if (equipamento.getDuracao() > 0) {
-                                                                return false;
+                                                                //return false;
                                                             } else {
                                                                 zombie.adicionaEquipamentosEncontrados(1);
                                                                 tabuleiro[yD][xD] = id;
@@ -1114,7 +1114,7 @@ public class TWDGameManager {
                                                     for (Equipamento equipamento2 : equipamentos) {
                                                         if (equipamento.getId() == idEquipamento) {
                                                             if (equipamento.getDuracao() > 0) {
-                                                                return false;
+                                                              //  return false;
                                                             } else {
                                                                 zombie.adicionaEquipamentosEncontrados(1);
                                                                 tabuleiro[yD][xD] = id;
