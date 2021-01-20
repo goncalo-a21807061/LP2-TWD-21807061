@@ -960,33 +960,29 @@ public class TWDGameManager {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                 return false;
                                             }
-                                            if (idTipoEquipamento == 5) {
-                                                return false;
-                                            } else {
-                                                if(idTipoEquipamento == 8) {
-                                                    for (Equipamento equipamento : equipamentos) {
-                                                        if (equipamento.getId() == idEquipamento) {
-                                                            if (equipamento.getDuracao() > 0) {
-                                                                return false;
-                                                            }
+                                            if(idTipoEquipamento == 8) {
+                                                for (Equipamento equipamento : equipamentos) {
+                                                    if (equipamento.getId() == idEquipamento) {
+                                                        if (equipamento.getDuracao() > 0) {
+                                                            return false;
                                                         }
                                                     }
                                                 }
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                for (Equipamento equipamento : equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        equipamentosRemove.remove(equipamento);
-                                                    }
-                                                }
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 10;
-                                                return true;
                                             }
+                                            zombie.adicionaEquipamentosEncontrados(1);
+                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yO][xO] = 0;
+                                            zombie.setX(xD);
+                                            zombie.setY(yD);
+                                            for (Equipamento equipamento : equipamentos) {
+                                                if (equipamento.getId() == idEquipamento) {
+                                                    equipamentosRemove.remove(equipamento);
+                                                }
+                                            }
+                                            turnos++;
+                                            turnosGameIsOver++;
+                                            currentTeam = 10;
+                                            return true;
                                         }
                                         if (tabuleiro[yD][xD] == idHumano) {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
