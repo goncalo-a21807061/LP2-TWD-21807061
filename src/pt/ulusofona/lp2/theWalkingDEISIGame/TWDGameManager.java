@@ -674,10 +674,6 @@ public class TWDGameManager {
             } else {
                 for (Creature zombie : criaturas) {
                     if (zombie.getEquipa() == 20) {
-                        for (Equipamento equipamento : equipamentos) {
-                            idEquipamento = equipamento.getId();
-                            idTipoEquipamento = equipamento.getIdTipo();
-                        }
                         for (Creature humano : criaturas) {
                             idHumano = humano.getId();
                             int idTipo = zombie.getIdTipo();
@@ -702,48 +698,52 @@ public class TWDGameManager {
                                             currentTeam = 10;
                                             return true;
                                         }
-                                        if (tabuleiro[yD][xD] == idEquipamento) {
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                return false;
-                                            }
-                                            if(idTipoEquipamento == 8) {
-                                                for (Equipamento equipamento : equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        if (equipamento.getDuracao() > 0) {
-                                                            // return false;
-                                                        } else {
-                                                            zombie.adicionaEquipamentosEncontrados(1);
-                                                            tabuleiro[yD][xD] = id;
-                                                            tabuleiro[yO][xO] = 0;
-                                                            zombie.setX(xD);
-                                                            zombie.setY(yD);
-                                                            for (Equipamento equipamento1 : equipamentos) {
-                                                                if (equipamento.getId() == idEquipamento) {
-                                                                    equipamentosRemove.remove(equipamento);
+                                        for (Equipamento equipamento : equipamentos) {
+                                            idEquipamento = equipamento.getId();
+                                            idTipoEquipamento = equipamento.getIdTipo();
+                                            if (tabuleiro[yD][xD] == idEquipamento) {
+                                                if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
+                                                    return false;
+                                                }
+                                                if (idTipoEquipamento == 8) {
+                                                    for (Equipamento equipamento2 : equipamentos) {
+                                                        if (equipamento.getId() == idEquipamento) {
+                                                            if (equipamento.getDuracao() > 0) {
+                                                                return false;
+                                                            } else {
+                                                                zombie.adicionaEquipamentosEncontrados(1);
+                                                                tabuleiro[yD][xD] = id;
+                                                                tabuleiro[yO][xO] = 0;
+                                                                zombie.setX(xD);
+                                                                zombie.setY(yD);
+                                                                for (Equipamento equipamento1 : equipamentos) {
+                                                                    if (equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
                                                                 }
                                                             }
+                                                            turnos++;
+                                                            turnosGameIsOver++;
+                                                            currentTeam = 10;
+                                                            return true;
                                                         }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
                                                     }
-                                                }
-                                            } else {
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                for (Equipamento equipamento : equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        equipamentosRemove.remove(equipamento);
+                                                } else {
+                                                    zombie.adicionaEquipamentosEncontrados(1);
+                                                    tabuleiro[yD][xD] = id;
+                                                    tabuleiro[yO][xO] = 0;
+                                                    zombie.setX(xD);
+                                                    zombie.setY(yD);
+                                                    for (Equipamento equipamento2 : equipamentos) {
+                                                        if (equipamento.getId() == idEquipamento) {
+                                                            equipamentosRemove.remove(equipamento);
+                                                        }
                                                     }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
                                                 }
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 10;
-                                                return true;
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == idHumano) {
@@ -968,48 +968,52 @@ public class TWDGameManager {
                                             currentTeam = 10;
                                             return true;
                                         }
-                                        if (tabuleiro[yD][xD] == idEquipamento) {
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                return false;
-                                            }
-                                            if(idTipoEquipamento == 8) {
-                                                for (Equipamento equipamento : equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        if (equipamento.getDuracao() > 0) {
-                                                           // return false;
-                                                        } else {
-                                                            zombie.adicionaEquipamentosEncontrados(1);
-                                                            tabuleiro[yD][xD] = id;
-                                                            tabuleiro[yO][xO] = 0;
-                                                            zombie.setX(xD);
-                                                            zombie.setY(yD);
-                                                            for (Equipamento equipamento1 : equipamentos) {
-                                                                if (equipamento.getId() == idEquipamento) {
-                                                                    equipamentosRemove.remove(equipamento);
+                                        for (Equipamento equipamento : equipamentos) {
+                                            idEquipamento = equipamento.getId();
+                                            idTipoEquipamento = equipamento.getIdTipo();
+                                            if (tabuleiro[yD][xD] == idEquipamento) {
+                                                if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
+                                                    return false;
+                                                }
+                                                if (idTipoEquipamento == 8) {
+                                                    for (Equipamento equipamento2 : equipamentos) {
+                                                        if (equipamento.getId() == idEquipamento) {
+                                                            if (equipamento.getDuracao() > 0) {
+                                                                return false;
+                                                            } else {
+                                                                zombie.adicionaEquipamentosEncontrados(1);
+                                                                tabuleiro[yD][xD] = id;
+                                                                tabuleiro[yO][xO] = 0;
+                                                                zombie.setX(xD);
+                                                                zombie.setY(yD);
+                                                                for (Equipamento equipamento1 : equipamentos) {
+                                                                    if (equipamento.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento);
+                                                                    }
                                                                 }
                                                             }
+                                                            turnos++;
+                                                            turnosGameIsOver++;
+                                                            currentTeam = 10;
+                                                            return true;
                                                         }
-                                                        turnos++;
-                                                        turnosGameIsOver++;
-                                                        currentTeam = 10;
-                                                        return true;
                                                     }
-                                                }
-                                            } else {
-                                                zombie.adicionaEquipamentosEncontrados(1);
-                                                tabuleiro[yD][xD] = id;
-                                                tabuleiro[yO][xO] = 0;
-                                                zombie.setX(xD);
-                                                zombie.setY(yD);
-                                                for (Equipamento equipamento : equipamentos) {
-                                                    if (equipamento.getId() == idEquipamento) {
-                                                        equipamentosRemove.remove(equipamento);
+                                                } else {
+                                                    zombie.adicionaEquipamentosEncontrados(1);
+                                                    tabuleiro[yD][xD] = id;
+                                                    tabuleiro[yO][xO] = 0;
+                                                    zombie.setX(xD);
+                                                    zombie.setY(yD);
+                                                    for (Equipamento equipamento2 : equipamentos) {
+                                                        if (equipamento.getId() == idEquipamento) {
+                                                            equipamentosRemove.remove(equipamento);
+                                                        }
                                                     }
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 10;
+                                                    return true;
                                                 }
-                                                turnos++;
-                                                turnosGameIsOver++;
-                                                currentTeam = 10;
-                                                return true;
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == idHumano) {
