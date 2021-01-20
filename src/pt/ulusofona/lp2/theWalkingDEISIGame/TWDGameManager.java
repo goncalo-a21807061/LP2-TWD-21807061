@@ -1446,7 +1446,7 @@ public class TWDGameManager {
         List<String> equipamentosSalvacao = new ArrayList<>();
         equipamentos.stream()
                 .sorted((e2,e1) -> e1.getSalvacoes() - e2.getSalvacoes())
-                .filter((equipamento) -> equipamento.getSalvacoes() >= 0)
+                .filter((equipamento) -> equipamento.getSalvacoes() > 0)
                 .sorted((e2,e1) -> e2.getSalvacoes() - e1.getSalvacoes())
                 .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()));
 
