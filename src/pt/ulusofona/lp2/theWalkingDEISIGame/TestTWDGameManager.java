@@ -56,13 +56,16 @@ public class TestTWDGameManager {
 
         equipamento.setX(3);
         equipamento.setY(2);
+        equipamento.setSalvacoes();
 
+        assertEquals(-5, equipamento.getId());
+        assertEquals(0, equipamento.getIdTipo());
         assertEquals(3, equipamento.getX());
         assertEquals(2, equipamento.getY());
         assertEquals("equipment_0.png", equipamento.getImagePNG());
         assertEquals("Escudo de Madeira", equipamento.getTitulo());
         assertEquals("Escudo de Madeira", equipamento.getDescricao());
-
+        assertEquals(1, equipamento.getSalvacoes());
         equipamento.setDuracao(1);
 
         assertEquals(0, equipamento.getDuracao());
@@ -90,6 +93,9 @@ public class TestTWDGameManager {
 
         // IdTipo = 8
         Equipamento equipamento7 = new Equipamento(-7, 8, 3, 1);
+
+        // IdTipo = 9
+        Equipamento equipamento9 = new Equipamento(-9,9,3,2);
 
         // IdTipo = 10
         Equipamento equipamento8 = new Equipamento(-7, 10, 3, 1);
@@ -153,12 +159,44 @@ public class TestTWDGameManager {
         criatura1.toString();
         criatura1.setLocal("viva");
         criatura1.toString();
+        criatura1.setMortos();
+        criatura1.getMortos();
+        criatura2.setMortos();
+        criatura2.getMortos();
+        criatura2.getAlcance();
+        criatura2.setIdTipoEquipamento(5);
+        criatura2.getIdEquipamento();
+        criatura2.setEquipmentId(-1);
+        criatura2.adicionaEquipamentosEncontrados(1);
+        criatura2.setX(3);
+        criatura2.setY(2);
+        criatura2.getId();
+        criatura2.getEquipa();
+        criatura2.getIdTipo();
+        criatura2.getMoverDiagonal();
+
+        Creature criatura3 = new Humano(2,5,"zeus", 3,3);
+        Creature criatura4 = new Humano(3,6,"darwid", 3,3);
+        Creature criatura5 = new Humano(4,8,"richie",2,1);
+        Creature criatura6 = new Humano(5,9,"davi",1,2);
+        criatura2.humanoParaZombie();
+        criatura3.humanoParaZombie();
+        criatura4.humanoParaZombie();
+        criatura5.humanoParaZombie();
+        criatura6.humanoParaZombie();
+
+        Creature zombie1 = new Zombie(2,0,"zombiw1",1,1);
+        Creature zombie2 = new Zombie(3,1,"zombie2",1,2);
+        Creature zombie3 = new Zombie(4,2,"ZOMBIE3",1,3);
+        Creature zombie4 = new Zombie(4,4,"oi",2,2);
+        zombie4.getId();
+        zombie4.getEquipa();
+
     }
 
     /*
     @Test
     public void test18move() throws InvalidTWDInitialFileException, FileNotFoundException {
-        File file = new File("C:/Users/g1a9p/3ºAno/ProjetoTWD/test-files");
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(file);
         twdGameManager.getWorldSize();

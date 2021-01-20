@@ -631,7 +631,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     if (idZombie != 0) { //diferente de criança
-                                                        // return false;
+                                                        return false;
                                                     } else {
                                                         for(Equipamento equipamento: equipamentos) {
                                                             if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
