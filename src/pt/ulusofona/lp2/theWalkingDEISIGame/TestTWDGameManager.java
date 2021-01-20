@@ -12,12 +12,17 @@ public class TestTWDGameManager {
 
     @Test
     public void test07Move() throws InvalidTWDInitialFileException, FileNotFoundException {
-        File file = new File("dados.txt");
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(file);
+        try {
+            File file = new File("dados.txt");
+            TWDGameManager twdGameManager = new TWDGameManager();
+            twdGameManager.startGame(file);
+            // teste movimento humano apanhar a espada
+            assertEquals(true, twdGameManager.move(2, 2, 2, 3));
 
-        // teste movimento humano apanhar a espada
-        assertEquals(true, twdGameManager.move(2, 2, 2, 3));
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        }
+
     }
 
 
@@ -156,75 +161,83 @@ public class TestTWDGameManager {
 
     @Test
     public void test18move() throws InvalidTWDInitialFileException, FileNotFoundException {
-        File file = new File("dados.txt");
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(file);
-        twdGameManager.getWorldSize();
-        twdGameManager.getInitialTeam();
-        twdGameManager.getAuthors();
-        twdGameManager.getCreatures();
-        twdGameManager.getHumans();
-        twdGameManager.getZombies();
-        twdGameManager.getEquipamentos();
-        twdGameManager.getCurrentTeamId();
-        List<Creature> criaturas = new ArrayList<>();
-        List<Equipamento> equipamentos = new ArrayList<>();
-        List<Porta> portas = new ArrayList<>();
-        criaturas.add(new Zombie(1, 0, "Freddy M.", 3, 3));
-        criaturas.add(new Humano(2, 8, "Jackie Chan", 3, 4));
-        criaturas.add(new Humano(3, 6, "Alice", 5, 5));
-        criaturas.add(new Humano(4, 6, "Ash", 2, 2));
-        criaturas.add(new Humano(5, 9, "Sam", 1, 1));
-        criaturas.add(new Humano(6, 5, "Paciente Zero", 4, 4));
-        criaturas.add(new Zombie(7, 1, "Paciente Zeros", 5, 4));
-        criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 3));
-        criaturas.add(new Zombie(8,4,"zombie",2,4));
-        equipamentos.add(new Equipamento(-1, 9, 1, 2));
-        equipamentos.add(new Equipamento(-2, 2, 3, 2));
-        portas.add(new Porta(0,0));
-        portas.add(new Porta(2,4));
-        twdGameManager.isDay();
-        twdGameManager.move(2, 2, 1, 2);
-        twdGameManager.getElementId(1,2);
-        twdGameManager.getElementId(0,0);
-        twdGameManager.getGameResults();
-        twdGameManager.getEquipmentId(1);
-        twdGameManager.getEquipmentId(-30);
-        twdGameManager.getEquipmentTypeId(-1);
-        twdGameManager.getEquipmentTypeId(-30);
-        twdGameManager.popCultureExtravaganza();
-        twdGameManager.getEquipmentInfo(-1);
-        twdGameManager.loadGame(new File("dados.txt"));
-        twdGameManager.verificarSobrePosicao(3,3,3,5);
-        twdGameManager.move(3,4,3,5);
-        twdGameManager.verificarSobrePosicao(3,3,4,2);
-        twdGameManager.verificarSobrePosicao(1,1,1,3);
-        twdGameManager.verificarSobrePosicao(5,3,4,4);
-        twdGameManager.verificarSobrePosicao(4,6,4,4);
-        twdGameManager.verificarSobrePosicao(3,5,3,5);
-        twdGameManager.verificarSobrePosicao(5,3,5,3);
-        twdGameManager.verificarSobrePosicao(3,1,3,5);
-        twdGameManager.verificarSobrePosicao(3,1,3,5);
-        twdGameManager.verificarSobrePosicao(2,0,2,2);
-        twdGameManager.verificarSobrePosicao(2,2,5,3);
-        twdGameManager.verificarSobrePosicao(2,4,4,2);
-        twdGameManager.saveGame(new File("Novo Documento de Texto"));
-        twdGameManager.saveGame(new File(""));
-        twdGameManager.getElementId(1,2);
-        twdGameManager.getIdsInSafeHaven();
-        twdGameManager.move(0,0,-1,-1);
-        twdGameManager.move(2,2,1,2);
-        twdGameManager.move(1,2,3,2);
-        twdGameManager.move(4,3,3,3);
+        try {
+            File file = new File("dados.txt");
+            TWDGameManager twdGameManager = new TWDGameManager();
+            twdGameManager.startGame(file);
+            twdGameManager.getWorldSize();
+            twdGameManager.getInitialTeam();
+            twdGameManager.getAuthors();
+            twdGameManager.getCreatures();
+            twdGameManager.getHumans();
+            twdGameManager.getZombies();
+            twdGameManager.getEquipamentos();
+            twdGameManager.getCurrentTeamId();
+            List<Creature> criaturas = new ArrayList<>();
+            List<Equipamento> equipamentos = new ArrayList<>();
+            List<Porta> portas = new ArrayList<>();
+            criaturas.add(new Zombie(1, 0, "Freddy M.", 3, 3));
+            criaturas.add(new Humano(2, 8, "Jackie Chan", 3, 4));
+            criaturas.add(new Humano(3, 6, "Alice", 5, 5));
+            criaturas.add(new Humano(4, 6, "Ash", 2, 2));
+            criaturas.add(new Humano(5, 9, "Sam", 1, 1));
+            criaturas.add(new Humano(6, 5, "Paciente Zero", 4, 4));
+            criaturas.add(new Zombie(7, 1, "Paciente Zeros", 5, 4));
+            criaturas.add(new Zombie(8, 4, "Paciente Zerosa", 4, 3));
+            criaturas.add(new Zombie(8,4,"zombie",2,4));
+            equipamentos.add(new Equipamento(-1, 9, 1, 2));
+            equipamentos.add(new Equipamento(-2, 2, 3, 2));
+            portas.add(new Porta(0,0));
+            portas.add(new Porta(2,4));
+            twdGameManager.isDay();
+            twdGameManager.move(2, 2, 1, 2);
+            twdGameManager.getElementId(1,2);
+            twdGameManager.getElementId(0,0);
+            twdGameManager.getGameResults();
+            twdGameManager.getEquipmentId(1);
+            twdGameManager.getEquipmentId(-30);
+            twdGameManager.getEquipmentTypeId(-1);
+            twdGameManager.getEquipmentTypeId(-30);
+            twdGameManager.popCultureExtravaganza();
+            twdGameManager.getEquipmentInfo(-1);
+            twdGameManager.loadGame(new File("dados.txt"));
+            twdGameManager.verificarSobrePosicao(3,3,3,5);
+            twdGameManager.move(3,4,3,5);
+            twdGameManager.verificarSobrePosicao(3,3,4,2);
+            twdGameManager.verificarSobrePosicao(1,1,1,3);
+            twdGameManager.verificarSobrePosicao(5,3,4,4);
+            twdGameManager.verificarSobrePosicao(4,6,4,4);
+            twdGameManager.verificarSobrePosicao(3,5,3,5);
+            twdGameManager.verificarSobrePosicao(5,3,5,3);
+            twdGameManager.verificarSobrePosicao(3,1,3,5);
+            twdGameManager.verificarSobrePosicao(3,1,3,5);
+            twdGameManager.verificarSobrePosicao(2,0,2,2);
+            twdGameManager.verificarSobrePosicao(2,2,5,3);
+            twdGameManager.verificarSobrePosicao(2,4,4,2);
+            twdGameManager.saveGame(new File("Novo Documento de Texto"));
+            twdGameManager.saveGame(new File(""));
+            twdGameManager.getElementId(1,2);
+            twdGameManager.getIdsInSafeHaven();
+            twdGameManager.move(0,0,-1,-1);
+            twdGameManager.move(2,2,1,2);
+            twdGameManager.move(1,2,3,2);
+            twdGameManager.move(4,3,3,3);
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        }
 
     }
 
     @Test
     public void test19FalseFile() throws InvalidTWDInitialFileException, FileNotFoundException {
-        File file = new File("dados.txt");
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(file);
+        try {
+            File file = new File("dados.txt");
+            TWDGameManager twdGameManager = new TWDGameManager();
+            twdGameManager.startGame(file);
 
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
+        }
     }
 
 
