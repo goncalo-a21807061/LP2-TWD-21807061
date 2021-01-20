@@ -582,7 +582,6 @@ public class TWDGameManager {
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
                                                         }
-
                                                         humano.adicionaEquipamentosEncontrados(1);
                                                         tabuleiro[yD][xD] = id;
                                                         tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -1448,7 +1447,7 @@ public class TWDGameManager {
                 .sorted((e2,e1) -> e1.getSalvacoes() - e2.getSalvacoes())
                 .filter((equipamento) -> equipamento.getSalvacoes() > 0)
                 .sorted((e2,e1) -> e2.getSalvacoes() - e1.getSalvacoes())
-                .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getIdTipo() + ":" + equipamento.getSalvacoes()));
+                .forEach(equipamento -> equipamentosSalvacao.add(equipamento.getId() + ":" + equipamento.getSalvacoes()));
 
 
         //Total de equipamentos destruidos por tipo de Zombie  -> ERRADO
