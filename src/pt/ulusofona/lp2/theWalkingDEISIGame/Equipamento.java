@@ -18,6 +18,7 @@ public class Equipamento {
         this.idTipo = idTipo;
         this.x = x;
         this.y = y;
+        this.salvacoes = 0;
         if(idTipo == 0) {
             defensivoOuOfensivo = "Defensivo";
             titulo = "Escudo de Madeira";
