@@ -722,11 +722,11 @@ public class TWDGameManager {
                                                                     equipamentosRemove.remove(equipamento);
                                                                 }
                                                             }
-                                                            turnos++;
-                                                            turnosGameIsOver++;
-                                                            currentTeam = 10;
-                                                            return true;
                                                         }
+                                                        turnos++;
+                                                        turnosGameIsOver++;
+                                                        currentTeam = 10;
+                                                        return true;
                                                     }
                                                 }
                                             } else {
@@ -988,11 +988,11 @@ public class TWDGameManager {
                                                                     equipamentosRemove.remove(equipamento);
                                                                 }
                                                             }
-                                                            turnos++;
-                                                            turnosGameIsOver++;
-                                                            currentTeam = 10;
-                                                            return true;
                                                         }
+                                                        turnos++;
+                                                        turnosGameIsOver++;
+                                                        currentTeam = 10;
+                                                        return true;
                                                     }
                                                 }
                                             } else {
