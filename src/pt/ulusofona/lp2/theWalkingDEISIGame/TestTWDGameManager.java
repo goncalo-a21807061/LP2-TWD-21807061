@@ -267,7 +267,6 @@ public class TestTWDGameManager {
         twdGameManager.isDoorToSafeHaven(0,0);
         twdGameManager.isDoorToSafeHaven(1,0);
         assertEquals(7,twdGameManager.getElementId(5,4));
-        assertEquals(0,twdGameManager.getEquipmentId(4));
-        assertEquals(0,twdGameManager.getEquipmentTypeId(-2));
+
     }
 }
