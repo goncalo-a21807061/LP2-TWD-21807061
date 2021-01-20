@@ -1,26 +1,14 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import org.junit.Test;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class TestTWDGameManager {
-
-    /*
-    @Test
-    public void test07Move() throws InvalidTWDInitialFileException, FileNotFoundException {
-        File file = new File("dados.txt");
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(file);
-
-        // teste movimento humano apanhar a espada
-        assertEquals(true, twdGameManager.move(2, 2, 2, 3));
-    }
-
-     */
-
 
     @Test
     public void test15LoadGame() {
@@ -194,11 +182,32 @@ public class TestTWDGameManager {
 
     }
 
-    /*
+
     @Test
-    public void test18move() throws InvalidTWDInitialFileException, FileNotFoundException {
+    public void test19move() {
+        InvalidTWDInitialFileException invalidTWDInitialFileException = new InvalidTWDInitialFileException(5,true,"");
+        assertEquals(true,invalidTWDInitialFileException.validNrOfCreatures());
+        assertEquals(true,invalidTWDInitialFileException.validCreatureDefinition());
+
+        InvalidTWDInitialFileException invalidTWDInitialFileException1 = new InvalidTWDInitialFileException(1,false,"linha");
+        assertEquals(false,invalidTWDInitialFileException1.validNrOfCreatures());
+        assertEquals(false,invalidTWDInitialFileException1.validCreatureDefinition());
+        assertEquals("linha",invalidTWDInitialFileException1.getErroneousLine());
+    }
+
+    @Test
+    public void test20move() throws IOException {
+        String string = new String();
+        string = "7 7\n" +"10\n" +  "10\n" + "1 : 1 : Freddie M. : 4 : 3\n" + "2 : 7 : Jackie Chan : 3 : 5\n" + "3 : 6 : Alice : 5 : 5\n" +
+                "4 : 8 : Ash : 2 : 2\n" + "5 : 5 : Sam : 1 : 1\n" + "10 : 9 : Cão : 0 : 3  \n" + "6 : 2 : Paciente Zero : 4 : 4\n" + "7 : 3 : Paciente Zeros : 5 : 4\n" + "8 : 4 : Paciente Zerosa : 4 : 2\n" + "9 : 0 : Paciente Um : 2 : 1\n" +
+                "4\n" + "-1 : 9 : 1 : 0\n" + "-2 : 0 : 2 : 3\n" + "-3 : 8 : 2 : 0\n" + "-4 : 2 : 2 : 1\n" + "2\n" + "6 : 6\n" + "0 : 0";
+        File file = new File("dadosTeste");
+        FileWriter fileWriter = new FileWriter(file.getPath());
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.print(string);
+        printWriter.close();
+
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(file);
         twdGameManager.getWorldSize();
         twdGameManager.getInitialTeam();
         twdGameManager.getAuthors();
@@ -248,20 +257,17 @@ public class TestTWDGameManager {
         twdGameManager.verificarSobrePosicao(2,0,2,2);
         twdGameManager.verificarSobrePosicao(2,2,5,3);
         twdGameManager.verificarSobrePosicao(2,4,4,2);
-        twdGameManager.saveGame(new File("Novo Documento de Texto"));
-        twdGameManager.saveGame(new File(""));
         twdGameManager.getElementId(1,2);
         twdGameManager.getIdsInSafeHaven();
         twdGameManager.move(0,0,-1,-1);
         twdGameManager.move(2,2,1,2);
         twdGameManager.move(1,2,3,2);
         twdGameManager.move(4,3,3,3);
-
-
+        twdGameManager.getGameStatistics();
+        twdGameManager.isDoorToSafeHaven(0,0);
+        twdGameManager.isDoorToSafeHaven(1,0);
+        assertEquals(7,twdGameManager.getElementId(5,4));
+        assertEquals(0,twdGameManager.getEquipmentId(4));
+        assertEquals(0,twdGameManager.getEquipmentTypeId(-2));
     }
-*/
-
-
-
-
 }

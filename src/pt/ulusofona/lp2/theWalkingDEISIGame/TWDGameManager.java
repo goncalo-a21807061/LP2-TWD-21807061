@@ -914,6 +914,7 @@ public class TWDGameManager {
                                                                     }
                                                                 }
                                                                 tabuleiro[yO][xO] = 0;
+                                                                tabuleiro[yD][xD] = idHumano;
                                                                 humano.setMortos();
                                                                 zombie.setLocal("morta");
                                                                 envenenados.add(zombie);
