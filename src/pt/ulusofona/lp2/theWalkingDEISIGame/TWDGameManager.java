@@ -976,7 +976,7 @@ public class TWDGameManager {
                                                     currentTeam = 10;
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 5) {
-                                                    if(zombie.getIdTipo() != 4) { // Zombie Vampiro
+                                                    if(zombie.getIdTipo() != 4) {  // Zombie Vampiro
                                                         zombie.setMortos();
                                                         turnosGameIsOver = -1;
                                                         humano.setNomeEquipa("Os Outros");

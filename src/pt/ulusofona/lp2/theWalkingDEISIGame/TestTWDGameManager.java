@@ -12,9 +12,9 @@ public class TestTWDGameManager {
 
     @Test
     public void test07Move() throws InvalidTWDInitialFileException, FileNotFoundException {
-
+        File file = new File("dados.txt");
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
+        twdGameManager.startGame(file);
 
         // teste movimento humano apanhar a espada
         assertEquals(true, twdGameManager.move(2, 2, 2, 3));
@@ -156,8 +156,9 @@ public class TestTWDGameManager {
 
     @Test
     public void test18move() throws InvalidTWDInitialFileException, FileNotFoundException {
+        File file = new File("dados.txt");
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
+        twdGameManager.startGame(file);
         twdGameManager.getWorldSize();
         twdGameManager.getInitialTeam();
         twdGameManager.getAuthors();
@@ -220,8 +221,9 @@ public class TestTWDGameManager {
 
     @Test
     public void test19FalseFile() throws InvalidTWDInitialFileException, FileNotFoundException {
+        File file = new File("dados.txt");
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
+        twdGameManager.startGame(file);
 
     }
 
