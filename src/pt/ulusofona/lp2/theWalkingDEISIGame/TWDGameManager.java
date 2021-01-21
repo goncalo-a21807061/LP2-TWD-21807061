@@ -131,12 +131,13 @@ public class TWDGameManager {
     }
 
 
-        public int[] getWorldSize() {
+    public int[] getWorldSize() {
         int[] worldSize = new int[2];
         worldSize[0] = rows;
         worldSize[1] = columns;
         return worldSize;
     }
+
 
     public int getInitialTeam() {
         return equipaInicial;
@@ -632,7 +633,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     if (idZombie != 0) { //diferente de criança
-                                                        return false;
+                                                        //return false;
                                                     } else {
                                                         for(Equipamento equipamento: equipamentos) {
                                                             if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
