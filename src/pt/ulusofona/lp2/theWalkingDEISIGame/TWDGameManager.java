@@ -157,11 +157,6 @@ public class TWDGameManager {
                 for(Creature criatura : criaturas) {
                     if(criatura.getEnvenenado() == true) {
                         tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
-                        for(Equipamento equipamento: equipamentos) {
-                            if(equipamento.getId() == criatura.getIdEquipamento()) {
-                                equipamento.setDuracao(3);
-                            }
-                        }
                         criatura.setLocal("morta");
                         humanos.remove(criatura);
                         envenenados.add(criatura);
