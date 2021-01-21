@@ -948,6 +948,7 @@ public class TWDGameManager {
                                                                     }
                                                                 }
                                                                 equipamento1.setDuracao(1);
+                                                                humano.setEquipmentId(0);
                                                             }
                                                         }
                                                     }
@@ -961,15 +962,20 @@ public class TWDGameManager {
                                                         humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
-                                                    } else {
-                                                        tabuleiro[yD][xD] = 0;
-                                                        zombie.setMortos();
-                                                        humano.setLocal("morta");
-                                                    }
-                                                    for(Equipamento equipamento: equipamentos) {
-                                                        if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
-                                                            equipamento.setSalvacoes();
+                                                        for(Equipamento equipamento: equipamentos) {
+                                                            if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
+                                                                equipamento.setSalvacoes();
+                                                            }
                                                         }
+                                                    } else {
+                                                        turnosGameIsOver = -1;
+                                                        zombie.setMortos();
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humanos.remove(humano);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
                                                     }
                                                     turnos++;
                                                     turnosGameIsOver++;
@@ -986,7 +992,6 @@ public class TWDGameManager {
                                                                     }
                                                                 }
                                                                 tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = idHumano;
                                                                 humano.setMortos();
                                                                 zombie.setLocal("morta");
                                                                 envenenados.add(zombie);
@@ -1270,6 +1275,7 @@ public class TWDGameManager {
                                                                     }
                                                                 }
                                                                 equipamento1.setDuracao(1);
+                                                                humano.setEquipmentId(0);
                                                             }
                                                         }
                                                     }
@@ -1283,15 +1289,20 @@ public class TWDGameManager {
                                                         humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
-                                                    } else {
-                                                        tabuleiro[yD][xD] = 0;
-                                                        zombie.setMortos();
-                                                        humano.setLocal("morta");
-                                                    }
-                                                    for(Equipamento equipamento: equipamentos) {
-                                                        if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
-                                                            equipamento.setSalvacoes();
+                                                        for(Equipamento equipamento: equipamentos) {
+                                                            if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
+                                                                equipamento.setSalvacoes();
+                                                            }
                                                         }
+                                                    } else {
+                                                        turnosGameIsOver = -1;
+                                                        zombie.setMortos();
+                                                        humano.setNomeEquipa("Os Outros");
+                                                        humano.setEquipa(20);
+                                                        humanos.remove(humano);
+                                                        humano.colocaAZeroEquipamentos();
+                                                        humano.humanoParaZombie();
+                                                        humano.setImagePNG("zombie.png");
                                                     }
                                                     turnos++;
                                                     turnosGameIsOver++;
