@@ -252,7 +252,11 @@ public class TWDGameManager {
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
-                                                return false;
+                                                //return false;
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
                                             } else if (humano.getIdTipoEquipamento() == 1) {
                                                 for(Equipamento equipamento: equipamentos) {
                                                     if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
@@ -426,7 +430,11 @@ public class TWDGameManager {
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
-                                                return false;
+                                               // return false;
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
                                             } else if (humano.getIdTipoEquipamento() == 1) {
                                                 if (humano.getIdTipo() == 5) {
                                                     idZombie = tabuleiro[yD][xD];
@@ -548,7 +556,7 @@ public class TWDGameManager {
                                             }
                                         }
                                     }
-                                } else if (idTipo != 8 && idTipo != 9){
+                                } else if (idTipo != 8 && idTipo != 9) {
                                     if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
                                         return false;
                                     }
@@ -623,7 +631,11 @@ public class TWDGameManager {
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
-                                                return false;
+                                               // return false;
+                                                turnos++;
+                                                turnosGameIsOver++;
+                                                currentTeam = 20;
+                                                return true;
                                             } else if (humano.getIdTipoEquipamento() == 1) {
                                                 if (humano.getIdTipo() == 5) {
                                                     idZombie = tabuleiro[yD][xD];
