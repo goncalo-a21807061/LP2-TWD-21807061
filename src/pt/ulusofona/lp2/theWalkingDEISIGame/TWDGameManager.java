@@ -1458,6 +1458,7 @@ public class TWDGameManager {
         criaturas.stream()
                 .filter((c) -> c.getEquipa()== 20)
                 .sorted((c2,c1) -> c1.getEquipamentosApanhados() - c2.getEquipamentosApanhados())
+                .limit(3)
                 .forEach((c) ->equipamentosDestruidos.add(c.getNome() + ":" + c.getMortos() + ":" + c.getEquipamentosApanhados()));
 
 
