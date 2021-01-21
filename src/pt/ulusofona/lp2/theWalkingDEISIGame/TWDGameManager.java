@@ -571,7 +571,7 @@ public class TWDGameManager {
                                             idTipoEquipamento = equipamento.getIdTipo();
                                             if (tabuleiro[yD][xD] == idEquipamento) {
                                                 if (equipamento.getId() == idEquipamento) {
-                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false && venenoUsado == false) {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
@@ -633,7 +633,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     if (idZombie != 0) { //diferente de criança
-                                                       // return false;
+                                                        return false;
                                                     } else {
                                                         for(Equipamento equipamento: equipamentos) {
                                                             if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
@@ -761,7 +761,7 @@ public class TWDGameManager {
                                 if(idTipo == 4 && isDay() == false) {
                                     if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
                                         if (tabuleiro[yD][xD] == 0) {
-                                            if (Math.abs(xD-xO) > 2 && Math.abs(yO-yD) > 2) {
+                                            if (xD - xO > 2 && yO - yD > 2) {
                                                 return false;
                                             }
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
@@ -1156,7 +1156,7 @@ public class TWDGameManager {
                                             }
                                             if (humano.getEquipa() == 10) {
                                                 if(humano.getIdTipo() == 9) {
-                                                   // return false;
+                                                    return false;
                                                 }
                                                 if (humano.getIdEquipamento() == 0) {
                                                     zombie.setMortos();
@@ -1256,7 +1256,7 @@ public class TWDGameManager {
                                                                 equipamento1.setDuracao(1);
                                                             }
                                                             if(zombie.getIdTipo() == 4) {
-                                                                //return false;
+                                                                return false;
                                                             }
                                                         }
                                                     }
