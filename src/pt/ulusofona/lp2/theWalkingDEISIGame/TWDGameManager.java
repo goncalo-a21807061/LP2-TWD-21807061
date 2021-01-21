@@ -976,6 +976,7 @@ public class TWDGameManager {
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
+                                                        humano.setEquipmentId(0);
                                                     }
                                                     turnos++;
                                                     turnosGameIsOver++;
@@ -1303,6 +1304,7 @@ public class TWDGameManager {
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
                                                         humano.setImagePNG("zombie.png");
+                                                        humano.setEquipmentId(0);
                                                     }
                                                     turnos++;
                                                     turnosGameIsOver++;
