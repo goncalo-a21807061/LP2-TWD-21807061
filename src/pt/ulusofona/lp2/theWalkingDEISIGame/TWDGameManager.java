@@ -916,8 +916,8 @@ public class TWDGameManager {
                                                                         equipamento.setSalvacoes();
                                                                     }
                                                                 }
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = idHumano;
+                                                                tabuleiro[yO][xO] = idHumano;
+                                                                tabuleiro[yD][xD] = 0;
                                                                 humano.setMortos();
                                                                 zombie.setLocal("morta");
                                                                 envenenados.add(zombie);
@@ -1008,8 +1008,8 @@ public class TWDGameManager {
                                                             equipamento.setSalvacoes();
                                                         }
                                                     }
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = idHumano;
+                                                    tabuleiro[yO][xO] = idHumano;
+                                                    tabuleiro[yD][xD] = 0;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
@@ -1215,8 +1215,8 @@ public class TWDGameManager {
                                                             equipamento.setSalvacoes();
                                                         }
                                                     }
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = idHumano;
+                                                    tabuleiro[yO][xO] = idHumano;
+                                                    tabuleiro[yD][xD] = 0;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
@@ -1251,8 +1251,8 @@ public class TWDGameManager {
                                                                         equipamento.setSalvacoes();
                                                                     }
                                                                 }
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = idHumano;
+                                                                tabuleiro[yO][xO] = idHumano;
+                                                                tabuleiro[yD][xD] = 0;
                                                                 humano.setMortos();
                                                                 zombie.setLocal("morta");
                                                                 envenenados.add(zombie);
@@ -1339,8 +1339,8 @@ public class TWDGameManager {
                                                             equipamento.setSalvacoes();
                                                         }
                                                     }
-                                                    tabuleiro[yO][xO] = 0;
-                                                    tabuleiro[yD][xD] = idHumano;
+                                                    tabuleiro[yO][xO] = idHumano;
+                                                    tabuleiro[yD][xD] = 0;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
