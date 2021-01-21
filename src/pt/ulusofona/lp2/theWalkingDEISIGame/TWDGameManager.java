@@ -550,12 +550,12 @@ public class TWDGameManager {
                                     }
                                 } else if (idTipo != 8 && idTipo != 9){
                                     if(idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO-yD) > 0)) {
-                                       // return false;
+                                        return false;
                                     }
                                     if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                         if (tabuleiro[yD][xD] == 0) {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                         //       return false;
+                                                return false;
                                             }
                                             tabuleiro[yD][xD] = id;
                                             tabuleiro[yO][xO] = 0;
@@ -615,15 +615,15 @@ public class TWDGameManager {
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                               // return false;
+                                                return false;
                                             }
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                //    return false;
+                                                    return false;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
-                                               // return false;
+                                                return false;
                                             } else if (humano.getIdTipoEquipamento() == 1) {
                                                 if (humano.getIdTipo() == 5) {
                                                     idZombie = tabuleiro[yD][xD];
@@ -633,7 +633,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     if (idZombie != 0) { //diferente de criança
-                                                     //   return false;
+                                                        return false;
                                                     } else {
                                                         for(Equipamento equipamento: equipamentos) {
                                                             if(equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()){
@@ -686,7 +686,7 @@ public class TWDGameManager {
                                                             equipamento1.setDuracao(1);
                                                         } else if (bala == 0) {
                                                             humano.setEquipmentId(0);
-                                                          //  return false;
+                                                            return false;
                                                         } else if(zombie.getIdTipo() == 4) {
                                                         }
                                                     }
