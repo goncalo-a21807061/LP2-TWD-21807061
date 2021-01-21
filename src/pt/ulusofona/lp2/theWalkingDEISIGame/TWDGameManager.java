@@ -1121,8 +1121,8 @@ public class TWDGameManager {
                                                                 zombie.setX(xD);
                                                                 zombie.setY(yD);
                                                                 for (Equipamento equipamento1 : equipamentos) {
-                                                                    if (equipamento.getId() == idEquipamento) {
-                                                                        equipamentosRemove.remove(equipamento);
+                                                                    if (equipamento1.getId() == idEquipamento) {
+                                                                        equipamentosRemove.remove(equipamento1);
                                                                     }
                                                                 }
                                                             }
@@ -1139,8 +1139,8 @@ public class TWDGameManager {
                                                     zombie.setX(xD);
                                                     zombie.setY(yD);
                                                     for (Equipamento equipamento2 : equipamentos) {
-                                                        if (equipamento.getId() == idEquipamento) {
-                                                            equipamentosRemove.remove(equipamento);
+                                                        if (equipamento2.getId() == idEquipamento) {
+                                                            equipamentosRemove.remove(equipamento2);
                                                         }
                                                     }
                                                     turnos++;
