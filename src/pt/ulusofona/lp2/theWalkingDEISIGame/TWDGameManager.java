@@ -203,7 +203,7 @@ public class TWDGameManager {
                                             idTipoEquipamento = equipamento.getIdTipo();
                                             if (tabuleiro[yD][xD] == idEquipamento) {
                                                 if (equipamento.getId() == idEquipamento) {
-                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false && venenoUsado == false) {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
@@ -370,7 +370,7 @@ public class TWDGameManager {
                                             idTipoEquipamento = equipamento.getIdTipo();
                                             if (tabuleiro[yD][xD] == idEquipamento) {
                                                 if (equipamento.getId() == idEquipamento) {
-                                                    if (equipamento.getIdTipo() == 9 && antidoto == false) {
+                                                    if (equipamento.getIdTipo() == 9 && antidoto == false && venenoUsado == false) {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
@@ -384,7 +384,6 @@ public class TWDGameManager {
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
                                                         }
-
                                                         humano.adicionaEquipamentosEncontrados(1);
                                                         tabuleiro[yD][xD] = id;
                                                         tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -897,6 +896,7 @@ public class TWDGameManager {
                                                             }
                                                         }
                                                         tabuleiro[yO][xO] = 0;
+                                                        tabuleiro[yD][xD] = idHumano;
                                                         humano.setMortos();
                                                         zombie.setLocal("morta");
                                                         envenenados.add(zombie);
@@ -1008,6 +1008,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     tabuleiro[yO][xO] = 0;
+                                                    tabuleiro[yD][xD] = idHumano;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
@@ -1214,6 +1215,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     tabuleiro[yO][xO] = 0;
+                                                    tabuleiro[yD][xD] = idHumano;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
@@ -1337,6 +1339,7 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                     tabuleiro[yO][xO] = 0;
+                                                    tabuleiro[yD][xD] = idHumano;
                                                     humano.setMortos();
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
