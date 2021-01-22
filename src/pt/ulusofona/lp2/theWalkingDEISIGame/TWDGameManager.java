@@ -994,32 +994,35 @@ public class TWDGameManager {
                                                 if (humano.getIdTipoEquipamento() == 0) {
                                                     for(Equipamento equipamento1: equipamentos) {
                                                         if(humano.getIdTipoEquipamento() == equipamento1.getIdTipo()) {
-                                                            bala = equipamento1.getDuracao();
-                                                            if (bala == 0) {
-                                                                zombie.setMortos();
-                                                                humano.setEquipmentId(0);
-                                                                turnosGameIsOver = -1;
-                                                                humano.setNomeEquipa("Os Outros");
-                                                                humano.setEquipa(20);
-                                                                humanos.remove(humano);
-                                                                humano.setEquipmentId(0);
-                                                                humano.colocaAZeroEquipamentos();
-                                                                humano.humanoParaZombie();
-                                                                humano.setImagePNG("zombie.png");
-                                                                for (Equipamento equipamento : equipamentos) {
-                                                                    if (equipamento.getId() == idEquipamento) {
-                                                                        equipamentosRemove.remove(equipamento);
+                                                            if (humano.getIdEquipamento() == equipamento1.getId()) {
+                                                                if (equipamento1.getDuracao() == 0) {
+                                                                    zombie.setMortos();
+                                                                    humano.setEquipmentId(0);
+                                                                    turnosGameIsOver = -1;
+                                                                    humano.setNomeEquipa("Os Outros");
+                                                                    humano.setEquipa(20);
+                                                                    humanos.remove(humano);
+                                                                    humano.setEquipmentId(0);
+                                                                    humano.colocaAZeroEquipamentos();
+                                                                    humano.humanoParaZombie();
+                                                                    humano.setImagePNG("zombie.png");
+                                                                    for (Equipamento equipamento : equipamentos) {
+                                                                        if (equipamento.getId() == idEquipamento) {
+                                                                            equipamentosRemove.remove(equipamento);
+                                                                        }
                                                                     }
                                                                 }
-                                                            }
-                                                            if (bala > 0) {
-                                                                for (Equipamento equipamento : equipamentos) {
-                                                                    if (equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()) {
-                                                                        equipamento.setSalvacoes();
+                                                                if (equipamento1.getDuracao() > 0) {
+                                                                    for (Equipamento equipamento : equipamentos) {
+                                                                        if (equipamento.getIdTipo() == humano.getIdTipoEquipamento() && humano.getIdEquipamento() == equipamento.getId()) {
+                                                                            equipamento.setSalvacoes();
+                                                                        }
+                                                                    }
+                                                                    equipamento1.setDuracao(1);
+                                                                    if(equipamento1.getDuracao() == 0) {
+                                                                        humano.setEquipmentId(0);
                                                                     }
                                                                 }
-                                                                equipamento1.setDuracao(1);
-                                                                humano.setEquipmentId(0);
                                                             }
                                                         }
                                                     }
