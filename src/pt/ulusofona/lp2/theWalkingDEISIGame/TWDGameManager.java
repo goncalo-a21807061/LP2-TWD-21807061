@@ -216,7 +216,6 @@ public class TWDGameManager {
                                 // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
                                 if (idTipo == 8 && isDay() == true) {
                                     if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
-
                                         if (tabuleiro[yD][xD] == 0) {
                                             if (humano.getIdEquipamento() != 0) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -458,10 +457,10 @@ public class TWDGameManager {
                                     }
                                 } else if (idTipo == 9) {
                                     if (((Math.abs(xD - xO) > 0 && Math.abs(xD - xO) <= 2) && (Math.abs(yD - yO) > 0 && Math.abs(yD - yO) <= 2))) {
+                                        if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
+                                            return false;
+                                        }
                                         if (tabuleiro[yD][xD] == 0) {
-                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                return false;
-                                            }
                                             tabuleiro[yD][xD] = id;
                                             tabuleiro[yO][xO] = 0;
                                             humano.setX(xD);
@@ -516,9 +515,6 @@ public class TWDGameManager {
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == 99) {
-                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                return false;
-                                            }
                                             for (Equipamento equipamento : equipamentos) {
                                                 if (equipamento.getId() == humano.getIdEquipamento()) {
                                                     equipamento.setX(10000);
@@ -540,9 +536,6 @@ public class TWDGameManager {
                                             return true;
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
-                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                return false;
-                                            }
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
                                                     return false;
@@ -684,14 +677,14 @@ public class TWDGameManager {
                                         }
                                     }
                                 } else if (idTipo != 8 && idTipo != 9) {
+                                    if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
+                                        return false;
+                                    }
                                     if (idTipo == 5 && (Math.abs(xO - xD) > 0 && Math.abs(yO - yD) > 0)) {
                                         return false;
                                     }
                                     if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance())) {
                                         if (tabuleiro[yD][xD] == 0) {
-                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                return false;
-                                            }
                                             humano.setX(xD);
                                             humano.setY(yD);
                                             tabuleiro[yD][xD] = humano.getId();
@@ -776,9 +769,6 @@ public class TWDGameManager {
                                             return true;
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
-                                            if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                return false;
-                                            }
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
                                                     return false;
@@ -974,11 +964,11 @@ public class TWDGameManager {
                                 // validar se é zombie vampiro, se for só pode jogar nos turnos noturnos
                                 if(idTipo == 4 && isDay() == false) {
                                     if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
+                                        if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                            return false;
+                                        }
                                         if (tabuleiro[yD][xD] == 0) {
                                             if (xD - xO > 2 && yO - yD > 2) {
-                                                return false;
-                                            }
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                 return false;
                                             }
                                             tabuleiro[yD][xD] = id;
@@ -997,9 +987,6 @@ public class TWDGameManager {
                                             idEquipamento = equipamento.getId();
                                             idTipoEquipamento = equipamento.getIdTipo();
                                             if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                    return false;
-                                                }
                                                 if (idTipoEquipamento == 8) {
                                                     for (Equipamento equipamento2 : equipamentos) {
                                                         if (equipamento2.getId() == idEquipamento) {
@@ -1048,9 +1035,6 @@ public class TWDGameManager {
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == idHumano) {
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                return false;
-                                            }
                                             if (humano.getEquipa() == 10) {
                                                 if(humano.getIdTipo() == 9) {
                                                 }
@@ -1352,10 +1336,10 @@ public class TWDGameManager {
                                         return false;
                                     }
                                     if ((Math.abs(xO - xD) <= zombie.getAlcance() && Math.abs(yO - yD) <= zombie.getAlcance())) {
+                                        if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
+                                            return false;
+                                        }
                                         if (tabuleiro[yD][xD] == 0) {
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                return false;
-                                            }
                                             tabuleiro[yD][xD] = id;
                                             tabuleiro[yO][xO] = 0;
                                             zombie.setX(xD);
@@ -1372,9 +1356,6 @@ public class TWDGameManager {
                                             idEquipamento = equipamento.getId();
                                             idTipoEquipamento = equipamento.getIdTipo();
                                             if (tabuleiro[yD][xD] == idEquipamento) {
-                                                if (verificarSobrePosicao(xO, xD, yO, yD) == false) {
-                                                    return false;
-                                                }
                                                 if (idTipoEquipamento == 8) {
                                                     for (Equipamento equipamento2 : equipamentos) {
                                                         if (equipamento2.getId() == idEquipamento) {
@@ -1423,9 +1404,6 @@ public class TWDGameManager {
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == idHumano) {
-                                            if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
-                                                return false;
-                                            }
                                             if (humano.getEquipa() == 10) {
                                                 if(humano.getIdTipo() == 9) {
                                                     return false;
