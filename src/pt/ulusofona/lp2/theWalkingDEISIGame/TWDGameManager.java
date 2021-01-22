@@ -152,12 +152,16 @@ public class TWDGameManager {
                 return false;
             }
             if(turnosVeneno > 1 && antidoto == false) {
-                turnosVeneno = 0;
                 for(Creature criatura : criaturas) {
                     if(criatura.getEnvenenado() == true ) {
+                        tabuleiro[yO][xO] = criatura.getIdEquipamento();
                         criatura.setLocal("morta");
                         humanos.remove(criatura);
                         envenenados.add(criatura);
+                        turnosVeneno = 0;
+                        turnos++;
+                        turnosGameIsOver++;
+                        currentTeam = 20;
                         return true;
                     }
                 }
