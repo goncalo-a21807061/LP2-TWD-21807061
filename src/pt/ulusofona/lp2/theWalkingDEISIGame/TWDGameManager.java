@@ -33,6 +33,8 @@ public class TWDGameManager {
     private boolean moveDiagonal;
     private boolean antidoto = false;
     private boolean venenoUsado = false;
+    private boolean dono = false;
+    private int primeiroDono = 0;
 
 
     public TWDGameManager() {
@@ -151,18 +153,34 @@ public class TWDGameManager {
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
-            if(turnosVeneno > 1 && antidoto == false) {
-                for(Creature criatura : criaturas) {
-                    if(criatura.getEnvenenado() == true ) {
-                        tabuleiro[yO][xO] = criatura.getIdEquipamento();
-                        criatura.setLocal("morta");
-                        humanos.remove(criatura);
-                        envenenados.add(criatura);
-                        turnosVeneno = 0;
-                        turnos++;
-                        turnosGameIsOver++;
-                        currentTeam = 20;
-                        return true;
+            if(turnosVeneno > 1 && antidoto == true) {
+                for(Equipamento equipamento: equipamentos) {
+                    if (tabuleiro[yD][xD] == equipamento.getId()) {
+                        idEquipamento = equipamento.getId();
+                        idTipoEquipamento = equipamento.getIdTipo();
+                    }
+                }
+                if (idTipoEquipamento == 9) {
+                    antidoto = false;
+                    turnosVeneno = 0;
+                } else {
+                    for(Creature criatura : criaturas) {
+                        if(criatura.getEnvenenado() == true ) {
+                            if(xD != xO || yD != yO && criatura.getIdTipo() != 8) {
+                                tabuleiro[yD][xD] = criatura.getIdEquipamento();
+                                tabuleiro[yO][xO] = 0;
+                            } else {
+                                tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
+                            }
+                            criatura.setLocal("morta");
+                            humanos.remove(criatura);
+                            envenenados.add(criatura);
+                            turnosVeneno = 0;
+                            turnos++;
+                            turnosGameIsOver++;
+                            currentTeam = 20;
+                            return true;
+                        }
                     }
                 }
             }
@@ -181,6 +199,7 @@ public class TWDGameManager {
                                 // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
                                 if (idTipo == 8 && isDay() == true) {
                                     if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
+
                                         if (tabuleiro[yD][xD] == 0) {
                                             if (humano.getIdEquipamento() != 0) {
                                                 tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -188,7 +207,7 @@ public class TWDGameManager {
                                             } else {
                                                 tabuleiro[yO][xO] = 0;
                                             }
-                                            tabuleiro[yD][xD] = id;
+                                            tabuleiro[yD][xD] = humano.getId();
                                             humano.setX(xD);
                                             humano.setY(yD);
                                             turnos++;
