@@ -342,7 +342,7 @@ public class TWDGameManager {
                                                 }
                                                 turnos++;
                                                 turnosGameIsOver++;
-                                                currentTeam = 10;
+                                                currentTeam = 20;
                                                 if(antidoto == true) {
                                                     turnosVeneno++;
                                                 }
@@ -821,7 +821,7 @@ public class TWDGameManager {
                                                 }
                                                 turnos++;
                                                 turnosGameIsOver++;
-                                                currentTeam = 10;
+                                                currentTeam = 20;
                                                 if(antidoto == true) {
                                                     turnosVeneno++;
                                                 }
