@@ -11,6 +11,8 @@ public class Equipamento {
     private String defensivoOuOfensivo;
     private String foto;
     private int salvacoes;
+    private boolean usado = false;
+    private int dono = - 99;
 
 
     public Equipamento(int id, int idTipo, int x, int y) {
@@ -129,6 +131,8 @@ public class Equipamento {
         this.duracao -= duracao;
     }
 
+    public void escudo(int duracao) { this.duracao = duracao;}
+
     public int getDuracao() {
         return duracao;
     }
@@ -139,5 +143,21 @@ public class Equipamento {
 
     public int getSalvacoes() {
         return salvacoes;
+    }
+
+    public void setUsado(boolean usado) {
+        this.usado = usado;
+    }
+
+    public boolean getUsado() {
+        return usado;
+    }
+
+    public void setDono (int id) {
+        this.dono = id;
+    }
+
+    public int getDono() {
+        return dono;
     }
 }
