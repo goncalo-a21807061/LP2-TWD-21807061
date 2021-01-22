@@ -151,9 +151,6 @@ public class TWDGameManager {
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
-            if(antidoto == true) {
-                turnosVeneno++;
-            }
             if(turnosVeneno > 2) {
                 antidoto = false;
                 for(Creature criatura : criaturas) {
@@ -161,7 +158,7 @@ public class TWDGameManager {
                         tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
                         for(Equipamento equipamento: equipamentos) {
                             if(equipamento.getId() == criatura.getIdEquipamento()) {
-                                equipamento.setDuracao(3);
+                                //equipamento.setDuracao(3);
                             }
                         }
                         criatura.setLocal("morta");
@@ -181,7 +178,7 @@ public class TWDGameManager {
                             }
                             int idTipo = humano.getIdTipo();
                             id = humano.getId();
-                            if (tabuleiro[yO][xO] == id) {
+                            if (tabuleiro[yO][xO] == humano.getId()) {
                                 // validar se é Idoso Humano -> Se for só pode jogar nos turnos diurnos e verificar que não se pode mover na diagonal
                                 if(idTipo == 8 && isDay() == true) {
                                     if ((Math.abs(xO - xD) <= humano.getAlcance() && Math.abs(yO - yD) <= humano.getAlcance()) && !(Math.abs(xD - xO) > 0 && Math.abs(yD - yO) > 0)) {
@@ -198,6 +195,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         for (Equipamento equipamento : equipamentos) {
@@ -209,6 +209,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     } else {
                                                         if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
@@ -229,6 +232,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     }
                                                 }
@@ -251,6 +257,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
@@ -277,6 +286,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 2) {
                                                 for (Equipamento equipamento1 : equipamentos) {
@@ -308,6 +320,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 3) {
                                                 return false;
@@ -331,6 +346,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 7) {
                                                 return false;
@@ -354,6 +372,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             }
                                         }
@@ -371,6 +392,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         for (Equipamento equipamento : equipamentos) {
@@ -382,6 +406,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     } else {
                                                         if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
@@ -403,6 +430,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     }
                                                 }
@@ -427,6 +457,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
@@ -479,6 +512,9 @@ public class TWDGameManager {
                                                     zombie.setLocal("morta");
                                                     envenenados.add(zombie);
                                                 }
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
@@ -508,6 +544,9 @@ public class TWDGameManager {
                                                         }
                                                     }
                                                 }
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
@@ -534,6 +573,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 7) {
                                                 return false;
@@ -557,6 +599,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             }
                                         }
@@ -570,13 +615,16 @@ public class TWDGameManager {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                 return false;
                                             }
-                                            tabuleiro[yD][xD] = id;
-                                            tabuleiro[yO][xO] = 0;
                                             humano.setX(xD);
                                             humano.setY(yD);
+                                            tabuleiro[yD][xD] = humano.getId();
+                                            tabuleiro[yO][xO] = 0;
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         for (Equipamento equipamento : equipamentos) {
@@ -588,6 +636,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     } else {
                                                         if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
@@ -598,16 +649,19 @@ public class TWDGameManager {
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
                                                         }
-                                                        humano.adicionaEquipamentosEncontrados(1);
-                                                        tabuleiro[yD][xD] = id;
-                                                        tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                                        humano.setEquipmentId(idEquipamento);
                                                         humano.setX(xD);
                                                         humano.setY(yD);
+                                                        humano.adicionaEquipamentosEncontrados(1);
+                                                        tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                                        tabuleiro[yD][xD] = humano.getId();
+                                                        humano.setEquipmentId(idEquipamento);
                                                         humano.setIdTipoEquipamento(idTipoEquipamento);
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 20;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     }
                                                 }
@@ -629,6 +683,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         if (tabuleiro[yD][xD] == idZombie) {
@@ -683,6 +740,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 2) {
                                                 for (Equipamento equipamento1 : equipamentos) {
@@ -712,6 +772,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 3) {
                                                 return false;
@@ -735,6 +798,9 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             } else if (humano.getIdTipoEquipamento() == 7) {
                                                 return false;
@@ -758,10 +824,26 @@ public class TWDGameManager {
                                                 turnos++;
                                                 turnosGameIsOver++;
                                                 currentTeam = 20;
+                                                if(antidoto == true) {
+                                                    turnosVeneno++;
+                                                }
                                                 return true;
                                             }
                                         }
                                     }
+                                }
+                            } else {
+                                if(tabuleiro[yO][xO] < 0) {
+                                    for(Equipamento equipamento: equipamentos) {
+                                        if(tabuleiro[yO][xO] == equipamento.getId()) {
+                                            System.out.println("Ola1");
+                                            if(equipamento.getId() == humano.getIdEquipamento()) {
+                                                System.out.println("Ola");
+                                            }
+
+                                        }
+                                    }
+                                    return true;
                                 }
                             }
                         }
@@ -792,6 +874,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 10;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         for (Equipamento equipamento : equipamentos) {
@@ -821,6 +906,9 @@ public class TWDGameManager {
                                                             turnos++;
                                                             turnosGameIsOver++;
                                                             currentTeam = 10;
+                                                            if(antidoto == true) {
+                                                                turnosVeneno++;
+                                                            }
                                                             return true;
                                                         }
                                                     }
@@ -838,6 +926,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                             }
@@ -861,6 +952,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                                 if (humano.getIdTipoEquipamento() == 0) {
@@ -897,6 +991,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 1) {
                                                     if (humano.getIdTipo() == 5) {
@@ -921,6 +1018,9 @@ public class TWDGameManager {
                                                         turnos++;
                                                         turnosGameIsOver++;
                                                         currentTeam = 10;
+                                                        if(antidoto == true) {
+                                                            turnosVeneno++;
+                                                        }
                                                         return true;
                                                     }
                                                 } else if (humano.getIdTipoEquipamento() == 2) {
@@ -962,6 +1062,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 3) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -972,6 +1075,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 4) {
                                                     if(zombie.getIdTipo() != 3) {// Idoso zombie
@@ -995,6 +1101,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 5) {
                                                     if(zombie.getIdTipo() != 4) {  // Zombie Vampiro
@@ -1018,6 +1127,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 6) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1032,6 +1144,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 7) {
                                                     for(Equipamento equipamento1: equipamentos) {
@@ -1067,6 +1182,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1077,6 +1195,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1087,6 +1208,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1097,6 +1221,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                             }
@@ -1118,6 +1245,9 @@ public class TWDGameManager {
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 10;
+                                            if(antidoto == true) {
+                                                turnosVeneno++;
+                                            }
                                             return true;
                                         }
                                         for (Equipamento equipamento : equipamentos) {
@@ -1147,6 +1277,9 @@ public class TWDGameManager {
                                                             turnos++;
                                                             turnosGameIsOver++;
                                                             currentTeam = 10;
+                                                            if(antidoto == true) {
+                                                                turnosVeneno++;
+                                                            }
                                                             return true;
                                                         }
                                                     }
@@ -1164,6 +1297,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                             }
@@ -1188,6 +1324,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                                 if (humano.getIdTipoEquipamento() == 0) {
@@ -1224,6 +1363,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 1) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1238,6 +1380,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 2) {
                                                     for(Equipamento equipamento1: equipamentos) {
@@ -1281,6 +1426,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 3) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1291,6 +1439,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 4) {
                                                     if(zombie.getIdTipo() == 3) {
@@ -1319,6 +1470,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 5) {
                                                     if(zombie.getIdTipo() == 4) {
@@ -1347,6 +1501,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 6) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1361,6 +1518,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 7) {
                                                     for(Equipamento equipamento1: equipamentos) {
@@ -1396,6 +1556,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 8) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1406,6 +1569,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 9) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1416,6 +1582,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 } else if (humano.getIdTipoEquipamento() == 10) {
                                                     for(Equipamento equipamento: equipamentos) {
@@ -1426,6 +1595,9 @@ public class TWDGameManager {
                                                     turnos++;
                                                     turnosGameIsOver++;
                                                     currentTeam = 10;
+                                                    if(antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
                                                     return true;
                                                 }
                                             }
@@ -1562,11 +1734,6 @@ public class TWDGameManager {
 
         public int getCount() {
             return (int) count;
-        }
-
-        @Override
-        public String toString() {
-            return tipo + ":" + count + ":" + equipamentos;
         }
     }
 

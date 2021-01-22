@@ -262,8 +262,8 @@ public class TestTWDGameManager {
         twdGameManager.move(2,2,1,2);
         twdGameManager.move(1,2,3,2);
         twdGameManager.move(4,3,3,3);
+        twdGameManager.move(3,4,3,5);
         twdGameManager.getGameStatistics();
-
-
     }
+
 }
