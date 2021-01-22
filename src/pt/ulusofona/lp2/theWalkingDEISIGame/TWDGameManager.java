@@ -258,7 +258,6 @@ public class TWDGameManager {
                                                             humano.setEnvenenado(false);
                                                         }
                                                         humano.adicionaEquipamentosEncontrados(1);
-                                                        System.out.println("ola");
                                                         tabuleiro[yD][xD] = id;
                                                         tabuleiro[yO][xO] = humano.getIdEquipamento();
                                                         humano.setEquipmentId(idEquipamento);

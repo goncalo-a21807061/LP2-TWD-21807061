@@ -196,7 +196,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void test20move() throws IOException {
+    public void test20move() throws IOException, InvalidTWDInitialFileException {
         String string = new String();
         string = "7 7\n" +"10\n" +  "10\n" + "1 : 1 : Freddie M. : 4 : 3\n" + "2 : 7 : Jackie Chan : 3 : 5\n" + "3 : 6 : Alice : 5 : 5\n" +
                 "4 : 8 : Ash : 2 : 2\n" + "5 : 5 : Sam : 1 : 1\n" + "10 : 9 : Cão : 0 : 3  \n" + "6 : 2 : Paciente Zero : 4 : 4\n" + "7 : 3 : Paciente Zeros : 5 : 4\n" + "8 : 4 : Paciente Zerosa : 4 : 2\n" + "9 : 0 : Paciente Um : 2 : 1\n" +
@@ -208,6 +208,7 @@ public class TestTWDGameManager {
         printWriter.close();
 
         TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("C:\\Users\\g1a9p\\3ºAno\\ProjetoTWD\\test-files\\dados.txt"));
         twdGameManager.getWorldSize();
         twdGameManager.getInitialTeam();
         twdGameManager.getAuthors();
@@ -264,6 +265,7 @@ public class TestTWDGameManager {
         twdGameManager.move(4,3,3,3);
         twdGameManager.move(3,4,3,5);
         twdGameManager.getGameStatistics();
+
     }
 
 }
