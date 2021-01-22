@@ -243,7 +243,6 @@ public class TestTWDGameManager {
         twdGameManager.getEquipmentTypeId(-30);
         twdGameManager.popCultureExtravaganza();
         twdGameManager.getEquipmentInfo(-1);
-        twdGameManager.loadGame(new File("dados.txt"));
         twdGameManager.verificarSobrePosicao(3,3,3,5);
         twdGameManager.move(3,4,3,5);
         twdGameManager.verificarSobrePosicao(3,3,4,2);

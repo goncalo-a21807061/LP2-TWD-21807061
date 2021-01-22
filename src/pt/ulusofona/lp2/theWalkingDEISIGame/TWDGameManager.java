@@ -235,7 +235,13 @@ public class TWDGameManager {
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == 99) {
-                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            tabuleiro[yO][xO] = 0;
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if(equipamento.getId() == humano.getIdEquipamento()) {
+                                                    equipamento.setX(10000);
+                                                    equipamento.setY(10000);
+                                                }
+                                            }
                                             humano.setEquipmentId(0);
                                             humano.setX(xD);
                                             humano.setY(yD);
@@ -406,7 +412,12 @@ public class TWDGameManager {
                                             if(verificarSobrePosicao(xO,xD,yO,yD) == false) {
                                                 return false;
                                             }
-                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if(equipamento.getId() == humano.getIdEquipamento()) {
+                                                    equipamento.setX(10000);
+                                                    equipamento.setY(10000);
+                                                }
+                                            }
                                             humano.setEquipmentId(0);
                                             humano.setLocal("safe haven");  // toString
                                             humano.setX(xD);
@@ -603,8 +614,13 @@ public class TWDGameManager {
                                             }
                                         }
                                         if (tabuleiro[yD][xD] == 99) {
-                                            tabuleiro[yO][xO] = humano.getIdEquipamento();
-                                            humano.setEquipmentId(0);
+                                            tabuleiro[yO][xO] = 0;
+                                            for(Equipamento equipamento: equipamentos) {
+                                                if(equipamento.getId() == humano.getIdEquipamento()) {
+                                                    equipamento.setX(10000);
+                                                    equipamento.setY(10000);
+                                                }
+                                            }
                                             humano.setX(xD);
                                             humano.setY(yD);
                                             humano.setLocal("safe haven");  // toString
@@ -1463,16 +1479,16 @@ public class TWDGameManager {
         long aux = 0;
 
 
-        nrCriaturas.put("Criança (Zombie)", aux);
-        nrCriaturas.put("Adulto (Zombie)", aux);
-        nrCriaturas.put("Militar (Zombie)", aux);
-        nrCriaturas.put("Idoso (Zombie)", aux);
+        nrCriaturas.put("Criança", aux);
+        nrCriaturas.put("Adulto", aux);
+        nrCriaturas.put("Militar", aux);
+        nrCriaturas.put("Idoso", aux);
         nrCriaturas.put("Zombie Vampiro", aux);
 
-        pontosPorTipo.put("Criança (Zombie)", -1);
-        pontosPorTipo.put("Adulto (Zombie)", -1);
-        pontosPorTipo.put("Militar (Zombie)", -1);
-        pontosPorTipo.put("Idoso (Zombie)", -1);
+        pontosPorTipo.put("Criança", -1);
+        pontosPorTipo.put("Adulto", -1);
+        pontosPorTipo.put("Militar", -1);
+        pontosPorTipo.put("Idoso", -1);
         pontosPorTipo.put("Zombie Vampiro", -1);
 
         Map<String,Long> count =
@@ -1732,138 +1748,46 @@ public class TWDGameManager {
     }
 
 
-    //erro
     public boolean saveGame(File fich) {
         try {
-            FileWriter fileWriter = new FileWriter(fich);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-
-            printWriter.println(rows + " " + columns);
-            printWriter.println(currentTeam);
-            printWriter.println(criaturas.size());
-            for(Creature criatura: criaturas)
-            {
-                printWriter.print(criatura.getId());
-                printWriter.print(" : ");
-                printWriter.print(criatura.getId());
-                printWriter.print(" : ");
-                printWriter.print(criatura.getNome());
-                printWriter.print(" : ");
-                printWriter.print(criatura.getX());
-                printWriter.print(" : ");
-                printWriter.print(criatura.getY());
-                printWriter.print(" : ");
-                printWriter.println(criatura.getEquipamentosApanhados());
-
-            }
-            printWriter.println(equipamentos.size());
-            for(Equipamento equipamento : equipamentos)
-            {
-                printWriter.print(equipamento.getId());
-                printWriter.print(" : ");
-                printWriter.print(equipamento.getId());
-                printWriter.print(" : ");
-                printWriter.print(equipamento.getX());
-                printWriter.print(" : ");
-                printWriter.println(equipamento.getY());
-            }
-            printWriter.println(portas.size());
-            for(Porta porta : portas)
-            {
-                printWriter.print(porta.getX());
-                printWriter.print(" : ");
-                printWriter.println(porta.getY());
-            }
-
-            printWriter.close();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean loadGame(File fich) {
-        BufferedReader leitorFicheiro = null;
-        String linha;
-        int count = 0, count1 = 0, count2 = 0;
-        int id, idTipo, x, y, equipamentosEncontrados;
-        criaturas = new ArrayList<>();
-        humanos = new ArrayList<>();
-        zombies = new ArrayList<>();
-        equipamentos = new ArrayList<>();
-        equipamentosRemove = new ArrayList<>();
-        envenenados = new ArrayList<>();
-        portas = new ArrayList<>();
-        safeHeaven = new ArrayList<>();
-        try {
-            leitorFicheiro = new BufferedReader(new FileReader(fich.getPath()));
-            while ((linha = leitorFicheiro.readLine()) != null) {
-                if (count == 0) {
-                    String dados[] = linha.split(" ");
-                    rows = Integer.parseInt(dados[0].trim());
-                    columns = Integer.parseInt(dados[1].trim());
-                    tabuleiro = new int[rows][columns];
-                } else if (count == 1) {
-                    equipaInicial = Integer.parseInt(linha);
-                    currentTeam = equipaInicial;
-                } else if (count == 2) {
-                    nrCriaturas = Integer.parseInt(linha.trim());
-                    count1 = count + nrCriaturas;
-                } else if (count > 2 && count <= count1) {
-                    String dados[] = linha.split(":");
-                    if (dados.length > 4 && dados.length < 6) {
-                        id = Integer.parseInt(dados[0].trim());
-                        idTipo = Integer.parseInt(dados[1].trim());
-                        String nome = dados[2].trim();
-                        x = Integer.parseInt(dados[3].trim());
-                        y = Integer.parseInt(dados[4].trim());
-                        equipamentosEncontrados = Integer.parseInt(dados[5].trim());
-                        if (idTipo == 0 || idTipo == 1 || idTipo == 2 || idTipo == 3 || idTipo == 4) {
-                            Creature criatura = new Zombie(id, idTipo, nome, x, y);
-                            criatura.adicionaEquipamentosEncontrados(equipamentosEncontrados);
-                            criaturas.add(criatura);
-                            zombies.add((Zombie) criatura);
-                        } else {
-                            Creature criatura = new Humano(id, idTipo, nome, x, y);
-                            criatura.adicionaEquipamentosEncontrados(equipamentosEncontrados);
-                            criaturas.add(criatura);
-                            humanos.add((Humano) criatura);
-                        }
-                        tabuleiro[y][x] = id;
-                    }
-                } else if (count > count1 && count <= count1 + 1) {
-                    nrEquipamentos = Integer.parseInt(linha.trim());
-                    count2 = count1 + nrEquipamentos;
-                } else if (count > count1 + 1 && count <= count1 + 1 + nrEquipamentos) {
-                    String dados[] = linha.split(":");
-                    if (dados.length > 3) {
-                        id = Integer.parseInt(dados[0].trim());
-                        idTipo = Integer.parseInt(dados[1].trim());
-                        x = Integer.parseInt(dados[2].trim());
-                        y = Integer.parseInt(dados[3].trim());
-                        Equipamento equipamento = new Equipamento(id, idTipo, x, y);
-                        equipamentos.add(equipamento);
-                        equipamentosRemove.add(equipamento);
-                        tabuleiro[y][x] = id;
-                    }
-                } else if (count > count2 + 1 && count <= count2 + 2) {
-                    nrPortas = Integer.parseInt(linha.trim());
-                } else if (count > count2 + 2 && count <= count2 + 2 + nrPortas) {
-                    String dados[] = linha.split(":");
-                    if (dados.length > 0) {
-                        x = Integer.parseInt(dados[0].trim());
-                        y = Integer.parseInt(dados[1].trim());
-                        Porta porta = new Porta(x, y);
-                        portas.add(porta);
-                        tabuleiro[y][x] = 99;
-                    }
+            int count = 0;
+            for (Creature creature: criaturas) {
+                if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
+                    count++;
                 }
-                count++;
             }
-            leitorFicheiro.close();
+            String string = rows + " " + columns + "\n" + getCurrentTeamId() + "\n" + count + "\n";
+            for (Creature creature: criaturas) {
+                if(creature.getLocal() != "safe haven" && creature.getLocal() != "morta") {
+                    string += creature.getId() + " : " + creature.getIdTipo() + " : " + creature.getNome() + " : " + creature.getX() + " : " + creature.getY() + "\n";
+                }
+            }
+            string += equipamentosRemove.size() + "\n";
+            for(Equipamento equipamento: equipamentosRemove) {
+                string += equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getX() + " : " + equipamento.getY() + "\n";
+            }
+            string += portas.size() + "\n";
+            for(Porta porta: portas) {
+                string += porta.getX() + " : " + porta.getY() + "\n";
+            }
+            FileWriter fileWriter = new FileWriter(fich.getPath());
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.print(string);
+            printWriter.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean loadGame(File fich) {
+        try {
+            BufferedReader leitorFicheiro = null;
+            leitorFicheiro = new BufferedReader(new FileReader(fich.getPath()));
+            startGame(fich);
+            return true;
+        } catch (IOException | InvalidTWDInitialFileException e) {
             return false;
         }
     }
