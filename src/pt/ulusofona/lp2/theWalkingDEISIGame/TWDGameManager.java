@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import sun.awt.EventQueueItem;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -724,6 +726,12 @@ public class TWDGameManager {
                                             humano.setY(yD);
                                             tabuleiro[yD][xD] = humano.getId();
                                             tabuleiro[yO][xO] = 0;
+                                            for(Equipamento equipamento : equipamentos) {
+                                                if(equipamento.getId() == humano.getIdEquipamento()) {
+                                                    equipamento.setX(xD);
+                                                    equipamento.setY(yD);
+                                                }
+                                            }
                                             turnos++;
                                             turnosGameIsOver++;
                                             currentTeam = 20;
