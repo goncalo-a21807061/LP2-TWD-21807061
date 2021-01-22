@@ -151,16 +151,10 @@ public class TWDGameManager {
             if(xO < 0 || yO < 0 || xD < 0 || yD < 0) {
                 return false;
             }
-            if(turnosVeneno > 2) {
-                antidoto = false;
+            if(turnosVeneno > 1 && antidoto == false) {
+                turnosVeneno = 0;
                 for(Creature criatura : criaturas) {
-                    if(criatura.getEnvenenado() == true) {
-                        tabuleiro[criatura.getY()][criatura.getX()] = criatura.getIdEquipamento();
-                        for(Equipamento equipamento: equipamentos) {
-                            if(equipamento.getId() == criatura.getIdEquipamento()) {
-                                //equipamento.setDuracao(3);
-                            }
-                        }
+                    if(criatura.getEnvenenado() == true ) {
                         criatura.setLocal("morta");
                         humanos.remove(criatura);
                         envenenados.add(criatura);
@@ -222,6 +216,7 @@ public class TWDGameManager {
                                                         }
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
+                                                            humano.setEnvenenado(false);
                                                         }
                                                         humano.adicionaEquipamentosEncontrados(1);
                                                         tabuleiro[yD][xD] = id;
@@ -419,8 +414,8 @@ public class TWDGameManager {
                                                         }
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
+                                                            humano.setEnvenenado(false);
                                                         }
-
                                                         humano.adicionaEquipamentosEncontrados(1);
                                                         tabuleiro[yD][xD] = id;
                                                         tabuleiro[yO][xO] = humano.getIdEquipamento();
@@ -649,6 +644,7 @@ public class TWDGameManager {
                                                         }
                                                         if (equipamento.getIdTipo() == 9 && antidoto == true) {
                                                             antidoto = false;
+                                                            humano.setEnvenenado(false);
                                                         }
                                                         humano.setX(xD);
                                                         humano.setY(yD);
