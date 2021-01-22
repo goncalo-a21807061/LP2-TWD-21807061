@@ -147,6 +147,10 @@ public class Zombie extends Creature {
         return mortos;
     }
 
+    @Override
+    public String getNomePersonagem() {
+        return nomePersonagem;
+    }
 
 
     @Override

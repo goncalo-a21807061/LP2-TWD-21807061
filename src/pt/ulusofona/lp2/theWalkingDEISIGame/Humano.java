@@ -172,6 +172,10 @@ public class Humano extends Creature {
         return mortos;
     }
 
+    @Override
+    public String getNomePersonagem() {
+        return nomePersonagem;
+    }
 
 
     @Override

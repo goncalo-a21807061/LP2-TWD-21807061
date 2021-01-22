@@ -90,5 +90,6 @@ public abstract class Creature {
 
     abstract public int getMortos();
 
+    abstract public String getNomePersonagem();
 
 }
