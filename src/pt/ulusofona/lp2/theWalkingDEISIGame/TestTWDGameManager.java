@@ -98,7 +98,7 @@ public class TestTWDGameManager {
         assertEquals(4, criatura.getX());
         assertEquals(6, criatura.getY());
         assertEquals("Dragon", criatura.getNome());
-        assertEquals("zombie.png", criatura.getImagePNG());
+        assertEquals("militar-zombie.png", criatura.getImagePNG());
         assertEquals(0, criatura.getEquipamentosApanhados());
         assertEquals(0, criatura.getIdTipoEquipamento());
         assertEquals("jogo", criatura.getLocal());
@@ -107,7 +107,7 @@ public class TestTWDGameManager {
         Creature criatura2 = new Humano(10, 7, "Dragon", 4, 6);
         criatura2.setEquipa(20);
         criatura2.setNomeEquipa("Os Outros");
-        criatura2.setImagePNG("zombie.png");
+        criatura2.setImagePNG("militar-zombie.png");
         criatura2.setLocal("morta");
         criatura2.getX();
         criatura2.getY();
@@ -139,7 +139,7 @@ public class TestTWDGameManager {
         criatura1.setLocal("morta");
         criatura1.setEquipa(10);
         criatura1.setNomeEquipa("Os Outros");
-        criatura1.setImagePNG("zombie.png");
+        criatura1.setImagePNG("idoso-zombie.png");
         criatura1.setEnvenenado(true);
         criatura1.getEnvenenado();
         criatura1.toString();
