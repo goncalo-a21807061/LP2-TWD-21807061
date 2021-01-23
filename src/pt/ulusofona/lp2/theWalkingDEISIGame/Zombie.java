@@ -10,32 +10,32 @@ public class Zombie extends Creature {
             equipa = 20;
             alcance = 1;
             nomeEquipa = "Os Outros";
-            foto = "zombie.png";
+            foto = "crianca-zombie.png";
         } else if(idTipo == 1) {
             nomePersonagem = "Adulto (Zombie)";
             equipa = 20;
             alcance = 2;
             nomeEquipa = "Os Outros";
-            foto = "zombie.png";
+            foto = "adulto-zombie.png";
         } else if (idTipo == 2) {
             nomePersonagem = "Militar (Zombie)";
             equipa = 20;
             alcance = 3;
             nomeEquipa = "Os Outros";
-            foto = "zombie.png";
+            foto = "militar-zombie.png";
         } else if (idTipo == 3) {
             nomePersonagem = "Idoso (Zombie)";
             equipa = 20;
             alcance = 1;
             nomeEquipa = "Os Outros";
-            foto = "zombie.png";
+            foto = "idoso-zombie.png";
             moverDiagonal = false;
         } else if (idTipo == 4) {
             nomePersonagem = "Zombie Vampiro";
             equipa = 20;
             alcance = 2;
             nomeEquipa = "Os Outros";
-            foto = "zombie.png";
+            foto = "zombie vampiro.png";
         }
     }
     public Boolean getMoverDiagonal() {

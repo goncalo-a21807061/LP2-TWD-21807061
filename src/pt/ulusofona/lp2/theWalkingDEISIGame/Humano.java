@@ -11,32 +11,32 @@ public class Humano extends Creature {
             equipa = 10;
             alcance = 1;
             nomeEquipa = "Os Vivos";
-            foto = "human.png";
+            foto = "crianca.png";
         } else if (idTipo == 6) {
             nomePersonagem = "Adulto (Vivo)";
             equipa = 10;
             alcance = 2;
             nomeEquipa = "Os Vivos";
-            foto = "human.png";
+            foto = "Humano.png";
         } else if (idTipo == 7) {
             nomePersonagem = "Militar (Vivo)";
             equipa = 10;
             alcance = 3;
             nomeEquipa = "Os Vivos";
-            foto = "human.png";
+            foto = "militar.png";
         } else if (idTipo == 8) {
             nomePersonagem = "Idoso (Vivo)";
             equipa = 10;
             alcance = 1;
             nomeEquipa = "Os Vivos";
-            foto = "human.png";
+            foto = "idoso.png";
             moverDiagonal = false;
         } else if(idTipo == 9) {
             nomePersonagem = "Cão";
             equipa = 10;
             alcance = 2;
             nomeEquipa = "Os Vivos";
-            foto = "human.png";
+            foto = "cao.png";
         }
     }
 
