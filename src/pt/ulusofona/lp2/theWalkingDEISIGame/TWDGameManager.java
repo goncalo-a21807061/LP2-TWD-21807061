@@ -1,14 +1,11 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import sun.awt.EventQueueItem;
-
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TWDGameManager {
-
     private static List<Creature> criaturas = new ArrayList<>();
     private static List<Humano> humanos = new ArrayList<>();
     private static List<Zombie> zombies = new ArrayList<>();
@@ -35,7 +32,6 @@ public class TWDGameManager {
     private boolean moveDiagonal;
     private boolean antidoto = false;
     private boolean venenoUsado = false;
-
 
 
     public TWDGameManager() {
@@ -286,8 +282,8 @@ public class TWDGameManager {
                                                 }
                                             }
                                             humano.setEquipmentId(0);
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD+10000);
+                                            humano.setY(yD+10000);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
@@ -528,8 +524,8 @@ public class TWDGameManager {
                                             }
                                             humano.setEquipmentId(0);
                                             humano.setLocal("safe haven");  // toString
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD+10000);
+                                            humano.setY(yD+10000);
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
                                             turnos++;
@@ -810,8 +806,8 @@ public class TWDGameManager {
                                                     equipamento.setY(10000);
                                                 }
                                             }
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD+10000);
+                                            humano.setY(yD+10000);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
