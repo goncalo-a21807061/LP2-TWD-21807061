@@ -2007,8 +2007,10 @@ public class TWDGameManager {
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
-        if (tabuleiro[y][x] == 99) {
-            return true;
+        for(Porta porta:portas) {
+            if(porta.getX() == x && porta.getY() == y) {
+                return true;
+            }
         }
         return false;
     }

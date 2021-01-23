@@ -264,6 +264,7 @@ public class TestTWDGameManager {
         twdGameManager.move(4,3,3,3);
         twdGameManager.move(3,4,3,5);
         twdGameManager.getGameStatistics();
+        twdGameManager.isDoorToSafeHaven(0,0);
 
     }
 
