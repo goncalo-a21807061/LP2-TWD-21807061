@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import sun.awt.EventQueueItem;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -284,8 +286,8 @@ public class TWDGameManager {
                                                 }
                                             }
                                             humano.setEquipmentId(0);
-                                            humano.setX(xD+10000);
-                                            humano.setY(yD+10000);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
@@ -300,13 +302,7 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    if(antidoto == true) {
-                                                        turnosVeneno++;
-                                                    }
-                                                    return true;
+                                                    return false;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
@@ -526,8 +522,8 @@ public class TWDGameManager {
                                             }
                                             humano.setEquipmentId(0);
                                             humano.setLocal("safe haven");  // toString
-                                            humano.setX(xD+10000);
-                                            humano.setY(yD+10000);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
                                             turnos++;
@@ -541,13 +537,7 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    if(antidoto == true) {
-                                                        turnosVeneno++;
-                                                    }
-                                                    return true;
+                                                    return false;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
@@ -808,8 +798,8 @@ public class TWDGameManager {
                                                     equipamento.setY(10000);
                                                 }
                                             }
-                                            humano.setX(xD+10000);
-                                            humano.setY(yD+10000);
+                                            humano.setX(xD);
+                                            humano.setY(yD);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
@@ -824,13 +814,7 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    turnos++;
-                                                    turnosGameIsOver++;
-                                                    currentTeam = 20;
-                                                    if(antidoto == true) {
-                                                        turnosVeneno++;
-                                                    }
-                                                    return true;
+                                                    return false;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
@@ -1937,12 +1921,12 @@ public class TWDGameManager {
 
     public int getElementId(int x, int y) {
         for(Creature criatura: criaturas) {
-            if(x == criatura.getX() && y == criatura.getY()) {
+            if(tabuleiro[y][x] == criatura.getId()) {
                 return criatura.getId();
             }
         }
         for(Equipamento equipamento: equipamentos) {
-            if (x == equipamento.getX() && y == equipamento.getY()) {
+            if (tabuleiro[y][x] == equipamento.getId()) {
                 return equipamento.getId();
             }
         }
@@ -2036,17 +2020,14 @@ public class TWDGameManager {
     public List<Integer> getIdsInSafeHaven() {
         List<Integer> ids = new ArrayList<>();
         for(Creature criatura: safeHeaven) {
-            if(criatura.getLocal() == "safe haven")
             ids.add(criatura.getId());
         }
         return ids;
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
-        for (Porta porta: portas) {
-            if (porta.getY() == y && porta.getX() == x) {
-                return true;
-            }
+        if (tabuleiro[y][x] == 99) {
+            return true;
         }
         return false;
     }
