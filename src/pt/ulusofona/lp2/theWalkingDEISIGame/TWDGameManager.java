@@ -934,6 +934,11 @@ public class TWDGameManager {
                                                             }
                                                         }
                                                     } else {
+                                                        for(Equipamento equipamento: equipamentos) {
+                                                            if(equipamento.getId() == humano.getIdEquipamento() && equipamento.getIdTipo() == humano.getIdTipoEquipamento()) {
+                                                                equipamento.setSalvacoes();
+                                                            }
+                                                        }
                                                         tabuleiro[yO][xO] = 0;
                                                         tabuleiro[yD][xD] = humano.getId();
                                                         humano.setMortos();
