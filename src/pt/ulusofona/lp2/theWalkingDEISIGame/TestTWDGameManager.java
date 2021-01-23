@@ -265,6 +265,22 @@ public class TestTWDGameManager {
         twdGameManager.move(3,4,3,5);
         twdGameManager.getGameStatistics();
         twdGameManager.isDoorToSafeHaven(0,0);
+    }
+
+    @Test
+    public void test21move() throws IOException, InvalidTWDInitialFileException {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("test-files/dados.txt"));
+        assertEquals(false,twdGameManager.move(-1,0,0,1));
+        assertEquals(true, twdGameManager.move(6,7,6,6));
+        assertEquals(true,twdGameManager.move(5,4,5,3));
+        assertEquals(true,twdGameManager.move(0,3,1,4));
+        assertEquals(true,twdGameManager.move(4,2,4,1));
+        assertEquals(true, twdGameManager.move(3,5,3,4));
+        assertEquals(true,twdGameManager.move(4,4,3,4));
+        assertEquals(true, twdGameManager.move(5,5,4,5));
+        assertEquals(true, twdGameManager.move(4,3,3,3));
+        assertEquals(true, twdGameManager.move(4,5,4,4));
 
     }
 
