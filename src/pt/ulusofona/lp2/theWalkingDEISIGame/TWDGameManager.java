@@ -302,7 +302,13 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    return false;
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 20;
+                                                    if (antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
+                                                    return true;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
@@ -537,7 +543,13 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    return false;
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 20;
+                                                    if (antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
+                                                    return true;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
@@ -814,7 +826,13 @@ public class TWDGameManager {
                                         if (tabuleiro[yD][xD] == idZombie) {
                                             if (zombie.getEquipa() == 20) {
                                                 if (humano.getIdEquipamento() == 0) {
-                                                    return false;
+                                                    turnos++;
+                                                    turnosGameIsOver++;
+                                                    currentTeam = 20;
+                                                    if (antidoto == true) {
+                                                        turnosVeneno++;
+                                                    }
+                                                    return true;
                                                 }
                                             }
                                             if (humano.getIdTipoEquipamento() == 0) {
