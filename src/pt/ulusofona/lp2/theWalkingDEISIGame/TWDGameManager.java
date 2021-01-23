@@ -286,8 +286,8 @@ public class TWDGameManager {
                                                 }
                                             }
                                             humano.setEquipmentId(0);
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD + 10000);
+                                            humano.setY(yD + 10000);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
@@ -321,8 +321,6 @@ public class TWDGameManager {
                                                                 humano.humanoParaZombie();
                                                                 humano.setImagePNG("zombie.png");
                                                                 equipamentosRemove.remove(equipamento1);
-                                                                equipamento1.setX(-10000);
-                                                                equipamento1.setY(-10000);
                                                             }
                                                             if (equipamento1.getDuracao() > 0) {
                                                                 for (Equipamento equipamento : equipamentos) {
@@ -333,6 +331,8 @@ public class TWDGameManager {
                                                                 equipamento1.setDuracao(1);
                                                                 if(equipamento1.getDuracao() == 0) {
                                                                     humano.setEquipmentId(0);
+                                                                    equipamento1.setX(-10000);
+                                                                    equipamento1.setY(-10000);
                                                                 }
                                                             }
                                                         }
@@ -522,8 +522,8 @@ public class TWDGameManager {
                                             }
                                             humano.setEquipmentId(0);
                                             humano.setLocal("safe haven");  // toString
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD+10000);
+                                            humano.setY(yD+10000);
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
                                             turnos++;
@@ -798,8 +798,8 @@ public class TWDGameManager {
                                                     equipamento.setY(10000);
                                                 }
                                             }
-                                            humano.setX(xD);
-                                            humano.setY(yD);
+                                            humano.setX(xD+10000);
+                                            humano.setY(yD+10000);
                                             humano.setLocal("safe haven");  // toString
                                             safeHeaven.add(humano);
                                             humanos.remove(humano);
@@ -833,8 +833,7 @@ public class TWDGameManager {
                                                                 humano.humanoParaZombie();
                                                                 humano.setImagePNG("zombie.png");
                                                                 equipamentosRemove.remove(equipamento1);
-                                                                equipamento1.setX(-10000);
-                                                                equipamento1.setY(-10000);
+
                                                             }
                                                             if (equipamento1.getDuracao() > 0) {
                                                                 for (Equipamento equipamento : equipamentos) {
@@ -845,6 +844,8 @@ public class TWDGameManager {
                                                                 equipamento1.setDuracao(1);
                                                                 if(equipamento1.getDuracao() == 0) {
                                                                     humano.setEquipmentId(0);
+                                                                    equipamento1.setX(-10000);
+                                                                    equipamento1.setY(-10000);
                                                                 }
                                                             }
                                                         }
@@ -1035,13 +1036,15 @@ public class TWDGameManager {
                                                                 return false;
                                                             } else {
                                                                 zombie.adicionaEquipamentosEncontrados(1);
-                                                                tabuleiro[yD][xD] = id;
+                                                                tabuleiro[yD][xD] = zombie.getId();
                                                                 tabuleiro[yO][xO] = 0;
                                                                 zombie.setX(xD);
                                                                 zombie.setY(yD);
                                                                 for (Equipamento equipamento1 : equipamentos) {
                                                                     if (equipamento.getId() == idEquipamento) {
-                                                                        equipamentosRemove.remove(equipamento);
+                                                                        equipamento1.setY(10000+yD);
+                                                                        equipamento.setX(10000+xD);
+                                                                        equipamentosRemove.remove(equipamento1);
                                                                     }
                                                                 }
                                                             }
@@ -1056,13 +1059,15 @@ public class TWDGameManager {
                                                     }
                                                 } else {
                                                     zombie.adicionaEquipamentosEncontrados(1);
-                                                    tabuleiro[yD][xD] = id;
+                                                    tabuleiro[yD][xD] = zombie.getId();
                                                     tabuleiro[yO][xO] = 0;
                                                     zombie.setX(xD);
                                                     zombie.setY(yD);
                                                     for (Equipamento equipamento2 : equipamentos) {
                                                         if (equipamento.getId() == idEquipamento) {
-                                                            equipamentosRemove.remove(equipamento);
+                                                            equipamento2.setX(10000+xD);
+                                                            equipamento2.setY(10000+yD);
+                                                            equipamentosRemove.remove(equipamento2);
                                                         }
                                                     }
                                                     turnos++;
@@ -1112,8 +1117,6 @@ public class TWDGameManager {
                                                                     humano.humanoParaZombie();
                                                                     humano.setImagePNG("zombie.png");
                                                                     equipamentosRemove.remove(equipamento1);
-                                                                    equipamento1.setX(-10000);
-                                                                    equipamento1.setY(-10000);
                                                                 }
                                                                 if (equipamento1.getDuracao() > 0) {
                                                                     for (Equipamento equipamento : equipamentos) {
@@ -1124,6 +1127,8 @@ public class TWDGameManager {
                                                                     equipamento1.setDuracao(1);
                                                                     if(equipamento1.getDuracao() == 0) {
                                                                         humano.setEquipmentId(0);
+                                                                        equipamento1.setX(-10000);
+                                                                        equipamento1.setY(-10000);
                                                                     }
                                                                 }
                                                             }
@@ -1480,8 +1485,7 @@ public class TWDGameManager {
                                                                     humano.humanoParaZombie();
                                                                     humano.setImagePNG("zombie.png");
                                                                     equipamentosRemove.remove(equipamento1);
-                                                                    equipamento1.setX(-10000);
-                                                                    equipamento1.setY(-10000);
+
                                                                 }
                                                                 if (equipamento1.getDuracao() > 0) {
                                                                     for (Equipamento equipamento : equipamentos) {
@@ -1492,6 +1496,8 @@ public class TWDGameManager {
                                                                     equipamento1.setDuracao(1);
                                                                     if(equipamento1.getDuracao() == 0) {
                                                                         humano.setEquipmentId(0);
+                                                                        equipamento1.setX(-10000);
+                                                                        equipamento1.setY(-10000);
                                                                     }
                                                                 }
                                                             }
@@ -1921,12 +1927,12 @@ public class TWDGameManager {
 
     public int getElementId(int x, int y) {
         for(Creature criatura: criaturas) {
-            if(tabuleiro[y][x] == criatura.getId()) {
+            if(criatura.getX() == x && criatura.getY() == y) {
                 return criatura.getId();
             }
         }
         for(Equipamento equipamento: equipamentos) {
-            if (tabuleiro[y][x] == equipamento.getId()) {
+            if (equipamento.getX() == x && equipamento.getY() == y) {
                 return equipamento.getId();
             }
         }
@@ -2026,8 +2032,10 @@ public class TWDGameManager {
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
-        if (tabuleiro[y][x] == 99) {
-            return true;
+        for(Porta porta : portas) {
+            if(porta.getX() == x && porta.getY() == y) {
+                return true;
+            }
         }
         return false;
     }

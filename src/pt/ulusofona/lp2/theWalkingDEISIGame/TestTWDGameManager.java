@@ -208,7 +208,6 @@ public class TestTWDGameManager {
         printWriter.close();
 
         TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("test-files\\dados.txt"));
         twdGameManager.getWorldSize();
         twdGameManager.getInitialTeam();
         twdGameManager.getAuthors();
