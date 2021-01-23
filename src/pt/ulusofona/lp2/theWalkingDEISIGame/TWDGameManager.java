@@ -847,7 +847,6 @@ public class TWDGameManager {
                                                         if (antidoto == true) {
                                                             turnosVeneno++;
                                                         }
-                                                        return true;
                                                     } else {
                                                         if (equipamento.getIdTipo() == 8 && venenoUsado == false) {
                                                             antidoto = true;
@@ -871,8 +870,8 @@ public class TWDGameManager {
                                                         if (antidoto == true) {
                                                             turnosVeneno++;
                                                         }
-                                                        return true;
                                                     }
+                                                    return true;
                                                 }
                                             }
                                         }
