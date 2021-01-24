@@ -281,6 +281,10 @@ public class TestTWDGameManager {
         assertEquals(true, twdGameManager.move(5,5,4,5));
         assertEquals(true, twdGameManager.move(4,3,3,3));
         assertEquals(true, twdGameManager.move(4,5,4,4));
+        assertEquals(true,twdGameManager.move(4,4,4,5));
+        assertEquals(true,twdGameManager.move(0,2,1,2));
+        assertEquals(true,twdGameManager.move(4,5,4,6));
+        assertEquals(true,twdGameManager.move(1,2,1,1));
 
     }
 
