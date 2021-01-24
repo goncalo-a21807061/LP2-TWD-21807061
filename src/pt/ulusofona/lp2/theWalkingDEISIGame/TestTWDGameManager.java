@@ -327,27 +327,6 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void test33SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("test-files/sobreposicaoHumano.txt"));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 3, 5, 1));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 1));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 5, 3, 5));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 5));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(6, 4, 3, 3));
-    }
-
-    @Test
-    public void test34SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("test-files/sobreposicaoEquipamento.txt"));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 3, 5, 1));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 1));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 5, 3, 5));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 5));
-        assertEquals(false, twdGameManager.verificarSobrePosicao(6, 4, 3, 3));
-    }
-    @Test
     public void test35SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
