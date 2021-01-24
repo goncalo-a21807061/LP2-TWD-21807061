@@ -293,6 +293,7 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
         assertEquals(false,twdGameManager.move(0,2,1,3));
+        assertEquals(true,twdGameManager.move(5,5,5,4));
     }
 
     @Test
@@ -317,6 +318,10 @@ public class TestTWDGameManager {
         assertEquals(false,twdGameManager.move(8,5,6,5));
         assertEquals(false,twdGameManager.move(7,5,9,5));
         assertEquals(false,twdGameManager.move(3,5,5,5));
+        assertEquals(0,twdGameManager.getEquipmentId(10));
+        assertEquals(0,twdGameManager.getEquipmentId(10000));
+        assertEquals(0,twdGameManager.getEquipmentTypeId(10000));
+        assertEquals(3,twdGameManager.getEquipmentTypeId(-7));
     }
 
 }
