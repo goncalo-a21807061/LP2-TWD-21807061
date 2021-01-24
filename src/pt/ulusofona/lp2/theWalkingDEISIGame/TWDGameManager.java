@@ -27,7 +27,6 @@ public class TWDGameManager {
     private int turnos = 0;
     private int turnosGameIsOver = 0;
     private int idTipoEquipamento;
-    private int bala;
     private int turnosVeneno = 0;
     private boolean antidoto = false;
     private boolean venenoUsado = false;

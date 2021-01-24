@@ -1,91 +1,30 @@
-package pt.ulusofona.lp2.theWalkingDEISIGame;
-
-import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
-
-public class TestTWDGameManager {
-
-    @Test
-    public void test01Move() {
-
-        //teste movimento normal humano
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        
-        //ver se Humanos e Zombies estao na posicao certa
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-        ;
-        //mover Humano da posição (3,3) para a posicao (3,2)
-        twdGameManager.move(3,3,3,2);
-        //Verificar se Humano se moveu
-        assertEquals(1,twdGameManager.getElementId(3,2));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-    }
-
-
-    @Test
-    public void test02Move() {
-        //teste movimento fora do grafico humano
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        //ver se Humanos e Zombies estao na posicao certa
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-        ;
-        //mover Humano da posição (3,3) para a posicao (3,-1) -> Fora do ecra
-        twdGameManager.move(3,3,3,-1);
-        //Verificar se Humano se moveu
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-    }
-
-    @Test
-    public void test03Move() {
-        //teste movimento normal zombie
-        //teste movimento normal humano
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        //ver se Humanos e Zombies estao na posicao certa
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-        ;
-        //mover Zombie da posição (4,4) para a posicao (4,3)
-        twdGameManager.move(4,4,4,3);
-        //Verificar se Humano se moveu
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,3));
-    }
-
-    @Test
-    public void test04Move() {
-        //teste movimento fora do grafico zombie
-        //teste movimento normal humano
-        TWDGameManager twdGameManager = new TWDGameManager();
-        twdGameManager.startGame(new File("dados.txt"));
-
-        //ver se Humanos e Zombies estao na posicao certa
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-        ;
-        //mover Humano da posição (3,3) para a posicao (3,2)
-        twdGameManager.move(4,4,4,-1);
-        //Verificar se Humano se moveu
-        assertEquals(1,twdGameManager.getElementId(3,3));
-        assertEquals(2,twdGameManager.getElementId(3,4));
-        assertEquals(3,twdGameManager.getElementId(4,4));
-    }
-}
+10 10
+10
+12
+1 : 1 : Freddie M. : 4 : 3
+2 : 7 : Jackie Chan : 3 : 5
+3 : 6 : Alice : 5 : 5
+4 : 8 : Ash : 3 : 2
+5 : 5 : Sam : 2 : 3
+20 : 5 : Sam1 : 0 : 2
+10 : 9 : Cão : 0 : 3
+6 : 2 : Paciente Zero : 4 : 4
+7 : 3 : Paciente Zeros : 5 : 4
+8 : 4 : Paciente Zerosa : 4 : 2
+9 : 0 : Paciente Um : 2 : 1
+15 : 5 : crianca : 6 : 7
+11
+-1 : 0 : 1 : 0
+-2 : 9 : 1 : 1
+-3 : 9 : 2 : 0
+-11 : 8 : 1 : 2
+-4 : 2 : 2 : 1
+-5 : 1 : 3 : 3
+-6 : 7 : 3 : 4
+-7 : 3 : 4 : 5
+-8 : 4 : 7 : 8
+-9 : 5 : 8 : 9
+-10 : 6 : 8 : 8
+2
+6 : 6
+0 : 0

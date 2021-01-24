@@ -9,7 +9,7 @@
 20 : 5 : Sam1 : 0 : 2
 10 : 9 : Cão : 0 : 3
 6 : 2 : Paciente Zero : 4 : 4
-7 : 3 : Paciente Zeros : 5 : 4
+7 : 3 : Paciente Zeros : 6 : 5
 8 : 4 : Paciente Zerosa : 4 : 2
 9 : 0 : Paciente Um : 2 : 1
 15 : 5 : crianca : 6 : 7
