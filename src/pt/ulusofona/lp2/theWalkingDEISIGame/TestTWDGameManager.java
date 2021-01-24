@@ -315,13 +315,16 @@ public class TestTWDGameManager {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/sobreposicao.txt"));
         assertEquals(false,twdGameManager.move(5,3,7,3));
-        assertEquals(false,twdGameManager.move(8,5,6,5));
-        assertEquals(false,twdGameManager.move(7,5,9,5));
         assertEquals(false,twdGameManager.move(3,5,5,5));
         assertEquals(0,twdGameManager.getEquipmentId(10));
         assertEquals(0,twdGameManager.getEquipmentId(10000));
         assertEquals(0,twdGameManager.getEquipmentTypeId(10000));
         assertEquals(3,twdGameManager.getEquipmentTypeId(-7));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(7,3,5,1));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(7,9,3,1));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(7,5,3,5));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(7,9,3,5));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(6,4,3,3));
     }
 
 }
