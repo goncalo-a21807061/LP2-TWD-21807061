@@ -1,11 +1,8 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
