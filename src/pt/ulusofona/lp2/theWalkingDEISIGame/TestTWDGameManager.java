@@ -57,7 +57,7 @@ public class TestTWDGameManager {
         assertEquals(0, equipamento.getDuracao());
 
         //IdTipo = 1
-        Equipamento equipamento0 = new Equipamento(-20,1,0,0);
+        Equipamento equipamento0 = new Equipamento(-20, 1, 0, 0);
         equipamento0.escudo(2);
         equipamento.setUsado(true);
         equipamento.getUsado();
@@ -86,7 +86,7 @@ public class TestTWDGameManager {
         Equipamento equipamento7 = new Equipamento(-7, 8, 3, 1);
 
         // IdTipo = 9
-        Equipamento equipamento9 = new Equipamento(-9,9,3,2);
+        Equipamento equipamento9 = new Equipamento(-9, 9, 3, 2);
 
         // IdTipo = 10
         Equipamento equipamento8 = new Equipamento(-7, 10, 3, 1);
@@ -166,10 +166,10 @@ public class TestTWDGameManager {
         criatura2.getIdTipo();
         criatura2.getMoverDiagonal();
 
-        Creature criatura3 = new Humano(2,5,"zeus", 3,3);
-        Creature criatura4 = new Humano(3,6,"darwid", 3,3);
-        Creature criatura5 = new Humano(4,8,"richie",2,1);
-        Creature criatura6 = new Humano(5,9,"davi",1,2);
+        Creature criatura3 = new Humano(2, 5, "zeus", 3, 3);
+        Creature criatura4 = new Humano(3, 6, "darwid", 3, 3);
+        Creature criatura5 = new Humano(4, 8, "richie", 2, 1);
+        Creature criatura6 = new Humano(5, 9, "davi", 1, 2);
         criatura2.humanoParaZombie();
         criatura3.humanoParaZombie();
         criatura4.humanoParaZombie();
@@ -177,10 +177,10 @@ public class TestTWDGameManager {
         criatura6.humanoParaZombie();
         criatura4.getNomePersonagem();
 
-        Creature zombie1 = new Zombie(2,0,"zombiw1",1,1);
-        Creature zombie2 = new Zombie(3,1,"zombie2",1,2);
-        Creature zombie3 = new Zombie(4,2,"ZOMBIE3",1,3);
-        Creature zombie4 = new Zombie(4,4,"oi",2,2);
+        Creature zombie1 = new Zombie(2, 0, "zombiw1", 1, 1);
+        Creature zombie2 = new Zombie(3, 1, "zombie2", 1, 2);
+        Creature zombie3 = new Zombie(4, 2, "ZOMBIE3", 1, 3);
+        Creature zombie4 = new Zombie(4, 4, "oi", 2, 2);
         zombie4.getId();
         zombie4.getEquipa();
         zombie4.getNomePersonagem();
@@ -190,36 +190,35 @@ public class TestTWDGameManager {
 
     @Test
     public void test19move() {
-        InvalidTWDInitialFileException invalidTWDInitialFileException = new InvalidTWDInitialFileException(5,true,"");
-        assertEquals(true,invalidTWDInitialFileException.validNrOfCreatures());
-        assertEquals(true,invalidTWDInitialFileException.validCreatureDefinition());
+        InvalidTWDInitialFileException invalidTWDInitialFileException = new InvalidTWDInitialFileException(5, true, "");
+        assertEquals(true, invalidTWDInitialFileException.validNrOfCreatures());
+        assertEquals(true, invalidTWDInitialFileException.validCreatureDefinition());
 
-        InvalidTWDInitialFileException invalidTWDInitialFileException1 = new InvalidTWDInitialFileException(1,false,"linha");
-        assertEquals(false,invalidTWDInitialFileException1.validNrOfCreatures());
-        assertEquals(false,invalidTWDInitialFileException1.validCreatureDefinition());
-        assertEquals("linha",invalidTWDInitialFileException1.getErroneousLine());
+        InvalidTWDInitialFileException invalidTWDInitialFileException1 = new InvalidTWDInitialFileException(1, false, "linha");
+        assertEquals(false, invalidTWDInitialFileException1.validNrOfCreatures());
+        assertEquals(false, invalidTWDInitialFileException1.validCreatureDefinition());
+        assertEquals("linha", invalidTWDInitialFileException1.getErroneousLine());
     }
-
 
 
     @Test
     public void test21move() throws IOException, InvalidTWDInitialFileException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
-        assertEquals(false,twdGameManager.move(-1,0,0,1));
-        assertEquals(true, twdGameManager.move(6,7,6,6));
-        assertEquals(true,twdGameManager.move(5,4,5,3));
-        assertEquals(true,twdGameManager.move(0,3,1,4));
-        assertEquals(true,twdGameManager.move(4,2,4,1));
-        assertEquals(true, twdGameManager.move(3,5,3,4));
-        assertEquals(true,twdGameManager.move(4,4,3,4));
-        assertEquals(true, twdGameManager.move(5,5,4,5));
-        assertEquals(true, twdGameManager.move(4,3,3,3));
-        assertEquals(true, twdGameManager.move(4,5,4,4));
-        assertEquals(true,twdGameManager.move(4,4,4,5));
-        assertEquals(true,twdGameManager.move(0,2,1,2));
-        assertEquals(true,twdGameManager.move(4,5,4,6));
-        assertEquals(true,twdGameManager.move(1,2,1,1));
+        assertEquals(false, twdGameManager.move(-1, 0, 0, 1));
+        assertEquals(true, twdGameManager.move(6, 7, 6, 6));
+        assertEquals(true, twdGameManager.move(5, 4, 5, 3));
+        assertEquals(true, twdGameManager.move(0, 3, 1, 4));
+        assertEquals(true, twdGameManager.move(4, 2, 4, 1));
+        assertEquals(true, twdGameManager.move(3, 5, 3, 4));
+        assertEquals(true, twdGameManager.move(4, 4, 3, 4));
+        assertEquals(true, twdGameManager.move(5, 5, 4, 5));
+        assertEquals(true, twdGameManager.move(4, 3, 3, 3));
+        assertEquals(true, twdGameManager.move(4, 5, 4, 4));
+        assertEquals(true, twdGameManager.move(4, 4, 4, 5));
+        assertEquals(true, twdGameManager.move(0, 2, 1, 2));
+        assertEquals(true, twdGameManager.move(4, 5, 4, 6));
+        assertEquals(true, twdGameManager.move(1, 2, 1, 1));
 
     }
 
@@ -227,18 +226,18 @@ public class TestTWDGameManager {
     public void test22move() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
-        assertEquals(20,twdGameManager.getElementId(0,2));
-        assertEquals(-11,twdGameManager.getElementId(1,2));
-        assertEquals(true, twdGameManager.isDoorToSafeHaven(0,0));
-        assertEquals(false,twdGameManager.isDoorToSafeHaven(0,1));
+        assertEquals(20, twdGameManager.getElementId(0, 2));
+        assertEquals(-11, twdGameManager.getElementId(1, 2));
+        assertEquals(true, twdGameManager.isDoorToSafeHaven(0, 0));
+        assertEquals(false, twdGameManager.isDoorToSafeHaven(0, 1));
     }
 
     @Test
     public void test23move() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
-        assertEquals(true, twdGameManager.move(2,2,3,2));
-        assertEquals(true,twdGameManager.move(5,4,5,5));
+        assertEquals(true, twdGameManager.move(2, 2, 3, 2));
+        assertEquals(true, twdGameManager.move(5, 4, 5, 5));
         assertEquals(true, twdGameManager.saveGame(new File("test-files/startGame.txt")));
     }
 
@@ -246,8 +245,8 @@ public class TestTWDGameManager {
     public void test24moveIdosoToSafeHaven() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/idoso.txt"));
-        assertEquals(true,twdGameManager.move(0,1,0,0));
-        assertEquals(0, twdGameManager.getElementId(6,4));
+        assertEquals(true, twdGameManager.move(0, 1, 0, 0));
+        assertEquals(0, twdGameManager.getElementId(6, 4));
         twdGameManager.getAuthors();
         twdGameManager.getZombies();
         twdGameManager.getEquipamentos();
@@ -264,67 +263,97 @@ public class TestTWDGameManager {
     public void test25moveCaoToSafeHaven() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/cao.txt"));
-        assertEquals(true,twdGameManager.move(7,7,6,6));
+        assertEquals(true, twdGameManager.move(7, 7, 6, 6));
     }
 
     @Test
     public void test26moveCaoToZombie() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/cao.txt"));
-        assertEquals(true,twdGameManager.move(5,5,4,4));
+        assertEquals(true, twdGameManager.move(5, 5, 4, 4));
     }
 
     @Test
     public void test27getEquipamentoCao() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/cao.txt"));
-        assertEquals(true,twdGameManager.move(7,7,8,8));
+        assertEquals(true, twdGameManager.move(7, 7, 8, 8));
     }
 
     @Test
     public void test28getEquipamentoIdoso() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/idoso.txt"));
-        assertEquals(true,twdGameManager.move(0,1,1,1));
+        assertEquals(true, twdGameManager.move(0, 1, 1, 1));
     }
 
     @Test
     public void test29moveDiagonalCrianca() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
-        assertEquals(false,twdGameManager.move(0,2,1,3));
-        assertEquals(true,twdGameManager.move(5,5,5,4));
+        assertEquals(false, twdGameManager.move(0, 2, 1, 3));
+        assertEquals(true, twdGameManager.move(5, 5, 5, 4));
     }
 
     @Test
     public void test30moveZombieSafeHaven() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/zombie.txt"));
-        assertEquals(false,twdGameManager.move(6,5,6,6));
+        assertEquals(false, twdGameManager.move(6, 5, 6, 6));
     }
 
     @Test
     public void test31Sobreposicao() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/dados.txt"));
-        assertEquals(false,twdGameManager.move(5,5,5,3));
+        assertEquals(false, twdGameManager.move(5, 5, 5, 3));
     }
 
     @Test
     public void test32Sobreposicao() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager twdGameManager = new TWDGameManager();
         twdGameManager.startGame(new File("test-files/sobreposicao.txt"));
-        assertEquals(false,twdGameManager.move(5,3,7,3));
-        assertEquals(false,twdGameManager.move(3,5,5,5));
-        assertEquals(0,twdGameManager.getEquipmentId(10));
-        assertEquals(0,twdGameManager.getEquipmentId(10000));
-        assertEquals(0,twdGameManager.getEquipmentTypeId(10000));
-        assertEquals(3,twdGameManager.getEquipmentTypeId(-7));
-        assertEquals(false,twdGameManager.verificarSobrePosicao(7,3,5,1));
-        assertEquals(false,twdGameManager.verificarSobrePosicao(7,9,3,1));
-        assertEquals(false,twdGameManager.verificarSobrePosicao(7,5,3,5));
-        assertEquals(false,twdGameManager.verificarSobrePosicao(7,9,3,5));
-        assertEquals(false,twdGameManager.verificarSobrePosicao(6,4,3,3));
+        assertEquals(false, twdGameManager.move(5, 3, 7, 3));
+        assertEquals(false, twdGameManager.move(3, 5, 5, 5));
+        assertEquals(0, twdGameManager.getEquipmentId(10));
+        assertEquals(0, twdGameManager.getEquipmentId(10000));
+        assertEquals(0, twdGameManager.getEquipmentTypeId(10000));
+        assertEquals(3, twdGameManager.getEquipmentTypeId(-7));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 3, 5, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 5, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(6, 4, 3, 3));
     }
+
+    @Test
+    public void test33SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("test-files/sobreposicaoHumano.txt"));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 3, 5, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 5, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(6, 4, 3, 3));
+    }
+
+    @Test
+    public void test34SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("test-files/sobreposicaoEquipamento.txt"));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 3, 5, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 1));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 5, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(7, 9, 3, 5));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(6, 4, 3, 3));
+    }
+    @Test
+    public void test35SobrePosicao() throws InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("test-files/dados.txt"));
+        assertEquals(false, twdGameManager.verificarSobrePosicao(0, 0, 2, 4));
+        assertEquals(false,twdGameManager.verificarSobrePosicao(5,5,5,3));
+    }
+
 
 }
