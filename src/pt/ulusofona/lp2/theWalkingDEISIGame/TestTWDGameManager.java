@@ -288,4 +288,13 @@ public class TestTWDGameManager {
 
     }
 
+    @Test
+    public void test22move() throws InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager twdGameManager = new TWDGameManager();
+        twdGameManager.startGame(new File("test-files/dados.txt"));
+        assertEquals(20,twdGameManager.getElementId(0,2));
+        assertEquals(-11,twdGameManager.getElementId(1,2));
+        assertEquals(true, twdGameManager.isDoorToSafeHaven(0,0));
+    }
+
 }

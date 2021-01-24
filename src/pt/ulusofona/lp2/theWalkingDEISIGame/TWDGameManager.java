@@ -956,8 +956,8 @@ public class TWDGameManager {
                                                         if (humano.getIdTipoEquipamento() == equipamento1.getIdTipo() && humano.getIdEquipamento() == equipamento1.getId()) {
                                                             if (zombie.getIdTipo() != 4 && equipamento1.getDuracao() > 0) {
                                                                 equipamento1.setSalvacoes();
-                                                                tabuleiro[yO][xO] = 0;
-                                                                tabuleiro[yD][xD] = humano.getId();
+                                                                tabuleiro[yO][xO] = humano.getId();
+                                                                tabuleiro[yD][xD] = 0;
                                                                 humano.setMortos();
                                                                 humano.setY(yD);
                                                                 humano.setX(xD);
