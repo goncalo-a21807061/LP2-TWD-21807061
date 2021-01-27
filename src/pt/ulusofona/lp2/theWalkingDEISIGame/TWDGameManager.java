@@ -265,7 +265,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                     for(Equipamento equipamento: equipamentos) {
                                                         if(equipamento.getId() == humano.getIdEquipamento()) {
                                                             equipamento.setY(10000);
@@ -339,7 +338,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -353,7 +351,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -466,7 +463,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                     for(Equipamento equipamento: equipamentos) {
                                                         if(equipamento.getId() == humano.getIdEquipamento()) {
                                                             equipamento.setY(10000);
@@ -544,7 +540,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -558,7 +553,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -685,7 +679,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                     for(Equipamento equipamento: equipamentos) {
                                                         if(equipamento.getId() == humano.getIdEquipamento()) {
                                                             equipamento.setY(10000);
@@ -759,7 +752,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -773,7 +765,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                 }
                                                 processTurn();
                                                 return true;
@@ -891,7 +882,6 @@ public class TWDGameManager {
                                                     humanos.remove(humano);
                                                     humano.colocaAZeroEquipamentos();
                                                     humano.humanoParaZombie();
-                                                    humano.setImagePNG("zombie.png");
                                                     for(Equipamento equipamento: equipamentos) {
                                                         if(equipamento.getId() == humano.getIdEquipamento()) {
                                                             equipamento.setY(10000);
@@ -926,7 +916,6 @@ public class TWDGameManager {
                                                         humano.setEquipmentId(0);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
-                                                        humano.setImagePNG("zombie.png");
                                                         for(Equipamento equipamento: equipamentos) {
                                                             if(equipamento.getId() == idEquipamento) {
                                                                 equipamentosRemove.remove(equipamento);
@@ -977,7 +966,6 @@ public class TWDGameManager {
                                                                 humano.setEquipmentId(0);
                                                                 humano.colocaAZeroEquipamentos();
                                                                 humano.humanoParaZombie();
-                                                                humano.setImagePNG("zombie.png");
                                                                 equipamentosRemove.remove(equipamento1);
                                                                 processTurn();
                                                                 return true;
@@ -1002,7 +990,6 @@ public class TWDGameManager {
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.setEquipmentId(0);
                                                         humano.humanoParaZombie();
-                                                        humano.setImagePNG("zombie.png");
                                                     }
                                                     if(zombie.getIdTipo() == 3) {
                                                         for(Equipamento equipamento: equipamentos) {
@@ -1023,7 +1010,6 @@ public class TWDGameManager {
                                                         humano.setEquipmentId(0);
                                                         humano.colocaAZeroEquipamentos();
                                                         humano.humanoParaZombie();
-                                                        humano.setImagePNG("zombie.png");
                                                     }
                                                     if(zombie.getIdTipo() == 4) {
                                                         for(Equipamento equipamento: equipamentos) {
@@ -1061,7 +1047,6 @@ public class TWDGameManager {
                                                                 humano.setEquipmentId(0);
                                                                 humano.colocaAZeroEquipamentos();
                                                                 humano.humanoParaZombie();
-                                                                humano.setImagePNG("zombie.png");
                                                                 equipamentosRemove.remove(equipamento1);
                                                             }
                                                             if(equipamento1.getDuracao() > 0) {

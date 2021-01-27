@@ -143,12 +143,16 @@ public class Humano extends Creature {
     public void humanoParaZombie() {
         if(nomePersonagem == "Criança (Vivo)") {
             nomePersonagem = "Criança (Zombie)";
+            foto = "crianca-zombie.png";
         } else if (nomePersonagem == "Adulto (Vivo)") {
             nomePersonagem = "Adulto (Zombie)";
+            foto = "adulto-zombie.png";
         } else if(nomePersonagem == "Militar (Vivo)") {
             nomePersonagem = "Militar (Zombie)";
+            foto = "militar-zombie.png";
         } else if(nomePersonagem == "Idoso (Vivo)") {
             nomePersonagem = "Idoso (Zombie)";
+            foto = "idoso-zombie.png";
         }
     }
 
